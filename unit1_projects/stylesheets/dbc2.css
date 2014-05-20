@@ -1,0 +1,48 @@
+div {
+	border: solid black 3px;
+	padding: 20px;
+}
+
+span {
+	color: red;
+}
+
+#header {
+	position: fixed;
+	background-color: orange;
+	text-align: center;
+	height: 50px;
+	top: -5px;
+	right: -5px;
+	left: -5px;
+	z-index: 1000;
+}
+
+#sidebar {
+	float: right;
+	right: 0px;
+	background-color: yellow;
+	width: 100px;
+	height: 500px;
+
+}
+
+#content {
+	float: center;
+	margin-top: 60px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 200px;
+}
+
+#footer {
+	clear: both;
+	background-color: orange;
+	text-align: center;
+	border: solid black 5px;
+	height: 50px;
+	right: 0px;
+	bottom: 0px;
+	left: 0px;
+	z-index: 100;
+}
