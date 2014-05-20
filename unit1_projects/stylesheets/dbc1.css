@@ -1,5 +1,10 @@
 body {
-	background-color: 66ff99;
+	background-color: #c9e8be;
+}
+
+a {
+	text-decoration: none;
+	color: #4d1b1b;
 }
 
 ul {
