@@ -24,6 +24,25 @@ a:hover {
 	color: #634618;
 }
 
+#picture {
+	position: relative;
+	text-align: center;
+	display: block;
+	left: auto;
+	right: auto;
+}
+
+#caption {
+	position: absolute;
+	top: 15em;
+	left: 25em;
+	border: none;
+	opacity: 0.8;
+	background-color: black;
+	color: white;
+	border-radius: 0%;
+}
+
 #header {
 	position: fixed;
 	background-color: orange;
