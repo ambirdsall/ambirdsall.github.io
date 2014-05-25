@@ -39,30 +39,26 @@ div {
 	float: right;
 	position: relative;
 	width: 66%;
-	height: 30em;
+	height: 26em;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 div div {
 	position: absolute;
-	height: 20em;
-	width: 20em;
-	display: block;
+	height: 25em;
+	width: 25em;
+	/*display: block;*/
+	overflow: hidden;
 	background-color: #FAF5E6;
 	top: 50%;
 	left: 50%;
-	margin: -10em 0 0 -10em;
+	margin: -12em 0 0 -15em;
 }
 
-div div p {
-	font-size: 8em;
+img {
+	margin: -170px 0 0 0;
 }
-
-a:hover div div p {
-	font-size: 9em;
-}
-
 
 footer {
 	text-align: right;
