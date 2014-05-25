@@ -39,16 +39,16 @@ div {
 	float: right;
 	position: relative;
 	width: 66%;
-	height: 26em;
+	height: 28em;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 div div {
 	position: absolute;
-	height: 25em;
-	width: 25em;
-	/*display: block;*/
+	height: 24em;
+	width: 24em;
+	border-radius: 100%;
 	overflow: hidden;
 	background-color: #FAF5E6;
 	top: 50%;
