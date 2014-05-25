@@ -1,0 +1,70 @@
+a {
+	text-decoration: none;
+	color: #ff0000;
+}
+
+a:hover {
+	text-decoration: underline;
+	color: #ff6600;
+}
+
+span {
+	font-size: 1.6em;
+}
+
+body {
+	background-color: #FAF5E6;
+}
+
+header {
+	background-color: #4B3219;
+	color: #5c9dff;
+	font-size: 6em;
+}
+
+nav {
+	float: left;
+	background-color: #FAF5E6;
+	max-width: 33%;
+	height: 100%;
+	font-size: 2em;
+}
+
+ul {
+	padding: 2em 0 0 2em;
+	line-height: 2;
+}
+
+div {
+	float: right;
+	position: relative;
+	width: 66%;
+	height: 30em;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+div div {
+	position: absolute;
+	height: 20em;
+	width: 20em;
+	display: block;
+	background-color: #FAF5E6;
+	top: 50%;
+	left: 50%;
+	margin: -10em 0 0 -10em;
+}
+
+div div p {
+	font-size: 8em;
+}
+
+a:hover div div p {
+	font-size: 9em;
+}
+
+
+footer {
+	text-align: right;
+	clear: both;
+}
