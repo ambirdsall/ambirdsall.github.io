@@ -20,6 +20,8 @@ header {
 	background-color: #4B3219;
 	color: #5c9dff;
 	font-size: 6em;
+	font-family: 'Josefin Sans';
+	font-weight: 700;
 }
 
 nav {
@@ -28,6 +30,8 @@ nav {
 	max-width: 33%;
 	height: 100%;
 	font-size: 2em;
+	font-family: 'Josefin Sans';
+	font-weight: 600;
 }
 
 ul {
@@ -63,4 +67,5 @@ img {
 footer {
 	text-align: right;
 	clear: both;
+	font-family: 'Lobster';
 }
