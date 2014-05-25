@@ -312,7 +312,7 @@ footer:after {
 }
 
 /* Responsive design */
-@media screen and (min-width: 650px) {
+@media screen and (max-width: 1050px) {
   * {
     float: none;
   }
