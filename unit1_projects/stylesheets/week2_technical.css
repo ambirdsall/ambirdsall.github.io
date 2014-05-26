@@ -3,7 +3,8 @@ html {
 }
 
 span {
-	font-size: 40px
+	font-family: "American Typewriter", serif;
+	color: #cc3d3d;
 }
 
 a {
@@ -12,6 +13,46 @@ a {
 
 h1 {
 	font-size: 30px;
+}
+
+#demo-one {
+	width: 300px;
+	background-color: aqua;
+	border: none;
+	padding: none;
+	margin: none;
+}
+
+#demo-two {
+	width: 300px;
+	background-color: aqua;
+	border: solid black 3px;
+	padding: none;
+	margin: none;
+}
+
+#demo-three {
+	width: 300px;
+	background-color: aqua;
+	border: dotted black 3px;
+	padding: none;
+	margin: none;
+}
+
+#demo-four {
+	width: 300px;
+	background-color: aqua;
+	border: dotted black 3px;
+	padding: 10px;
+	margin: none;
+}
+
+#demo-five {
+	width: 300px;
+	background-color: aqua;
+	border: dotted black 3px;
+	padding: 10px;
+	margin: 50px;
 }
 
 #header {
@@ -72,7 +113,11 @@ h1 {
 }
 
 #note-two {
-	margin-top: 20px;
+	margin-top: 180px;
+}
+
+#note-three {
+	margin-top: 250px;
 }
 
 .sidenote {
