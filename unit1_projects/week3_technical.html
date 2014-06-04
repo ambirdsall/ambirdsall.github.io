@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="stylesheets/week3_technical.css">
+	</head>
+	<body>
+		<div id="header">
+			<h1>JavaScript in Web Development</h1>
+		</div>
+		<div id="left">
+			<div id="date">
+			Alex Birdsall<br/>
+			6.2.2014
+			</div>
+		</div>
+		<div id="writing">
+			<p>
+				At the time of writing, JavaScript has become pretty ubiquitous in web development. Blog comments, interactive elements, styling that changes with user interactions, rotating slideshows: almost anything that moves on a website moves with JS. It's a contender for <a href="http://adambard.com/blog/top-github-languages-for-2013-so-far/">most popular</a> language amongst GitHub users. But why is it that JS, amongst all the languages of technobabel, has come to dominate the web? 
+			</p>
+			<p>
+				For starters, JS is structurally pretty well-suited to use in websites. Programming languages interact with websites via the <a href="http://en.wikipedia.org/wiki/Document_Object_Model">Document Object Model</a>; JS is an object-oriented language. Specifically, it's a <a href="http://en.wikipedia.org/wiki/Prototype-based_programming">prototype-based</a> language, which allows programmers to build their own objects, structure them how they please, and then build new objects that inherit those features. That means that JS is well-suited to making flexible, ad hoc structures suited to specific situations. Since websites are structured through nested tags that can be used in idiosyncratic ways, a language like JS that allows you to create "bespoke" methods and data structures suited to the site structure at hand is ideal.
+			</p>
+			<p>
+				Still, there are plenty of object-oriented languages that could have served. The biggest advantage JS holds over the others is, quite simply, inertia. JavaScript was released in 1995, and a large community has grown in its 19-year history. There are many <a href="http://en.wikipedia.org/wiki/List_of_JavaScript_libraries">libraries</a> of prewritten JS designed for use on web projects. There is also <a href="http://en.wikipedia.org/wiki/Ajax_(programming)">AJAX</a>, a set of techniques to update parts of a website without having to reload. It's possible to replicate the effects of AJAX with another language, but why bother when the code, standards, libraries and frameworks for AJAX are already written? With JavaScript, your code can go further by standing on the shoulders of giants. 
+			</p>
+			<p>
+				And just as the resources available to JS developers have proliferated, so have the standards of implementation. Every major browser supports JS, which is run in a <a href="http://en.wikipedia.org/wiki/Sandbox_(computer_security)">sandbox</a> within the browser. This local implementation is rather faster than constant communication with a remote server, and it has allowed for a series of <a href="http://javascript.about.com/od/reference/a/cannot.htm">limitations</a> to be imposed on JS for security. A website's JS cannot access files on your computer or on a server, and JS cannot access information about any website on a different domain. This helps prevent the spread of malignant code.
+			</p>
+			<p>
+				There are downsides to JS, of course. The ability to access files or databases directly, rather than through calls to separate, server-side scripts, would allow websites to manipulate data faster and more powerfully. And in addition to its security-motivated limitations, JS has no graphical functionality. It can alter text and CSS styling, but it can't directly create and manipulate images or animations.
+			</p>
+			<p>
+				So there you go. While it has its shortcomings, JavaScript is awfully well-suited to use in websites, and has organically grown a large community and a really useful set of resources over the years. Taken as a whole, this makes it about the easiest and most effective tool to make a website do whatever you want it to do. This self-reinforcing feedback loop of usefulness and popularity has established JavaScript as the web's language of choice.
+			</p>
+		</div>
+		<div class="sidenote" id="note-one">That blog post quantifies new GitHub repositories by language from 2012 through August 2013, but it shouldn't be taken as totally authoritative: it's possible recent trends have shifted (though I can't see a reason why); the data source, <a href="http://www.githubarchive.org/">GitHub Archive</a>, may not be accurate; and the automated parsing of file extensions may have miscategorized projects.</div> 
+		<div class="sidenote" id="note-two">&ltdiv&gt vs &ltheader&gt, for instance. Actually, &ltdiv&gt is a good example on its own, since it gets used for so many different tasks.</div>
+		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+	</body>
+</html>
