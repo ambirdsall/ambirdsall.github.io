@@ -28,14 +28,20 @@ nav {
 	float: left;
 	background-color: #FAF5E6;
 	max-width: 33%;
-	height: 100%;
+	max-height: 400px;
+	overflow: scroll;
 	font-size: 2em;
 	font-family: 'Josefin Sans';
 	font-weight: 600;
 }
 
+nav p {
+	position: fixed;
+	font-size: 0.78em;
+}
+
 ul {
-	padding: 2em 0 0 2em;
+	padding: 1em 0 0 2em;
 	line-height: 2;
 }
 
