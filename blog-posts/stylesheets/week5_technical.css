@@ -2,16 +2,16 @@ html {
 	font-family: Helvetica, Sans-serif;
 }
 
-span {
-	font-size: 40px
-}
-
 a {
 	text-decoration: none;
 }
 
 h1 {
 	font-size: 30px;
+}
+
+span {
+	font-family: monospace;
 }
 
 #header {
@@ -68,11 +68,23 @@ h1 {
 }
 
 #note-one {
-	margin-top: 20px;
+	margin-top: 18px;
 }
 
 #note-two {
-	margin-top: 20px;
+	margin-top: 40px;
+}
+
+#note-three {
+	margin-top: 85px
+}
+
+#note-four {
+	margin-top: 100px;
+}
+
+#note-five {
+	margin-top: 2145px;
 }
 
 .sidenote {
