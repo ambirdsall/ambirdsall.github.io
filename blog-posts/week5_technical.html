@@ -53,70 +53,71 @@ class People
   def gets_killed
     @alive? = false
   end
+end
 
-  class Noble
-    attr_accessor :line_of_succession, :royal?
+class Noble < People
+  attr_accessor :line_of_succession, :royal?
 
-    def succession 
-    # calls #get_killed on male whose @line_of_succession == 0
-  	# all other males' @line_of_succession -= 1
-    end
+  def succession 
+  # calls #get_killed on male whose @line_of_succession == 0
+	# all other males' @line_of_succession -= 1
+  end
 
-    def self.coronate Family
-  	# kills all boys from subclass for whom @royal? == true
-  	# changes @royal? to false for all instances of that subclass
-  	# changes @royal? to true for all instances of Family.
-    end
+  def self.coronate Family
+	# kills all boys from subclass for whom @royal? == true
+	# changes @royal? to false for all instances of that subclass
+	# changes @royal? to true for all instances of Family.
+  end
+end
 	
-    class Baratheon
-      def initialize first_name, age, gender, line_of_succession
-        @first_name = first_name
-        @last_name = "Baratheon"
-        @sigil = "stag"
-        @age = age
-        @gender = gender
-        @line_of_succession = line_of_succession
-        @alive? = true
-        @royal? = true
-      end
-    end
+class Baratheon < Noble
+  def initialize first_name, age, gender, line_of_succession
+    @first_name = first_name
+    @last_name = "Baratheon"
+    @sigil = "stag"
+    @age = age
+    @gender = gender
+    @line_of_succession = line_of_succession
+    @alive? = true
+    @royal? = true
+  end
+end
 
-    class Stark
-      def initialize first_name, age, gender, line_of_succession, direwolf
-        @first_name = first_name
-        @last_name = "Stark"
-        @sigil = "wolf"
-        @age = age
-        @gender = gender
-        @line_of_succession = line_of_succession
-        @direwolf = direwolf
-        @alive? = true
-        @royal? = false
-      end
 
-      def petWolf
-        puts "#{@direwolf} wags tail."
-      end
-    end
+class Stark < Noble
+  def initialize first_name, age, gender, line_of_succession, direwolf
+    @first_name = first_name
+    @last_name = "Stark"
+    @sigil = "wolf"
+    @age = age
+    @gender = gender
+    @line_of_succession = line_of_succession
+    @direwolf = direwolf
+    @alive? = true
+    @royal? = false
+  end
 
-    class Lannister
-  	  def initialize first_name, age, gender, line_of_succession
-  	    @first_name = first_name
-  	    @last_name = "Lannister"
-  	    @sigil = "lion"
-  	    @age = age
-  	    @gender = gender
-  	    @line_of_succession = line_of_succession
-  	    @pays_their_debts? = true
-  	    @alive? = true
-  	    @royal? = false
-  	  end
+  def petWolf
+    puts "#{@direwolf} wags tail."
+  end
+end
+
+class Lannister < Noble
+  def initialize first_name, age, gender, line_of_succession
+    @first_name = first_name
+    @last_name = "Lannister"
+    @sigil = "lion"
+    @age = age
+    @gender = gender
+    @line_of_succession = line_of_succession
+    @pays_their_debts? = true
+    @alive? = true
+    @royal? = false
+  end
   
-  	  def spend_money
-  	    print "#{first_name} #{last_name} buys the fanciest model with gold" 
-  	    puts " coins and then tips 30% just because."
-  	  end
-    end
+  def spend_money
+    print "#{first_name} #{last_name} buys the fanciest model with gold" 
+    puts " coins and then tips 30% just because."
   end
 end
 			</pre>
