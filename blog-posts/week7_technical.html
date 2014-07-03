@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Week 7 Technical Blog</title>
+		<link rel="stylesheet" href="stylesheets/week7_technical.css">
+		<link rel="stylesheet" href="highlighter/prettify.css">
+		<script src="highlighter/prettify.js"></script>
+		<script src="highlighter/lang-sql.js"></script>
+	</head>
+	<body>
+		<div id="header">
+			<h1>SQL Injection</h1>
+		</div>
+		<div id="left">
+			<div id="date">
+			Alex Birdsall<br/>
+			7.2.2014
+			</div>
+		</div>
+		<div id="writing">
+			<p>
+				Whenever a website queries a relational database with user-supplied information, it opens the potential for that user to input malicious SQL code. SQL injection is one of the most common forms of attack websites face, for three reasons:
+				<ol>
+					<li>The tremendous prevalence of SQL injection vulnerabilities</li>
+					<li>The value of the target: databases often store usernames, passwords, credit card info, and more.</li>
+					<li>It's been around awhile, which means:<br/><img src="../images/google_sql_injection.png"/>
+				</ol>
+				Some historical targets of SQL injection are downright shocking, either because of sheer size or because they seemingly ought to know better: in 2011 and 2012, respectively, <a href="http://en.wikipedia.org/wiki/Irony">mysql.com</a> and <a href="http://www.yahoo.com">Yahoo!</a> got got. But there are a few fundamental steps you can take to sanitize your inputs and keep your database clean of any such scofflawry; here's an overview to point your googling in the right direction.
+			</p>
+			<p>
+				-----
+			</p>
+			<p>
+				But first, what does SQL injection even look like? Suppose you've got a pretty basic automated query. Let's dress it up like some pretty sensitive information:
+				<pre class="prettyprint lang-sql">query = "SELECT credit_card FROM users WHERE name ='" + username + "';"</pre>
+				Now, suppose that some user happened to type a username like, say, <span>' or '1'='1</span>. Your <span>query</span> would end up looking something like
+				<pre class="prettyprint lang-sql">SELECT credit_card FROM users WHERE name ='' or '1'='1';</pre>
+				For each entry in the database, <span>'1'='1'</span> evaluates to <span>true</span>, so the stored credit card number gets returned. Of course, most queries aren't set up to be an alley-oop for hackers. Suppose instead, you have
+				<pre class="prettyprint">query = "SELECT email FROM users WHERE name ='" + username + "';"</pre>
+				Still problematic to give them all out, but not nearly so bad. But enter a username like <span>'; SELECT * FROM users;--</span>, and you end up with the <span>query</span>
+				<pre class="prettyprint lang-sql">SELECT email FROM users WHERE name =''; SELECT * FROM users;--';</pre>
+				Many APIs allow multiple queries like this, which means your user will get any email address associated with a blank name; they will then get the entire contents of <span>users</span>, names, emails, credit cards and all. The <span>--</span> bit just comments out what follows, which is handy when the user input is inside a more complex query.
+			</p>
+			<p>
+				-----
+			</p>
+			<p>
+				The good news is that protecting your site from SQL injection is pretty straightforward. There are two main strategies, and, like using a condom and the pill, they're not mutually exclusive. The first is to use parameterized statements. The basic principle is that, rather than inserting the user input directly into your SQL statement, you have prewritten SQL statement templates which use unspecified values, called "parameters" or "bind variables". During each execution, constants are substituted; the application "binds" the actual values for the parameters at a later time. Which means that the above query actually would search for the email associated with some username "'; SELECT * FROM users;--"; and in a system like this, that ridiculous search could easily turn up a result, because you could safely enter that value into the table without running a separate query.
+			</p>
+			<p>
+				The other main strategy is to run a function (there are several prewritten options, depending on the language you're using and your database framework) that escapes all "dangerous" characters that have a special meaning in SQL by prepending them with a backslash. This can be error-prone, but the list of possible errors does not include giving up all your information to miscreats or allowing rogue <span>DROP TABLE</span> commands.
+			</p>
+			<p>
+				And there are plenty of other strategies, depending on the data type you're anticipating. Testing the input type if you expect an integer, float, or boolean will prevent SQL injection; strings that follow a pattern, like phone numbers or dates can be tested against that pattern. You can also minimize the damage SQL injection can do by denying your application permissions, leaving it with access to only the SQL commands that it needs to work. The point is: have your guard up, because if you leave that door open, odds are depressingly good some jerk will walk through.
+			</p>
+		</div>
+		<div class="sidenote" id="note-one">Womp womp.</div> 
+		<div class="sidenote" id="note-two">Which makes it EVEN WORSE that so many sites are unprotected.</div>
+		<div class="sidenote" id="note-three">easily != probably</div>
+		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+		<script>
+		prettyPrint();
+		</script>
+	</body>
+</html>
