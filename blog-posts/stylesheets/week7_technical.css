@@ -1,0 +1,94 @@
+html {
+	font-family: Helvetica, Sans-serif;
+}
+
+span {
+	font-family: monospace;
+}
+
+a {
+	text-decoration: none;
+}
+
+h1 {
+	font-size: 30px;
+}
+
+#header {
+	float: top;
+	width: 100%;
+	height: 75px;
+	border: none;
+	text-align: center;
+}
+
+#left {
+	float: left;
+	width: 20%;
+	text-align: center;
+	margin-top: 40px;
+}
+
+#date {
+	border-top-style: double;
+	border-bottom-style: double;
+	border-top: solid gray 1px;
+	border-bottom: solid gray 1px;
+	width: 100px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#writing {
+	float: left;
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#writing img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#writing li img {
+	display: inline;
+	margin-left: none;
+}
+
+#back-button {
+	float: bottom;
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+	border: solid black 1px;
+	border-radius: 5px;
+	text-align: center;
+	opacity: 0.6;
+	height: 20px;
+	width: 40px;
+	background: #ccc;
+}
+
+#note-one {
+	margin-top: 810px;
+}
+
+#note-two {
+	margin-top: 66px;
+}
+
+#note-three {
+	margin-top: 88px;
+}
+
+.sidenote {
+	float: right;
+	width: 19.5%;
+	border-left: solid gray 1px;
+	padding: 10px 0px 10px 10px;
+	text-align: left;
+	font-size: 10px;
+	color: gray;
+}
