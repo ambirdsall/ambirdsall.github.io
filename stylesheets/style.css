@@ -17,11 +17,23 @@ body {
 }
 
 header {
-	background-color: #4B3219;
 	color: #5c9dff;
 	font-size: 6em;
 	font-family: 'Josefin Sans';
 	font-weight: 700;
+}
+
+.header-wrap {
+	height: 2em;
+	width: 100%;
+	background-color: #4B3219;
+	display: table;
+}
+
+.header-name {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
 }
 
 nav {
