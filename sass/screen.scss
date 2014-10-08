@@ -4,3 +4,34 @@
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 
 @import "compass/reset";
+@import "compass/css3";
+
+@include font-face("ostrich-sans", font-files("ostrich-sans/OstrichSans-Medium.otf"));
+$font-stack: "ostrich-sans", sans-serif;
+$gold: #aa9668;
+
+body {
+	background-image: url("/images/Denali.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-position: 50% 30%;
+}
+
+.vertical-center {
+	width: 100%/3;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.name-wrap {
+	font-family: $font-stack;
+	color: $gold;
+	font-size: 5em;
+	text-align: center;
+}
+
+.triangle {
+	margin: 150px 0 0;
+	margin-left: auto;
+	margin-right: auto;
+}
