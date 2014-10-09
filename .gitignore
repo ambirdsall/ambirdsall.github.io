@@ -1,4 +1,4 @@
 *.swp
 .DS_Store
 serve
-.sass-cache/
+.sass-cache/*
