@@ -41,8 +41,16 @@ function genpoint(triangle, point) {
   return [x, y];
 }
 
-function addNewPoints() {
-  for (var i = 0; i < 15; i++) {
+function addPointsQuickly() {
+  for (var i = 0; i < 18; i++) {
+    point = genpoint(triangle, point);
+    dataset.push(point);
+  }
+  draw(dataset);
+}
+
+function addPointsSlowly() {
+  for (var i = 0; i < 5; i++) {
     point = genpoint(triangle, point);
     dataset.push(point);
   }
@@ -52,5 +60,5 @@ function addNewPoints() {
 var point = [w / 2, h / 2];
 dataset.push(point);
 
-page.on("mousemove", addNewPoints);
-page.on("deviceorientation", addNewPoints);
+page.on("mousemove", addPointsQuickly);
+page.on("deviceorientation", addPointsSlowly);
