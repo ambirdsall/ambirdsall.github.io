@@ -42,7 +42,7 @@ function genpoint(triangle, point) {
 }
 
 function addPointsQuickly() {
-  for (var i = 0; i < 18; i++) {
+  for (var i = 0; i < 25; i++) {
     point = genpoint(triangle, point);
     dataset.push(point);
   }
@@ -50,7 +50,7 @@ function addPointsQuickly() {
 }
 
 function addPointsSlowly() {
-  for (var i = 0; i < 5; i++) {
+  for (var i = 0; i < 11; i++) {
     point = genpoint(triangle, point);
     dataset.push(point);
   }
