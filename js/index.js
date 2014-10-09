@@ -53,3 +53,4 @@ var point = [w / 2, h / 2];
 dataset.push(point);
 
 page.on("mousemove", addNewPoints);
+page.on("deviceorientation", addNewPoints);
