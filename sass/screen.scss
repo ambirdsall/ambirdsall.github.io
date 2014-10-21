@@ -39,10 +39,17 @@ $gold: #aa9668;
 .icon-linkedin:before {
 	content: "\e603";
 }
+
 // custom styles
 
 body {
-	background-image: url("/images/denali_medium_q_large_s.jpg");
+	background-image: url("/images/denali_medium_q_large_s_optimized.jpg");
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		background-image: url("/images/denali_mobile.jpg");
+	}
+
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: 50% 30%;
