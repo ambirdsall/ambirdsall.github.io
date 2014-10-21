@@ -73,11 +73,24 @@ span {
 	font-family: $font-stack;
 	color: $gold;
 	font-size: 5em;
+
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		font-size: 4em;
+	}
 	text-align: center;
 }
 
 .triangle {
 	margin: 150px 0 0;
+
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px)
+	and (max-device-height : 500px) {
+		margin: 100px 0 0;
+	}
 	margin-left: auto;
 	margin-right: auto;
 }
