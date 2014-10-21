@@ -113,7 +113,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 
 /* line 56, ../sass/screen.scss */
 body {
-  background-image: url("/images/denali_medium_q_large_s.jpg");
+  background-image: url("/images/denali_medium_q_large_s_optimized.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 30%;
