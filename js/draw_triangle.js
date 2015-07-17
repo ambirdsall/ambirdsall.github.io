@@ -1,14 +1,13 @@
 // based off https://gist.github.com/tenderlove/5898231
-var w = 433*0.75;
-var h = 300*0.75;
-var padding = 10;
-var page = d3.select(window);
+var w = 433*0.75,
+    h = 300*0.75,
+    padding = 10,
+    page = d3.select(window);
 
 var xScale = d3.scale.linear()
                .domain([0, w])
-               .range([padding, w - padding]);
-
-var yScale = d3.scale.linear()
+               .range([padding, w - padding]),
+    yScale = d3.scale.linear()
                .domain([0, w])
                .range([padding, w - padding]);
 
