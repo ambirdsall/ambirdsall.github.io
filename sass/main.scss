@@ -1,10 +1,5 @@
-/* Welcome to Compass.
- * In this file you should write your main styles. (or centralize your imports)
- * Import this file using the following HTML or equivalent:
- * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-
 @import "compass/reset";
-@import "compass/css3";
+@import "compass/css3/font-face";
 
 @include font-face("ostrich-sans", font-files("ostrich-sans/OstrichSans-Medium.otf"));
 @include font-face("icomoon", font-files("icomoon/fonts/icomoon.ttf", "icomoon/fonts/icomoon.woff"));
@@ -53,25 +48,50 @@ body {
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: 50% 30%;
+
+	font-family: $font-stack;
+	color: $gold;
 }
 
 a {
 	text-decoration: none;
 }
 
-span {
+.icn {
 	margin: 0 0.455em;
+}
+
+.name {
+	margin: 1em 0 0 0;
 }
 
 .vertical-center {
 	width: 100%/3;
 	margin-left: auto;
 	margin-right: auto;
+	text-align: center;
 }
 
-.name-wrap {
-	font-family: $font-stack;
-	color: $gold;
+.container {
+	overflow: scroll;
+	height: 18em;
+}
+
+.linked-list {
+	margin-top: 4em;
+}
+
+.scroll-prompt {
+	font-size: 2em;
+
+	@media only screen
+	and (min-device-width : 320px)
+	and (max-device-width : 480px) {
+		font-size: 1em;
+	}
+}
+
+.big {
 	font-size: 5em;
 
 	@media only screen
@@ -79,11 +99,10 @@ span {
 	and (max-device-width : 480px) {
 		font-size: 4em;
 	}
-	text-align: center;
 }
 
 .triangle {
-	margin: 150px 0 0;
+	margin: 1em 0 0;
 
 	@media only screen
 	and (min-device-width : 320px)

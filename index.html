@@ -5,27 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Alex Birdsall</title>
   <link href="/images/sierpinski_triangle.png" rel="icon" type="image/png" />
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/main.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  <!-- <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> -->
 </head>
 <body>
   <div class="vertical-center">
-    <div class="name-wrap">
-      <p class="name">Alex Birdsall</p>
-      <p class="links-bar">
-        <a href="https://github.com/ambirdsall">
-          <span class="icon-github"></span>
-        </a>
-        <a href="https://twitter.com/gobslapped">
-          <span class="icon-twitter"></span>
-        </a>
-        <a href="https://www.facebook.com/alex.birdsall">
-          <span class="icon-facebook"></span>
-        </a>
-        <a href="https://www.linkedin.com/in/ambirdsall">
-          <span class="icon-linkedin"></span>
-        </a>
-      </p>
+    <header>
+      <h1 class="name big">Alex Birdsall</h1>
+      <h4 class="scroll-prompt">scroll down</h4>
+    </header>
+    <div id="scrollable" class="container">
+      <div id="triangle"></div>
     </div>
+    <footer class="links-bar big">
+      <a href="https://github.com/ambirdsall">
+        <span class="icn icon-github"></span>
+      </a>
+      <a href="https://twitter.com/gobslapped">
+        <span class="icn icon-twitter"></span>
+      </a>
+      <a href="https://www.facebook.com/alex.birdsall">
+        <span class="icn icon-facebook"></span>
+      </a>
+      <a href="https://www.linkedin.com/in/ambirdsall">
+        <span class="icn icon-linkedin"></span>
+      </a>
+    </footer>
   </div>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" charset="utf-8"></script>
   <script src="/js/draw_triangle.js"></script>
