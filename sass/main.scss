@@ -48,7 +48,7 @@
 .block-group { margin: -2px -12px; }
 .block { padding: 2px 12px; }
 
-// grid positioning
+// large grid positioning
 .left { clear: left; }
 .container {
   width: 80%;
@@ -63,6 +63,24 @@
 .titles__main   { width: 80%; }
 .titles__subtitle, .titles__icon-bar, .about, .skills, .skills__list { width: 50%; }
 .work-piece { width: 1/3 * 100%; }
+
+// medium triangle stylez
+@media (max-width: 1000px) and (min-width: 500px) {
+  .triangle__container { width: 50%; }
+  .triangle__margin { width: 25%; }
+}
+// small triangle stylez
+@media (max-width: 499px) {
+  .triangle__container { width: 80%; }
+  .triangle__margin { width: 10%; }
+}
+
+// small grid
+@media (max-width: 666px) {
+  .container { width: 90%; }
+  h2 { font-size: 1.2em; }
+  .about, .skills, .work-piece { width: 100%; }
+}
 
 // within-block layout
 .icon { float: right; }
