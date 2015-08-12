@@ -1,16 +1,13 @@
-// Draws a sierpinski triangle in response to scrolling events,
+// Draws a sierpinski triangle in response to mouse/device movement,
 // using the chaos game algorithm: a good rundown can be found (where else)
 // in wikipedia: https://en.wikipedia.org/wiki/Sierpinski_triangle#Chaos_game
-// Once the triangle has been drawn, further scrolling is captured to scroll
-// the page's central div, which is the only bit that moves. The idea is to
-// look rad without undue scrolljacking.
 // 
 // A quick google search turned up a simple implementation by Aaron Patterson,
 // which I adapted to my own purposes. The original lives (or lived, as of this
 // writing) at https://gist.github.com/tenderlove/5898231
 
-var w = 433*0.75,
-    h = 300*0.75,
+var w = 433*0.5,
+    h = 300*0.5,
     padding = 10,
     page = d3.select(window),
     // Create SVG element in which to draw triangle
@@ -32,19 +29,24 @@ var w = 433*0.75,
 
     // start with the three vertices of the triangle
     dataset = [[0, 0], [w, 0], [w / 2, h]],
-    triangle = dataset.slice(0);
+    triangle = dataset.slice(0),
 
-  function draw(dataset) {
-    var circles = svg.selectAll("circle").data(dataset);
+    // Seed the triangle with a starting point in the middle
+    point = [w / 2, h / 2];
+dataset.push(point);
 
-    //Create circles
-    circles.enter()
-      .append("circle")
-      .attr("cx", function(d) { return xScale(d[0]); })
-      .attr("cy", function(d) { return yScale(d[1]); })
-      .attr("r", 1)
-      .style("fill", "#aa9668");
-  }
+
+function draw(dataset) {
+  var circles = svg.selectAll("circle").data(dataset);
+
+  //Create circles
+  circles.enter()
+    .append("circle")
+    .attr("cx", function(d) { return xScale(d[0]); })
+    .attr("cy", function(d) { return yScale(d[1]); })
+    .attr("r", 1)
+    .style("fill", "#aa9668");
+}
 
 function genpoint(triangle, point) {
   var vertex = triangle[Math.floor(Math.random() * triangle.length)];
@@ -53,69 +55,17 @@ function genpoint(triangle, point) {
   return [x, y];
 }
 
+/*=============================*
+ * Load up the event handlers! *
+ *=============================*/
 function buildTriangle() {
   // d3.event.preventDefault();
-  for (var i = 0; i < 444; ++i) {
+  for (var i = 0; i < 8; ++i) {
     point = genpoint(triangle, point);
     dataset.push(point);
   }
   draw(dataset);
 }
 
-function buildThenScrollWheel() {
-  d3.event.preventDefault();
-
-  if (dataset.length < 11111) {
-    buildTriangle();
-  } else {
-    scrollingContainer.scrollTop += d3.event.deltaY;
-  }
-}
-
-// On a touchscreen, it is way more natural to touch in the center, rather than
-// the top or bottom: so I don't think it's as important to support scrolling
-// the scrollingContainer from outside it.
-function buildThenScrollTouch() {
-  d3.event.preventDefault();
-
-  if (dataset.length < 11111) {
-    buildTriangle();
-  } else {
-    page.on("touchmove", null);
-  }
-}
-
-function buildThenScrollKeydown() {
-  if (keys[d3.event.keyCode]) {
-    d3.event.preventDefault();
-
-    if (dataset.length < 11111) {
-      for (var i = 0; i < 3; ++i) {
-        buildTriangle();
-      }
-    } else {
-      scrollingContainer.scrollTop += keys[d3.event.keyCode];
-    }
-  }
-}
-
-// Seed the triangle with a starting point in the middle
-var point = [w / 2, h / 2];
-dataset.push(point);
-
-/*=============================*
- * Load up the event handlers! *
- *=============================*/
-var keys = {
-  38: -40,    // up 40px like normal (except Firefox??)
-  40: 40,     // down 40px (v.s.)
-  34: true,   // page down, ?px
-  32: true,   // spacebar, same as page down
-  33: true,   // page up
-  35: true,   // end key
-}
-
-page.on("wheel", buildThenScrollWheel);
-page.on("touchmove", buildThenScrollTouch);
-page.on("mousewheel", buildThenScrollWheel); // TODO: test this out.
-page.on("keydown", buildThenScrollKeydown);
+page.on("mousemove", buildTriangle);
+page.on("devicemotion", buildTriangle);

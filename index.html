@@ -1,38 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Alex Birdsall</title>
-  <link href="/images/sierpinski_triangle.png" rel="icon" type="image/png" />
-  <link href="/stylesheets/main.css" media="screen, projection" rel="stylesheet" type="text/css" />
-  <!-- <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> -->
-</head>
-<body>
-  <div class="vertical-center">
-    <header>
-      <h1 class="name big">Alex Birdsall</h1>
-      <h4 class="scroll-prompt">scroll down</h4>
-    </header>
-    <div id="scrollable" class="container">
-      <div id="triangle"></div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alex Birdsall</title>
+    <link href="/images/sierpinski_triangle.png" rel="icon" type="image/png" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:700,300' rel='stylesheet' type='text/css'>
+    <link href="/stylesheets/main.css" media="screen, projection" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="block-group container">
+      <header>
+        <div class="titles">
+          <h1 class="block titles__main">Alex Birdsall</h1>
+          <h2 class="block titles__subtitle">Web Developer</h2>
+          <h2 class="block titles__icon-bar">
+            <a href="http://github.com/ambirdsall"><span class="icon icon-github"></span></a>
+            <a href="http://twitter.com/gobslapped"><span class="icon icon-twitter"></span></a>
+            <a href="http://linkedin.com/in/ambirdsall"><span class="icon icon-linkedin"></span></a>
+          </h2>
+        </div>
+      </header>
+      <img src="images/alex_copper_creek_trail_kings_canyon.jpg" alt="Alex in Kings Canyon" class="block main-picture">
+      <!-- 2-part row      about p left half, skills ul right half -->
+      <div class="block about">
+        <h2>ABOUT</h2>
+        <p>I'm a San Francisco-based full stack web developer.</p>
+        <p>I like music, cooking, biking, basketball, and building things.</p>
+        <p>Design, engineering problems, and puzzles fascinate me.</p>
+        <p>Feel free to check out my stuff on <a href="github.com/ambirdsall">GitHub</a>.</p>
+        <p>My resume can be downloaded <a href="images/Alex_Birdsall_Resume.pdf">here</a>.</p>
+      </div>
+      <div class="block block-group skills">
+        <h2>SKILLS</h2>
+        <ul>
+          <div class="block skills__list">
+            <li>Ruby</li>
+            <li>JavaScript</li>
+            <li>HTML5</li>
+            <li>CSS3 &amp; Sass</li>
+          </div>
+          <div class="block skills__list">
+            <li>Databases</li>
+            <li>Git &amp; Github</li>
+            <li>CLI &amp; shell scripting</li>
+            <li>vim/tmux</li>
+          </div>
+        </ul>
+      </div>
+      <!-- horizontal divider with triangle, e.g. -------- V -------- -->
+      <div class="triangle__margin left block">
+        <hr>
+      </div>
+      <div id="triangle" class="triangle__container block"></div>
+      <div class="triangle__margin block">
+        <hr>
+      </div>
+      <h2 class="block">Code Examples</h2>
+      <ul class="work-piece-list">
+        <li class="work-piece block">
+          <img class="work-piece__img" src="images/sudoku_solver.png" alt="sudoku solver screenshot">
+          <a class="work-piece__title" href="https://github.com/ambirdsall/javascript_sudoku_solver">Sudoku Solver</a>
+          <p class="work-piece__description">
+            A sudoku solver written in pure javascript. Can solve any puzzle
+            (that is possible to solve), even ones that require guessing. Dom
+            interactions done with jQuery; solving logic all in vanilla JS.
+          </p>
+        </li>
+        <li class="work-piece block">
+          <img class="work-piece__img" src="images/teeny_server.png" alt="teeny server screenshot">
+          <a class="work-piece__title" href="github.com/ambirdsall/teeny_server">Teeny Server</a>
+          <p class="work-piece__description">
+            A simple command line program to serve any folder as static web 
+            content on localhost. Takes an optional port argument. A tool that
+            does one small thing well.
+          </p>
+        </li>
+        <li class="work-piece block">
+          <img class="work-piece__img" src="images/buckets.png" alt="buckets screenshot">
+          <a class="work-piece__title" href="https://github.com/ambirdsall/buckets/pull/3">Buckets</a>
+          <p class="work-piece__description">
+            Here's the pull request I made for API interactions and data 
+            storage for an NBA stats app. I didn't finish the app, since 
+            actually using NBA.com's API isn't legal; but it was a good 
+            exercise in trying to write an <a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a> that isn't horrible.
+          </p>
+        </li>
+      </ul>
+      <!-- 1-part row     single, centered line of text -->
+      <h2 class="block say-hi">Is your team looking for a rad developer? <a href="mailto:ambirdsall@gmail.com?Subject=I%20Saw%20Your%20Website">Send me an email</a>!</h2>
+      <!-- 1-part row     single, centered line of text -->
+      <p class="block copyright">Made with Sass, d3.js, and Github Pages. Copyright Alex Birdsall 2015</p>
+      <script type="text/javascript" src="js/d3.min.js"></script>
+      <script type="text/javascript" src="js/draw_triangle.js"></script>
     </div>
-    <footer class="links-bar big">
-      <a href="https://github.com/ambirdsall">
-        <span class="icn icon-github"></span>
-      </a>
-      <a href="https://twitter.com/gobslapped">
-        <span class="icn icon-twitter"></span>
-      </a>
-      <a href="https://www.facebook.com/alex.birdsall">
-        <span class="icn icon-facebook"></span>
-      </a>
-      <a href="https://www.linkedin.com/in/ambirdsall">
-        <span class="icn icon-linkedin"></span>
-      </a>
-    </footer>
-  </div>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" charset="utf-8"></script>
-  <script src="/js/draw_triangle.js"></script>
-</body>
+  </body>
 </html>
