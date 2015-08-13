@@ -72,7 +72,10 @@
 // small triangle stylez
 @media (max-width: 499px) {
   .triangle__container { width: 80%; }
-  .triangle__margin { width: 10%; }
+  .triangle__margin {
+    width: 10%;
+    padding: 0;
+  }
 }
 
 // small grid
@@ -88,7 +91,11 @@
   max-width: 100%;
 }
 .say-hi, .copyright { text-align: center; }
-.triangle__margin > hr { margin-top: 75px; }
+.triangle__margin > hr {
+  margin-top: 75px;
+  border: 0;
+  height: 1px;
+}
 
 // fonts and icons
 @import "compass/css3/font-face";
@@ -96,6 +103,7 @@
 $font-stack: "Ubuntu", sans-serif;
 $font-light: 400;
 $sox-blue: #002244;
+$sox-blue--light: #224466;
 $sox-red:  #C60C30;
 
 [class^="icon-"], [class*=" icon-"] {
@@ -121,34 +129,52 @@ $sox-red:  #C60C30;
 
 // custom styles
 body {
-  background: #eee;
+  background: #fff;
   font-family: $font-stack;
   font-weight: $font-light;
+  color: $sox-blue--light;
+}
+h1 {
+  font-size: 4em;
+  margin: (2em/3) 0 0 0;
   color: $sox-blue;
 }
 h2 {
   font-weight: $font-light;
+  margin: (16em/9) 0;
+  color: $sox-blue;
 }
+.about { margin-bottom: (8em/3); }
+// links
+a { color: $sox-blue; }
+a:hover, .icon:hover { color: $sox-red; }
 .copyright {
   font-size: 0.8em;
 }
 .skills > ul { padding-left: 0; }
 .skills__list > li { margin-bottom: 1em; }
-a { color: $sox-blue; }
-a:hover, .icon:hover { color: $sox-red; }
+// work-piece
 .work-piece-list {
   padding-left: 0;
   -webkit-padding-start: 0;
 }
 .work-piece { list-style: none inside none; }
-.work-piece__img { 
-  max-width: 100%; 
+.work-piece__img {
+  max-width: 100%;
   margin-bottom: 1em;
 }
 .work-piece__title {
   font-weight: 700;
+  font-size: 1.2em;
 }
 .work-piece__description {
-  margin-top: 0.5em; 
+  margin-top: 0.5em;
   line-height: 2em;
+}
+// triangle margin gradients
+.triangle__margin--left > hr {
+  background-image: linear-gradient(to right, rgba(0,34,68,0), rgba(0,34,68,0.75));
+}
+.triangle__margin--right > hr {
+  background-image: linear-gradient(to left, rgba(0,34,68,0), rgba(0,34,68,0.75));
 }
