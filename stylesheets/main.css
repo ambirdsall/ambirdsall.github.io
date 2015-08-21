@@ -210,7 +210,7 @@
 
 /* line 131, ../sass/main.scss */
 body {
-  background: #fff;
+  background: url("../images/bg.png");
   font-family: "Ubuntu", sans-serif;
   font-weight: 400;
   color: #224466;
@@ -276,26 +276,27 @@ a:hover, .icon:hover {
 .work-piece__img {
   max-width: 100%;
   margin-bottom: 1em;
+  border: 1px solid #024;
 }
 
-/* line 167, ../sass/main.scss */
+/* line 168, ../sass/main.scss */
 .work-piece__title {
   font-weight: 700;
   font-size: 1.2em;
 }
 
-/* line 171, ../sass/main.scss */
+/* line 172, ../sass/main.scss */
 .work-piece__description {
   margin-top: 0.5em;
   line-height: 2em;
 }
 
-/* line 176, ../sass/main.scss */
+/* line 177, ../sass/main.scss */
 .triangle__margin--left > hr {
   background-image: linear-gradient(to right, rgba(0, 34, 68, 0), rgba(0, 34, 68, 0.75));
 }
 
-/* line 179, ../sass/main.scss */
+/* line 180, ../sass/main.scss */
 .triangle__margin--right > hr {
   background-image: linear-gradient(to left, rgba(0, 34, 68, 0), rgba(0, 34, 68, 0.75));
 }

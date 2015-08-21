@@ -129,7 +129,7 @@ $sox-red:  #C60C30;
 
 // custom styles
 body {
-  background: #fff;
+  background: url("../images/bg.png");
   font-family: $font-stack;
   font-weight: $font-light;
   color: $sox-blue--light;
@@ -148,7 +148,7 @@ h2 {
 .about { margin-bottom: (8em/3); }
 // links
 a { color: $sox-blue; }
-a:hover, .icon:hover { color: $sox-red; }
+  a:hover, .icon:hover { color: $sox-red; }
 .copyright {
   font-size: 0.8em;
 }
@@ -160,18 +160,19 @@ a:hover, .icon:hover { color: $sox-red; }
   -webkit-padding-start: 0;
 }
 .work-piece { list-style: none inside none; }
-.work-piece__img {
-  max-width: 100%;
-  margin-bottom: 1em;
-}
-.work-piece__title {
-  font-weight: 700;
-  font-size: 1.2em;
-}
-.work-piece__description {
-  margin-top: 0.5em;
-  line-height: 2em;
-}
+  .work-piece__img {
+    max-width: 100%;
+    margin-bottom: 1em;
+    border: 1px solid #024;
+  }
+  .work-piece__title {
+    font-weight: 700;
+    font-size: 1.2em;
+  }
+  .work-piece__description {
+    margin-top: 0.5em;
+    line-height: 2em;
+  }
 // triangle margin gradients
 .triangle__margin--left > hr {
   background-image: linear-gradient(to right, rgba(0,34,68,0), rgba(0,34,68,0.75));
