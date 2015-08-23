@@ -64,27 +64,6 @@
 .titles__subtitle, .titles__icon-bar, .about, .skills, .skills__list { width: 50%; }
 .work-piece { width: 1/3 * 100%; }
 
-// medium triangle stylez
-@media (max-width: 1000px) and (min-width: 500px) {
-  .triangle__container { width: 50%; }
-  .triangle__margin { width: 25%; }
-}
-// small triangle stylez
-@media (max-width: 499px) {
-  .triangle__container { width: 80%; }
-  .triangle__margin {
-    width: 10%;
-    padding: 0;
-  }
-}
-
-// small grid
-@media (max-width: 666px) {
-  .container { width: 90%; }
-  h2 { font-size: 1.2em; }
-  .about, .skills, .work-piece { width: 100%; }
-}
-
 // within-block layout
 .icon { float: right; }
 .main-picture {
@@ -179,4 +158,45 @@ a { color: $sox-blue; }
 }
 .triangle__margin--right > hr {
   background-image: linear-gradient(to left, rgba(0,34,68,0), rgba(0,34,68,0.75));
+}
+
+//
+// SIZES
+//
+
+// medium triangle stylez
+@media (max-width: 1000px) and (min-width: 500px) {
+  .triangle__container { width: 50%; }
+  .triangle__margin { width: 25%; }
+}
+// small triangle stylez
+@media (max-width: 499px) {
+  .triangle__container { width: 80%; }
+  .triangle__margin {
+    width: 10%;
+    padding: 0;
+  }
+}
+
+// small grid
+@media (max-width: 666px) {
+  .container { width: 90%; }
+  h1 { font-size: 2.4em; }
+  h2 { font-size: 1.3em; }
+  .about,
+  .skills, 
+  .work-piece { width: 100%; }
+  .titles__subtitle { width: 60%; }
+  .titles__icon-bar { width: 40%; }
+  .icon { margin: 0 0.3em; }
+}
+
+@media (max-width: 370px) {
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.30em; }
+  .icon { margin: 0 0.2em; }
+  .titles__subtitle { width: 62%; }
+  .titles__icon-bar { 
+    padding-left: 0;
+    width: 38%; }
 }
