@@ -231,120 +231,126 @@ a:hover, .icon:hover {
 /* line 141, ../sass/main.scss */
 .work-piece {
   list-style: none inside none;
+  margin-bottom: 2em;
 }
 
-/* line 142, ../sass/main.scss */
+/* line 145, ../sass/main.scss */
+.work-piece:nth-child(3n-2) {
+  clear: left;
+}
+
+/* line 147, ../sass/main.scss */
 .work-piece__img {
   max-width: 100%;
   margin-bottom: 1em;
   border: 1px solid #024;
 }
 
-/* line 147, ../sass/main.scss */
+/* line 152, ../sass/main.scss */
 .work-piece__title {
   font-weight: 700;
   font-size: 1.2em;
 }
 
-/* line 151, ../sass/main.scss */
+/* line 156, ../sass/main.scss */
 .work-piece__description {
   margin-top: 0.5em;
   line-height: 2em;
 }
 
-/* line 156, ../sass/main.scss */
+/* line 161, ../sass/main.scss */
 .triangle__margin--left > hr {
   background-image: linear-gradient(to right, rgba(0, 34, 68, 0), rgba(0, 34, 68, 0.75));
 }
 
-/* line 159, ../sass/main.scss */
+/* line 164, ../sass/main.scss */
 .triangle__margin--right > hr {
   background-image: linear-gradient(to left, rgba(0, 34, 68, 0), rgba(0, 34, 68, 0.75));
 }
 
 @media (max-width: 1000px) and (min-width: 500px) {
-  /* line 169, ../sass/main.scss */
+  /* line 174, ../sass/main.scss */
   .triangle__container {
     width: 50%;
   }
 
-  /* line 170, ../sass/main.scss */
+  /* line 175, ../sass/main.scss */
   .triangle__margin {
     width: 25%;
   }
 }
 @media (max-width: 499px) {
-  /* line 174, ../sass/main.scss */
+  /* line 179, ../sass/main.scss */
   .triangle__container {
     width: 80%;
   }
 
-  /* line 175, ../sass/main.scss */
+  /* line 180, ../sass/main.scss */
   .triangle__margin {
     width: 10%;
     padding: 0;
   }
 }
 @media (max-width: 666px) {
-  /* line 183, ../sass/main.scss */
+  /* line 188, ../sass/main.scss */
   .container {
     width: 90%;
   }
 
-  /* line 184, ../sass/main.scss */
+  /* line 189, ../sass/main.scss */
   h1 {
     font-size: 2.4em;
   }
 
-  /* line 185, ../sass/main.scss */
+  /* line 190, ../sass/main.scss */
   h2 {
     font-size: 1.3em;
   }
 
-  /* line 186, ../sass/main.scss */
+  /* line 191, ../sass/main.scss */
   .about,
   .skills,
   .work-piece {
     width: 100%;
   }
 
-  /* line 189, ../sass/main.scss */
+  /* line 194, ../sass/main.scss */
   .titles__subtitle {
     width: 60%;
   }
 
-  /* line 190, ../sass/main.scss */
+  /* line 195, ../sass/main.scss */
   .titles__icon-bar {
     width: 40%;
   }
 
-  /* line 191, ../sass/main.scss */
+  /* line 196, ../sass/main.scss */
   .icon {
     margin: 0 0.3em;
   }
 }
 @media (max-width: 370px) {
-  /* line 195, ../sass/main.scss */
+  /* line 200, ../sass/main.scss */
   h1 {
     font-size: 2em;
   }
 
-  /* line 196, ../sass/main.scss */
+  /* line 201, ../sass/main.scss */
   h2 {
     font-size: 1.30em;
   }
 
-  /* line 197, ../sass/main.scss */
+  /* line 202, ../sass/main.scss */
   .icon {
     margin: 0 0.2em;
   }
 
-  /* line 198, ../sass/main.scss */
+  /* line 203, ../sass/main.scss */
   .titles__subtitle {
     width: 62%;
   }
 
-  /* line 199, ../sass/main.scss */
+  /* line 204, ../sass/main.scss */
   .titles__icon-bar {
     padding-left: 0;
     width: 38%;

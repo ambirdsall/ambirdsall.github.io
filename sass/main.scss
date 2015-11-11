@@ -138,7 +138,12 @@ a { color: $sox-blue; }
   padding-left: 0;
   -webkit-padding-start: 0;
 }
-.work-piece { list-style: none inside none; }
+.work-piece {
+  list-style: none inside none;
+  margin-bottom: 2em;
+}
+  .work-piece:nth-child(3n-2) { clear: left; }
+
   .work-piece__img {
     max-width: 100%;
     margin-bottom: 1em;
