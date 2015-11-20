@@ -8,12 +8,12 @@
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:700,300' rel='stylesheet' type='text/css'>
     <link href="/stylesheets/main.css" media="screen, projection" rel="stylesheet" type="text/css" />
   </head>
-  <body>
+  <body itemscope itemtype="http://schema.org/Person">
     <div class="block-group container">
       <header>
         <div class="titles">
-          <h1 class="block titles__main">Alex Birdsall</h1>
-          <h2 class="block titles__subtitle">Web Developer</h2>
+          <h1 class="block titles__main" itemprop="name">Alex Birdsall</h1>
+          <h2 class="block titles__subtitle" itemProp="jobTitle">Web Developer</h2>
           <h2 class="block titles__icon-bar">
             <a href="http://github.com/ambirdsall"><span class="icon icon-github"></span></a>
             <a href="http://twitter.com/gobslapped"><span class="icon icon-twitter"></span></a>
@@ -25,7 +25,7 @@
       <!-- 2-part row      about p left half, skills ul right half -->
       <div class="block about">
         <h2>ABOUT</h2>
-        <p>I'm a San Francisco-based full stack web developer.</p>
+        <p>I'm a <span itemProp="homeLocation">San Francisco</span>-based full stack web developer.</p>
         <p>I like music, cooking, biking, basketball, and building things.</p>
         <p>Design, engineering problems, and puzzles fascinate me.</p>
         <p>Feel free to check out my stuff on <a href="http://github.com/ambirdsall">GitHub</a>.</p>
@@ -42,7 +42,7 @@
           </div>
           <div class="block skills__list">
             <li>jQuery</li>
-            <li>Databases</li>
+            <li>PostgreSQL & MySQL</li>
             <li>CSS3 &amp; Sass</li>
             <li>CLI &amp; shell scripting</li>
           </div>
