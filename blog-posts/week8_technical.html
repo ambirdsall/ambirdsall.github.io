@@ -1,54 +1,54 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Week 8 Technical Blog</title>
-		<link rel="stylesheet" href="stylesheets/week8_technical.css">
-		<link rel="stylesheet" href="highlighter/prettify.css">
-		<script src="highlighter/prettify.js"></script>
-	</head>
-	<body>
-		<div id="header">
-			<h1>Ruby on /Regexp/</h1>
-		</div>
-		<div id="left">
-			<div id="date">
-			Alex Birdsall<br/>
-			7.6.2014
-			</div>
-		</div>
-		<div id="writing">
-			<p>
-				Regular expressions, often abbreviated "regexp", are sets of characters and metacharacters that form search patterns. Each piece of these patterns can be either a specific character or a set of characters, and each can be given quantitative specifications. Once composed, regular expressions are compared to strings in order to find any set of characters that matches the given pattern, but which may vary in their particulars. For instance: 
-				<ul>
-					<li>any arbitrary phone number, such as "(555) 555-5555" or "555-555-5858"</li> 
-					<li>a word with multiple valid spellings ("color" vs "colour"; "Özil" vs "Oezil"; "grey" vs "gray")</li>
-					<li>every instance of a formatting convention such as douple spaces after a sentence-ending punctuation mark, followed by a capital letter</li>
-				</ul>
-			</p>
-			<p>
-				Regular expressions have been in use since the late 60s, and most programming languges have regexp capabilities, either as part of the language or through a standard library. This post centers on regular expressions in Ruby; most, but not all, of this applies to other languages as well.
-			</p>
-			<p>
-				There are three ways to create a regular expression in Ruby: using the literals <span>/some regexp/</span> and <span> %r{some regexp}</span> and the constructor <span>"some regexp" = Regexp.new</span>. Which means that Ruby has a built-in Regexp class, with methods. The fuundamental method, #match, takes a string as a parameter and does exactly what it sounds like, returning a <a href="http://ruby-doc.org/core-2.1.2/MatchData.html">MatchData</a> object. Typically, though, the <span>=~</span> operator is used: a regexp goes to the left of the operator, a string to the right, and the whole expression returns either the index of the first character of the first match within the string or <span>nil</span>.
-			</p>
-			<p>
-				The simplest regular expressions are simply lists of characters, like <span>/dog/</span>. Any string that contains those exact characters in that order, including spaces, will return a match, as within: <span>"hot <span class="highlight">dog</span>, hot<span class="highlight">dog</span>, <span class="highlight">dog</span>pile, Dogpatch<"/span>.
-			</p>
-			<p>
-				Characters within brackets are called "character classes": character classes any single character listed within the brackets. For example: <span>/d[oi]g/ =~ "dog, dig, doig, diog, dogpile"</span> will find the matches <span>"<span class="highlight">dog</span>, <span class="highlight">dig</span>, doig, diog, <span class="highlight">dog</span>pile"</span>. You can use ranges within character classes: <span>/[a-e]/</span> is equivalent to <span>/[abcde]/</span>, and <span>/[a-eW-Z]/</span> is equivalent to <span>/[abcdeWXYZ]/</span>. Putting a <span>^</span> at the start of a character class negates it: <span>/[^a-e]/</span> matches any letter EXCEPT "a", "b", "c", "d", or "e".
-			</p>
-			<p>
-				<i>Outside</i> of a character class, that caret has a different special meaning. These special characters, called "metacharacters", are what give regular expressions their expressive power. Non-alphanumeric metacharacters must be escaped with a backslash to be used as ordinary characters within a regexp; alphanumeric metacharacters must be escaped with a backslash to NOT be used as ordinary characters. A really useful reference for Ruby's metacharacters can be found at the bottom of the page at <a href="www.rubular.com">Rubular</a>.
-			</p>
-		</div>
-		<div class="sidenote" id="note-one">On 555-5858: when I was 7, my older brother mentioned "555-LULU" as a viable movie phone number. Even today, with that meme old enough to legally drink, my mind is still blown.</div> 
-		<div class="sidenote" id="note-two">The basic mechanisms of regexps are the same, wherever you may use them, but no other language has identical regexp syntax to Ruby's, so if you use, say, Python, you'll have to do a bit of research.</div>
-		<div class="sidenote" id = "note-three">If you want to match any character "a"-"e" or "^", you can either escape the "^" with a backslash, like <span>/[\^a-e]/</span>, or place it after the beginning, like <span>/[a-e^]/</span></div>
-		<div class="sidenote" id="note-four">Each individual backslash has to be escaped, so to match consecutive characters <span>"\\"</span>, you'd need <span>/\\\\/</span>.</div>
-		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
-		<script>
-		prettyPrint();
-		</script>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <title>Week 8 Technical Blog</title>
+    <link rel="stylesheet" href="stylesheets/week8_technical.css">
+    <link rel="stylesheet" href="highlighter/prettify.css">
+    <script src="highlighter/prettify.js"></script>
+  </head>
+  <body>
+    <div id="header">
+      <h1>Ruby on /Regexp/</h1>
+    </div>
+    <div id="left">
+      <div id="date">
+      Alex Birdsall<br/>
+      7.6.2014
+      </div>
+    </div>
+    <div id="writing">
+      <p>
+        Regular expressions, often abbreviated "regexp", are sets of characters and metacharacters that form search patterns. Each piece of these patterns can be either a specific character or a set of characters, and each can be given quantitative specifications. Once composed, regular expressions are compared to strings in order to find any set of characters that matches the given pattern, but which may vary in their particulars. For instance:
+        <ul>
+          <li>any arbitrary phone number, such as "(555) 555-5555" or "555-555-5858"</li>
+          <li>a word with multiple valid spellings ("color" vs "colour"; "Özil" vs "Oezil"; "grey" vs "gray")</li>
+          <li>every instance of a formatting convention such as douple spaces after a sentence-ending punctuation mark, followed by a capital letter</li>
+        </ul>
+      </p>
+      <p>
+        Regular expressions have been in use since the late 60s, and most programming languges have regexp capabilities, either as part of the language or through a standard library. This post centers on regular expressions in Ruby; most, but not all, of this applies to other languages as well.
+      </p>
+      <p>
+        There are three ways to create a regular expression in Ruby: using the literals <span>/some regexp/</span> and <span> %r{some regexp}</span> and the constructor <span>some_regexp = Regexp.new</span>. Which means that Ruby has a built-in Regexp class, with methods. The fundamental method, <span>RegExp#match</span>, takes a string as a parameter and does exactly what it sounds like, returning a <a href="http://ruby-doc.org/core-2.1.2/MatchData.html">MatchData</a> object. Typically, though, the <span>=~</span> operator is used: a regexp goes to the left of the operator, a string to the right, and the whole expression returns either the index of the first character of the first match within the string or <span>nil</span>.
+      </p>
+      <p>
+        The simplest regular expressions are simply lists of characters, like <span>/dog/</span>. Any string that contains those exact characters in that order, including spaces, will return a match, as within: <span>"hot <span class="highlight">dog</span>, hot<span class="highlight">dog</span>, <span class="highlight">dog</span>pile, Dogpatch<"/span>.
+      </p>
+      <p>
+        Characters within brackets are called "character classes": character classes any single character listed within the brackets. For example: <span>/d[oi]g/ =~ "dog, dig, doig, diog, dogpile"</span> will find the matches <span>"<span class="highlight">dog</span>, <span class="highlight">dig</span>, doig, diog, <span class="highlight">dog</span>pile"</span>. You can use ranges within character classes: <span>/[a-e]/</span> is equivalent to <span>/[abcde]/</span>, and <span>/[a-eW-Z]/</span> is equivalent to <span>/[abcdeWXYZ]/</span>. Putting a <span>^</span> at the start of a character class negates it: <span>/[^a-e]/</span> matches any letter EXCEPT "a", "b", "c", "d", or "e".
+      </p>
+      <p>
+        <i>Outside</i> of a character class, that caret has a different special meaning. These special characters, called "metacharacters", are what give regular expressions their expressive power. Non-alphanumeric metacharacters must be escaped with a backslash to be used as ordinary characters within a regexp; alphanumeric metacharacters must be escaped with a backslash to NOT be used as ordinary characters. A really useful reference for Ruby's metacharacters can be found at the bottom of the page at <a href="www.rubular.com">Rubular</a>.
+      </p>
+    </div>
+    <div class="sidenote" id="note-one">On 555-5858: when I was 7, my older brother mentioned "555-LULU" as a viable movie phone number. Even today, with that meme old enough to legally drink, my mind is still blown.</div>
+    <div class="sidenote" id="note-two">The basic mechanisms of regexps are the same, wherever you may use them, but no other language has identical regexp syntax to Ruby's, so if you use, say, Python, you'll have to do a bit of research.</div>
+    <div class="sidenote" id = "note-three">If you want to match any character "a"-"e" or "^", you can either escape the "^" with a backslash, like <span>/[\^a-e]/</span>, or place it after the beginning, like <span>/[a-e^]/</span></div>
+    <div class="sidenote" id="note-four">Each individual backslash has to be escaped, so to match consecutive characters <span>"\\"</span>, you'd need <span>/\\\\/</span>.</div>
+    <div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+    <script>
+    prettyPrint();
+    </script>
+  </body>
 </html>
