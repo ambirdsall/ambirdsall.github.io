@@ -1,0 +1,17 @@
+<%# require 'pry' %>
+<%
+  # This sorting is a shitshow to read, but the goal is to end up with a list
+  # of articles for each topic; with each list sorted most- to least-recent;
+  # with topics sorted by the most recent article from each.
+  blog.articles.group_by { |a| a.data.topic }
+               .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
+               .sort {|a, b| b.last.first.date <=> a.last.first.date}
+               .each do |topic, list|
+%>
+### <%= topic.titleize %>
+
+<% list.each do |article| %>
+* <%= link_to article.title, article.url %>
+<% end # the blank line following prevents the <h3> being nested inside the list %>
+
+<% end %>
