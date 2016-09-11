@@ -9,6 +9,7 @@ gem 'middleman-blog'
 gem 'middleman-syntax'
 gem 'middleman-livereload'
 gem 'middleman-deploy', '~> 2.0.0.pre.alpha'
+gem 'middleman-compass'
 
 gem 'redcarpet', '~> 3.3', '>= 3.3.3'
 gem 'slim'
