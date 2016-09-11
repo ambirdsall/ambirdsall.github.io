@@ -60,8 +60,15 @@
   display: block;
   margin: auto;
 }
-.titles__main   { width: 80%; }
-.titles__subtitle, .titles__icon-bar, .about, .skills, .skills__list { width: 50%; }
+.titles {
+  width: 80%;
+  margin-left: 10%;
+}
+.titles__subtitle { display: none; }
+.titles__icon-bar,
+.about,
+.skills,
+.skills__list { width: 50%; }
 .work-piece { width: 1/3 * 100%; }
 
 // within-block layout
@@ -112,6 +119,41 @@ body {
   font-family: $font-stack;
   font-weight: $font-light;
   color: $sox-blue--light;
+  margin: 0;
+}
+header, footer {
+  background-color: hsl(34, 53%, 82%);
+  background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 120px, hsla(197, 62%, 11%, 0.5) 120px, hsla(197, 62%, 11%, 0.5) 140px
+    ),
+  repeating-linear-gradient(135deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
+    hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
+    hsla(197, 62%, 11%, 0.5) 40px, hsla(197, 62%, 11%, 0.5) 50px, hsla(197, 62%, 11%, 0) 50px, hsla(197, 62%, 11%, 0) 60px,
+    hsla(5, 53%, 63%, 0.5) 60px, hsla(5, 53%, 63%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 70px, hsla(35, 91%, 65%, 0.5) 80px,
+    hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
+    hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
+  );
+  margin-bottom: 3em;
+  min-height: 7em;
+  width: 100%;
+
+  & h1, p {
+    // slight readability boost
+    background: linear-gradient(to right, rgba(0,0,0,0), rgba(100,100,100,0.25) 15%, rgba(100,100,100,0.25) 85%, rgba(0,0,0,0));
+    color: #fff;
+    font-family: monospace;
+    height: 100%;
+    letter-spacing: 7px;
+    margin-top: 0; // prevents weird stupid gap atop page
+    padding-top: 0.8em;
+    text-align: center;
+  }
+
+  & a { color: #fff888; }
 }
 h1 {
   font-size: 4em;
@@ -189,7 +231,7 @@ a { color: $sox-blue; }
   h1 { font-size: 2.4em; }
   h2 { font-size: 1.3em; }
   .about,
-  .skills, 
+  .skills,
   .work-piece { width: 100%; }
   .titles__subtitle { width: 60%; }
   .titles__icon-bar { width: 40%; }
@@ -201,7 +243,7 @@ a { color: $sox-blue; }
   h2 { font-size: 1.30em; }
   .icon { margin: 0 0.2em; }
   .titles__subtitle { width: 62%; }
-  .titles__icon-bar { 
+  .titles__icon-bar {
     padding-left: 0;
     width: 38%; }
 }
