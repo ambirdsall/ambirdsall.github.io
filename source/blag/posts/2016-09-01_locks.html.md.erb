@@ -12,18 +12,19 @@ if you ever write code that runs on a server or any other linux/osx environment,
 _especially_ if you feel a little out of your depth with C. The code examples
 are not that intimidating, even if you don't know from typecasting or a pointer
 (okay, learning the difference between `foo`, `*foo` and `&foo` is useful, but
-it's also just a google away), and getting a deeper understanding of the
-environment your code works in will make a lot of known unknowns come into a bit
-more focus. Honest.
+not knowing it doesn't prevent you from getting the gist of the code samples),
+and getting a deeper understanding of the environment your code works in will
+make a lot of known unknowns come into a bit more focus. Honest.
 
 The first of the three parts was memory virtualization: that is, how computing
 time and resources get divvied up amongst processes. There was some fascinating
 stuff in there: the API for forking a new process, for instance, is weirder and
 cooler than I expected, and learning the topography of the boundary between the
 OS and application code (such as `ls` or `Google Chrome.app`) is rad. And then
-there are parts that, while vital to writing an effective kernel, just are not
-very relevant for web development: free space management, segmentation, and five
-chapters on memory paging.
+there are parts that are totally internal, though vital, to the kernel. Nothing
+against free space management, segmentation, or the five whole chapters on
+memory paging, but I'm just not as interested in the kernel's implementation as
+its interface.
 
 I kept wondering if I would be better off just jumping straight to concurrency,
 because that's what I was really pumped to learn. Would I be missing out on some
@@ -108,7 +109,7 @@ A: end
 main: done with both (counter = 100745)
 ```
 
-Well fuck.
+INTERESTING.
 
 The trouble is that `counter++` is _three_ operations, not one:
 1. Get the value of `counter` out of whatever register it's stored in
