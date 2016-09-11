@@ -1,26 +1,84 @@
-require 'compass/import-once/activate'
-# Require any additional compass plugins here.
+###
+# Page options, layouts, aliases and proxies
+###
+require 'slim'
+require 'redcarpet'
 
-# Set this to the root of your project when deployed:
-http_path = "/"
-css_dir = "stylesheets"
-sass_dir = "sass"
-images_dir = "images"
-javascripts_dir = "javascripts"
-fonts_dir = "fonts"
+# Per-page layout changes:
+#
+# With no layout
+page '/*.xml', layout: false
+page '/*.json', layout: false
+page '/*.txt', layout: false
 
-# You can select your preferred output style here (can be overridden via the command line):
-# output_style = :expanded or :nested or :compact or :compressed
+# With alternative layout
+page '/index.html', layout: :index_layout
 
-# To enable relative paths to assets via compass helper functions. Uncomment:
-# relative_assets = true
+set :markdown_engine, :redcarpet
+set :markdown, :fenced_code_blocks => true, :smartypants => true
 
-# To disable debugging comments that display the original location of your selectors. Uncomment:
-# line_comments = false
+activate :syntax, :line_numbers => true
+activate :directory_indexes
+activate :deploy do |deploy|
+  deploy.deploy_method = :git
+  deploy.build_before = true
+end
 
+configure :development do
+  activate :livereload
+end
 
-# If you prefer the indented syntax, you might want to regenerate this
-# project again passing --syntax sass, or you can uncomment this:
-# preferred_syntax = :sass
-# and then run:
-# sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
+activate :blog do |blog|
+  blog.prefix = 'blag'
+  blog.permalink = "{title}.html"
+  # Matcher for blog source files
+  blog.sources = "posts/{year}-{month}-{day}_{title}.html"
+  # blog.taglink = "tags/{tag}.html"
+  # blog.layout = "layout"
+  # blog.summary_separator = /(READMORE)/
+  # blog.summary_length = 250
+  # blog.year_link = "{year}.html"
+  # blog.month_link = "{year}/{month}.html"
+  # blog.day_link = "{year}/{month}/{day}.html"
+  blog.default_extension = ".md.erb"
+
+  blog.new_article_template = File.expand_path('post_template.html.md.erb', File.dirname(__FILE__))
+  blog.tag_template = "tag.html"
+  blog.calendar_template = "calendar.html"
+
+  # Enable pagination
+  # blog.paginate = true
+  # blog.per_page = 10
+  # blog.page_link = "page/{num}"
+end
+
+page "/feed.xml", layout: false
+
+###
+# Helpers
+###
+
+# Methods defined in the helpers block are available in templates
+helpers do
+  def titleize(string)
+    string.downcase.gsub(' ', '-').gsub(/[^a-z\d-]/, '')
+  end
+
+  def section(title)
+    <<~EOMD
+      <h3 id="#{titleize title}">
+        #{title}
+        <a class="section__title" href="##{titleize title}">§</a>
+      </h2>
+    EOMD
+  end
+end
+
+# Build-specific configuration
+configure :build do
+  # Minify CSS on build
+  activate :minify_css
+
+  # Minify Javascript on build
+  activate :minify_javascript
+end
