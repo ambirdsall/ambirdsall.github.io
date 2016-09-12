@@ -1,6 +1,6 @@
 // @import "compass/reset";
 
-/*! PocketGrid 1.1.0
+/*! PocketGrid 1.1.0// {{{
  * Copyright 2013 Arnaud Leray
  * MIT License
  */
@@ -36,7 +36,7 @@
   clear: none;
   float: left;
   margin: 0 !important;
-}
+}// }}}
 
 /* Default block */
 .block {
@@ -50,6 +50,9 @@
 
 // large grid positioning
 .left { clear: left; }
+
+// Custom Styles// {{{
+//// }}}
 .container {
   width: 80%;
   margin: auto;
@@ -60,19 +63,24 @@
   display: block;
   margin: auto;
 }
-.titles {
-  width: 80%;
-  margin-left: 10%;
+.titles__subtitle.titles__subtitle,
+.titles__icon-bar.titles__icon-bar {
+  width: 25%;
+  color: #fff;
 }
-.titles__subtitle { display: none; }
-.titles__icon-bar,
+.titles__subtitle {
+  text-align: right;
+  margin-left: 20%;
+}
+.titles__triangle { width: 10%; }
+.titles__icon-bar { margin-right: 20%; }
 .about,
 .skills,
 .skills__list { width: 50%; }
 .work-piece { width: 1/3 * 100%; }
 
 // within-block layout
-.icon { float: right; }
+.icon { float: left; }
 .main-picture {
   max-width: 100%;
 }
@@ -84,6 +92,7 @@
 }
 
 // fonts and icons
+//
 @import "compass/css3/font-face";
 @include font-face("icomoon", font-files("icomoon/fonts/icomoon.ttf", "icomoon/fonts/icomoon.woff"));
 $font-stack: "Ubuntu", sans-serif;
@@ -100,7 +109,7 @@ $sox-red:  #C60C30;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  color: $sox-blue;
+  color: #fff;
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -114,6 +123,7 @@ $sox-red:  #C60C30;
 .icon-linkedin:before { content: "\e603"; }
 
 // custom styles
+//
 body {
   background: url("../images/bg.png");
   font-family: $font-stack;
@@ -121,7 +131,7 @@ body {
   color: $sox-blue--light;
   margin: 0;
 }
-header, footer {
+header {
   background-color: hsl(34, 53%, 82%);
   background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
     hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
@@ -137,13 +147,16 @@ header, footer {
     hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
     hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
   );
+}
+.titles {
+  // slight readability boost
+  background: linear-gradient(to right, rgba(0,0,0,0), rgba(100,100,100,0.35) 15%, rgba(100,100,100,0.35) 85%, rgba(0,0,0,0));
   margin-bottom: 3em;
   min-height: 7em;
   width: 100%;
+  height: 100%;
 
   & h1, p {
-    // slight readability boost
-    background: linear-gradient(to right, rgba(0,0,0,0), rgba(100,100,100,0.25) 15%, rgba(100,100,100,0.25) 85%, rgba(0,0,0,0));
     color: #fff;
     font-family: monospace;
     height: 100%;
