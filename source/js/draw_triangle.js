@@ -58,7 +58,7 @@ function genpoint(triangle, point) {
 /*=============================*
  * Load up the event handlers! *
  *=============================*/
-function buildTriangle() {
+export default function buildTriangle() {
   // d3.event.preventDefault();
   for (var i = 0; i < 8; ++i) {
     point = genpoint(triangle, point);
@@ -66,6 +66,3 @@ function buildTriangle() {
   }
   draw(dataset);
 }
-
-page.on("mousemove", buildTriangle);
-page.on("devicemotion", buildTriangle);

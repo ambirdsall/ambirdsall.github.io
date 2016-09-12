@@ -20,6 +20,11 @@ set :markdown, :fenced_code_blocks => true, :smartypants => true
 
 activate :syntax, :line_numbers => true
 activate :directory_indexes
+activate :external_pipeline,
+  name: :rollup,
+  command: "rollup -c#{build? ? '' : 'w'}",
+  source: ''
+
 activate :deploy do |deploy|
   deploy.deploy_method = :git
   deploy.build_before = true
