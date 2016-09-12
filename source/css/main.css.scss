@@ -63,10 +63,9 @@
   display: block;
   margin: auto;
 }
-.titles__subtitle.titles__subtitle,
-.titles__icon-bar.titles__icon-bar {
+.titles__subtitle,
+.titles__icon-bar {
   width: 25%;
-  color: #fff;
 }
 .titles__subtitle {
   text-align: right;
@@ -168,6 +167,10 @@ header {
 
   & a { color: #fff888; }
 }
+.titles__subtitle,
+.titles__icon-bar {
+  color: #fff;
+}
 h1 {
   font-size: 4em;
   margin: (2em/3) 0 0 0;
@@ -182,10 +185,11 @@ h2 {
 .about { margin-bottom: (8em/3); }
 // links
 a { color: $sox-blue; }
-  a:hover, .icon:hover { color: $sox-blue; }
-.copyright {
-  font-size: 0.8em;
-}
+  a:hover { color: $sox-red; }
+.icon:hover { color: $sox-blue--light; }
+
+.copyright { font-size: 0.8em; }
+
 .skills > ul { padding-left: 0; }
 .skills__list > li { margin-bottom: 1em; }
 // work-piece
