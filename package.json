@@ -1,0 +1,22 @@
+{
+  "name": "ambirdsall.github.io",
+  "version": "1.0.0",
+  "description": "website and blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ambirdsall/ambirdsall.github.io.git"
+  },
+  "author": "ambirdsall",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ambirdsall/ambirdsall.github.io/issues"
+  },
+  "homepage": "https://github.com/ambirdsall/ambirdsall.github.io#readme",
+  "devDependencies": {
+    "rollup-watch": "^2.5.0"
+  }
+}

@@ -4,3 +4,4 @@ serve
 .sass-cache/
 AlexWebsite.png
 #stylesheets/*.css
+node_modules/*
