@@ -65,14 +65,12 @@
 }
 .titles__subtitle,
 .titles__icon-bar {
-  width: 25%;
+  width: 45%;
 }
 .titles__subtitle {
   text-align: right;
-  margin-left: 20%;
 }
 .titles__triangle { width: 10%; }
-.titles__icon-bar { margin-right: 20%; }
 .about,
 .skills,
 .skills__list { width: 50%; }
@@ -171,6 +169,7 @@ header {
 .titles__icon-bar {
   color: #fff;
 }
+.titles__triangle { margin-top: 2.5em; }
 h1 {
   font-size: 4em;
   margin: (2em/3) 0 0 0;
@@ -250,8 +249,8 @@ a { color: $sox-blue; }
   .about,
   .skills,
   .work-piece { width: 100%; }
-  .titles__subtitle { width: 60%; }
-  .titles__icon-bar { width: 40%; }
+  .titles__subtitle { width: 45%; }
+  .titles__icon-bar { width: 45%; }
   .icon { margin: 0 0.3em; }
 }
 
@@ -259,8 +258,8 @@ a { color: $sox-blue; }
   h1 { font-size: 2em; }
   h2 { font-size: 1.30em; }
   .icon { margin: 0 0.2em; }
-  .titles__subtitle { width: 62%; }
+  .titles__subtitle { width: 45%; }
   .titles__icon-bar {
     padding-left: 0;
-    width: 38%; }
+    width: 45%; }
 }
