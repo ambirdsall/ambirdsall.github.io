@@ -63,14 +63,15 @@
   display: block;
   margin: auto;
 }
-.titles__subtitle,
-.titles__icon-bar {
-  width: 45%;
-}
 .titles__subtitle {
   text-align: right;
 }
-.titles__triangle { width: 10%; }
+.titles__triangle {
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+  margin-top: 1em;
+}
 .about,
 .skills,
 .skills__list { width: 50%; }
@@ -165,11 +166,10 @@ header {
 
   & a { color: #fff888; }
 }
-.titles__subtitle,
 .titles__icon-bar {
   color: #fff;
+  margin-bottom: 0.25em;
 }
-.titles__triangle { margin-top: 2.5em; }
 h1 {
   font-size: 4em;
   margin: (2em/3) 0 0 0;
@@ -178,7 +178,7 @@ h1 {
 h2 {
   font-weight: $font-light;
   font-size: 2em;
-  margin: (16em/9) 0;
+  margin: 0;
   color: $sox-blue;
 }
 .about { margin-bottom: (8em/3); }
@@ -249,8 +249,6 @@ a { color: $sox-blue; }
   .about,
   .skills,
   .work-piece { width: 100%; }
-  .titles__subtitle { width: 45%; }
-  .titles__icon-bar { width: 45%; }
   .icon { margin: 0 0.3em; }
 }
 
@@ -258,8 +256,5 @@ a { color: $sox-blue; }
   h1 { font-size: 2em; }
   h2 { font-size: 1.30em; }
   .icon { margin: 0 0.2em; }
-  .titles__subtitle { width: 45%; }
-  .titles__icon-bar {
-    padding-left: 0;
-    width: 45%; }
+  .titles__icon-bar { padding-left: 0; }
 }
