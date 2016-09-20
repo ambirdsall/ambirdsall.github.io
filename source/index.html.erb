@@ -12,7 +12,9 @@
     <header class="block-group">
       <div class="titles block-group">
         <h1 class="block titles__main" itemProp="name">Alex Birdsall</h1>
+
         <div id="mini-triangle" class="block titles__triangle"></div>
+
         <h2 class="block titles__icon-bar">
           <a href="http://github.com/ambirdsall"><span class="icon icon-github"></span></a>
           <a href="http://twitter.com/gobslapped"><span class="icon icon-twitter"></span></a>
@@ -20,38 +22,31 @@
         </h2>
       </div>
     </header>
+
     <div class="block-group container">
-      <img src="images/alex_copper_creek_trail_kings_canyon.jpg" alt="Alex in Kings Canyon" class="block main-picture">
-      <!-- 2-part row      about p left half, skills ul right half -->
-      <div class="block about">
-        <h3>ABOUT</h3>
-        <p>I'm a <span itemProp="homeLocation">San Francisco</span>-based full stack web developer.</p>
-        <p>I like music, cooking, biking, basketball, and building things.</p>
-        <p>Design, engineering problems, and puzzles fascinate me.</p>
-        <p>Feel free to check out my stuff on <a href="http://github.com/ambirdsall">GitHub</a>.</p>
-        <p>My resume can be viewed <a href="resume">here</a>.</p>
-      </div>
-      <div class="block block-group skills">
-        <h3>SKILLS</h3>
-        <ul>
-          <div class="block skills__list">
-            <li>JavaScript</li>
-            <li>Ruby</li>
-            <li>HTML5</li>
-            <li>Git &amp; Github</li>
-          </div>
-          <div class="block skills__list">
-            <li>jQuery</li>
-            <li>PostgreSQL &amp; MySQL</li>
-            <li>CSS3 &amp; Sass</li>
-            <li>CLI &amp; shell scripting</li>
-          </div>
-        </ul>
-      </div>
+      <%
+        # This sorting is a shitshow to read, but the goal is to end up with a list
+        # of articles for each topic; with each list sorted most- to least-recent;
+        # with topics sorted by the most recent article from each.
+        blog.articles.group_by { |a| a.data.topic }
+                    .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
+                    .sort {|a, b| b.last.first.date <=> a.last.first.date}
+                    .each do |topic, list|
+      %>
+        <h3><%= topic.titleize %></h3>
+        <ol class="posts-list">
+          <% list.each do |article| %>
+            <li><%= link_to article.title, article.url %></li>
+          <% end %>
+        </ol>
+      <% end %>
+
       <!-- horizontal divider with triangle, e.g. -------- V -------- -->
       <div class="triangle__margin triangle__margin--left left block"><hr></div>
       <div id="triangle" class="triangle__container block"></div>
       <div class="triangle__margin triangle__margin--right block"><hr></div>
+
+
       <h3 class="block">Code Examples</h3>
       <ul class="work-piece-list">
         <li class="work-piece block">
@@ -107,9 +102,9 @@
           </p>
         </li>
       </ul>
-      <!-- 1-part row     single, centered line of text -->
+
       <h3 class="block say-hi">Is your team looking for a rad developer? <a href="mailto:ambirdsall@gmail.com?Subject=I%20Saw%20Your%20Website">Send me an email</a>!</h3>
-      <!-- 1-part row     single, centered line of text -->
+
       <p class="block copyright">
         Made with <a href="http://sass-lang.com/">Sass</a>, <a href="http://d3js.org/">d3.js</a>, <a href="http://arnaudleray.github.io/pocketgrid/">PocketGrid</a>, and Github Pages.<br/>
         &copy; 2016 Alex Birdsall
