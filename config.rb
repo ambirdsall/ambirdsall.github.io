@@ -14,6 +14,7 @@ page '/*.txt', layout: false
 # With alternative layout
 page 'blag/index.html', layout: :index_layout
 page 'blag/posts/*', layout: :post_layout
+page '/', layout: false
 
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
