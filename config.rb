@@ -31,9 +31,9 @@ activate :deploy do |deploy|
   deploy.build_before = true
 end
 
-configure :development do
-  activate :livereload
-end
+# configure :development do
+#   activate :livereload
+# end
 
 activate :blog do |blog|
   blog.prefix = 'blag'

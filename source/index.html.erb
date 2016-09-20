@@ -11,9 +11,7 @@
   <body itemscope itemtype="http://schema.org/Person">
     <header class="block-group">
       <div class="titles block-group">
-        <h1 class="block titles__main" itemProp="name">Alex Birdsall</h1>
-
-        <div id="mini-triangle" class="block titles__triangle"></div>
+        <h1 class="titles__main container" itemProp="name">hi, I'm Alex Birdsall</h1>
 
         <h2 class="block titles__icon-bar">
           <a href="http://github.com/ambirdsall"><span class="icon icon-github"></span></a>
@@ -23,23 +21,26 @@
       </div>
     </header>
 
-    <div class="block-group container">
-      <%
-        # This sorting is a shitshow to read, but the goal is to end up with a list
-        # of articles for each topic; with each list sorted most- to least-recent;
-        # with topics sorted by the most recent article from each.
-        blog.articles.group_by { |a| a.data.topic }
-                    .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
-                    .sort {|a, b| b.last.first.date <=> a.last.first.date}
-                    .each do |topic, list|
-      %>
-        <h3><%= topic.titleize %></h3>
-        <ol class="posts-list">
-          <% list.each do |article| %>
-            <li><%= link_to article.title, article.url %></li>
-          <% end %>
-        </ol>
-      <% end %>
+    <div class="block-group">
+      <div class="container posts__container">
+        <h2 class="posts__title">thoughts | html &gt; browser</h2>
+        <%
+          # This sorting is a shitshow to read, but the goal is to end up with a list
+          # of articles for each topic; with each list sorted most- to least-recent;
+          # with topics sorted by the most recent article from each.
+          blog.articles.group_by { |a| a.data.topic.downcase }
+                      .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
+                      .sort {|a, b| b.last.first.date <=> a.last.first.date}
+                      .each do |topic, list|
+        %>
+          <h3 class="topic__title"><%= topic.titleize %></h3>
+          <ol class="posts__list">
+            <% list.each do |article| %>
+              <li class="post__link"><%= link_to article.title, article.url %></li>
+            <% end %>
+          </ol>
+        <% end %>
+      </div>
 
       <!-- horizontal divider with triangle, e.g. -------- V -------- -->
       <div class="triangle__margin triangle__margin--left left block"><hr></div>
@@ -47,61 +48,63 @@
       <div class="triangle__margin triangle__margin--right block"><hr></div>
 
 
-      <h3 class="block">Code Examples</h3>
-      <ul class="work-piece-list">
-        <li class="work-piece block">
-          <a  target="_blank" href="https://github.com/ambirdsall/lawfetcher">
-            <img class="work-piece__img" src="images/lawfetcher.png" alt="Lawfetcher screenshot">
-            <p class="work-piece__title">Lawfetcher</p>
-          </a>
-          <p class="work-piece__description">
-            A freelance project in collaboration with Prof. Peter W. Martin of
-            Cornell Law. A free tool for legal writing, it semantically parses US
-            legal citations and program&shy;matically builds direct links to the
-            full text in various free and subscription services. Techniques borrowed
-            from OOJS, functional- and aspect-oriented programming paradigms; more
-            regular expressions than you can shake a stick at.
-          </p>
-        </li>
-        <li class="work-piece block">
-          <a  target="_blank" href="https://github.com/ambirdsall/javascript_sudoku_solver">
-            <img class="work-piece__img" src="images/sudoku_solver.png" alt="sudoku solver screenshot">
-            <p class="work-piece__title">Sudoku Solver</p>
-          </a>
-          <p class="work-piece__description">
-            A sudoku solver written just ten weeks after starting Dev Boot&shy;camp.
-            (Okay, I dressed up the css a bit afterwards, but the logic is very much
-            a reflection of me as a rank beginner.) Can solve any puzzle (that
-            is possible to solve), even ones that require guessing. DOM
-            interactions done with jQuery; solving logic all in vanilla ES5.
-          </p>
-        </li>
-        <li class="work-piece block">
-          <a target="_blank" href="https://github.com/ambirdsall/teeny_server">
-            <img class="work-piece__img" src="images/teeny_server.png" alt="teeny server screenshot">
-            <p class="work-piece__title">Teeny Server</p>
-          </a>
-          <p class="work-piece__description">
-            A simple command line program to serve any folder as static web
-            content on localhost. Takes an optional port arg&shy;ument. A tool
-            that does one small thing well—I use it constantly in front-end
-            work.
-          </p>
-        </li>
-        <li class="work-piece block">
-          <a target="_blank" href="https://github.com/ambirdsall/buckets/pull/3">
-            <img class="work-piece__img" src="images/buckets.png" alt="buckets screenshot">
-            <p class="work-piece__title">Buckets</p>
-          </a>
-          <p class="work-piece__description">
-            Here's the pull request I made for API inter&shy;actions and data
-            storage for an NBA stats app. I didn't finish the app, since
-            actually using NBA.com's API isn't legal; but it was a good
-            exercise in trying to write an <a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a>
-            that isn't horrible.
-          </p>
-        </li>
-      </ul>
+      <div class="block container">
+        <h3 class="work-pieces__title">Code Examples</h3>
+        <ul class="work-piece-list">
+          <li class="work-piece block">
+            <a  target="_blank" href="https://github.com/ambirdsall/lawfetcher">
+              <img class="work-piece__img" src="images/lawfetcher.png" alt="Lawfetcher screenshot">
+              <p class="work-piece__title">Lawfetcher</p>
+            </a>
+            <p class="work-piece__description">
+              A freelance project in collaboration with Prof. Peter W. Martin of
+              Cornell Law. A free tool for legal writing, it semantically parses US
+              legal citations and program&shy;matically builds direct links to the
+              full text in various free and subscription services. Techniques borrowed
+              from OOJS, functional- and aspect-oriented programming paradigms; more
+              regular expressions than you can shake a stick at.
+            </p>
+          </li>
+          <li class="work-piece block">
+            <a  target="_blank" href="https://github.com/ambirdsall/javascript_sudoku_solver">
+              <img class="work-piece__img" src="images/sudoku_solver.png" alt="sudoku solver screenshot">
+              <p class="work-piece__title">Sudoku Solver</p>
+            </a>
+            <p class="work-piece__description">
+              A sudoku solver written just ten weeks after starting Dev Boot&shy;camp.
+              (Okay, I dressed up the css a bit afterwards, but the logic is very much
+              a reflection of me as a rank beginner.) Can solve any puzzle (that
+              is possible to solve), even ones that require guessing. DOM
+              interactions done with jQuery; solving logic all in vanilla ES5.
+            </p>
+          </li>
+          <li class="work-piece block">
+            <a target="_blank" href="https://github.com/ambirdsall/teeny_server">
+              <img class="work-piece__img" src="images/teeny_server.png" alt="teeny server screenshot">
+              <p class="work-piece__title">Teeny Server</p>
+            </a>
+            <p class="work-piece__description">
+              A simple command line program to serve any folder as static web
+              content on localhost. Takes an optional port arg&shy;ument. A tool
+              that does one small thing well—I use it constantly in front-end
+              work.
+            </p>
+          </li>
+          <li class="work-piece block">
+            <a target="_blank" href="https://github.com/ambirdsall/buckets/pull/3">
+              <img class="work-piece__img" src="images/buckets.png" alt="buckets screenshot">
+              <p class="work-piece__title">Buckets</p>
+            </a>
+            <p class="work-piece__description">
+              Here's the pull request I made for API inter&shy;actions and data
+              storage for an NBA stats app. I didn't finish the app, since
+              actually using NBA.com's API isn't legal; but it was a good
+              exercise in trying to write an <a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a>
+              that isn't horrible.
+            </p>
+          </li>
+        </ul>
+      </div>
 
       <h3 class="block say-hi">Is your team looking for a rad developer? <a href="mailto:ambirdsall@gmail.com?Subject=I%20Saw%20Your%20Website">Send me an email</a>!</h3>
 

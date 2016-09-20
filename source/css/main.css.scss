@@ -1,6 +1,5 @@
-// @import "compass/reset";
-
-/*! PocketGrid 1.1.0
+@import "compass/reset";
+/*! PocketGrid 1.1.0// {
  * Copyright 2013 Arnaud Leray
  * MIT License
  */
@@ -49,47 +48,8 @@
 .block { padding: 2px 12px; }
 
 // large grid positioning
-.left { clear: left; }
-
-// Custom Widths
-//
-.container {
-  width: 80%;
-  margin: auto;
-}
-.triangle__container { width: 25% }
-.triangle__margin    { width: 37.5% }
-.triangle {
-  display: block;
-  margin: auto;
-}
-.titles__subtitle {
-  text-align: right;
-}
-.titles__triangle {
-  width: 100%;
-  height: 100px;
-  cursor: pointer;
-  margin-top: 1em;
-}
-.about,
-.skills,
-.skills__list { width: 50%; }
-.work-piece { width: 1/3 * 100%; }
-
-// within-block layout
-.icon { float: left; }
-.main-picture {
-  max-width: 100%;
-}
-.say-hi, .copyright { text-align: center; }
-.triangle__margin > hr {
-  margin-top: 75px;
-  border: 0;
-  height: 1px;
-}
-
-// fonts and icons
+.left { clear: left; }// }
+// fonts and icons// {
 //
 @import "compass/css3/font-face";
 @include font-face("icomoon", font-files("icomoon/fonts/icomoon.ttf", "icomoon/fonts/icomoon.woff"));
@@ -99,6 +59,13 @@ $sox-blue: #002244;
 $sox-blue--light: #224466;
 $sox-red:  #C60C30;
 
+.icon {
+  float: left;
+  margin: 0 0.455em;
+}
+.icon:hover {
+  color: $sox-blue--light;
+}
 [class^="icon-"], [class*=" icon-"] {
   font-family: 'icomoon';
   speak: none;
@@ -114,14 +81,20 @@ $sox-red:  #C60C30;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon { margin: 0 0.455em; }
 .icon-facebook:before { content: "\e600"; }
 .icon-twitter:before { content: "\e601"; }
 .icon-github:before { content: "\e602"; }
-.icon-linkedin:before { content: "\e603"; }
+.icon-linkedin:before { content: "\e603"; }// }
 
-// custom styles
-//
+// Generic Widths
+.about, .skills, .skills__list {
+  width: 50%;
+}
+.container {
+  width: 62%;
+  margin: 0 auto;
+}
+
 body {
   background: url("../images/bg.png");
   font-family: $font-stack;
@@ -129,7 +102,25 @@ body {
   color: $sox-blue--light;
   margin: 0;
 }
-header {
+h1 {
+  font-size: 4em;
+  margin: (2em/3) 0 0 0;
+  color: $sox-blue;
+}
+h2 {
+  font-weight: $font-light;
+  font-size: 2em;
+  margin: 0;
+  color: $sox-blue;
+}
+a {
+  color: $sox-blue;
+}
+  a:hover {
+    color: $sox-red;
+  }
+
+header.block-group {
   background-color: hsl(34, 53%, 82%);
   background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
     hsla(5, 53%, 63%, 0) 10px, hsla(5, 53%, 63%, 0) 35px, hsla(5, 53%, 63%, 0.5) 35px, hsla(5, 53%, 63%, 0.5) 40px,
@@ -145,6 +136,7 @@ header {
     hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
     hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
   );
+  margin-bottom: 1rem;
 }
 .titles {
   // slight readability boost
@@ -159,48 +151,59 @@ header {
     font-family: monospace;
     height: 100%;
     letter-spacing: 7px;
-    margin-top: 0; // prevents weird stupid gap atop page
-    padding-top: 0.8em;
-    text-align: center;
+    padding-top: 4.25rem;
   }
 
   & a { color: #fff888; }
 }
+.titles__subtitle {
+  text-align: right;
+}
+.titles__triangle {
+  width: 100%;
+  height: 100px;
+  cursor: pointer;
+  margin-top: 1em;
+}
 .titles__icon-bar {
-  margin-bottom: 0.25em;
+  margin: 2rem 0 0.25rem;
 }
-h1 {
-  font-size: 4em;
-  margin: (2em/3) 0 0 0;
-  color: $sox-blue;
+.about {
+  margin-bottom: (8em/3);
 }
-h2 {
-  font-weight: $font-light;
+
+.posts__container {
+  padding: 1.4em 0 0 1em;
+  margin-bottom: 2rem;
+}
+.posts__title {
+  color: #888;
   font-size: 2em;
-  margin: 0;
-  color: $sox-blue;
+  margin-bottom: 0.5em;
 }
-.about { margin-bottom: (8em/3); }
-// links
-a { color: $sox-blue; }
-  a:hover { color: $sox-red; }
-.icon:hover { color: $sox-blue--light; }
+.posts__list {
+  list-style: none;
+  margin-bottom: 1.5em;
+}
+.topic__title {
+  font-size: 1.3em;
+  margin-bottom: 0.5em;
+}
+.post__link {
+  margin: 0 0 0.5em 1em;
+}
 
-.copyright { font-size: 0.8em; }
-
-.skills > ul { padding-left: 0; }
-.skills__list > li { margin-bottom: 1em; }
-// work-piece
-.work-piece-list {
-  padding-left: 0;
-  -webkit-padding-start: 0;
+.work-pieces__title {
+  margin-top: 2rem;
 }
 .work-piece {
+  width: 1/3 * 100%;
   list-style: none inside none;
   margin-bottom: 2em;
 }
-  .work-piece:nth-child(3n-2) { clear: left; }
-
+  .work-piece:nth-child(3n-2) {
+    clear: left;
+  }
   .work-piece__img {
     max-width: 100%;
     margin-bottom: 1em;
@@ -214,7 +217,22 @@ a { color: $sox-blue; }
     margin-top: 0.5em;
     line-height: 2em;
   }
-// triangle margin gradients
+
+.triangle__container {
+  width: 25%
+}
+.triangle {
+  display: block;
+  margin: auto;
+}
+.triangle__margin {
+  width: 37.5%
+}
+.triangle__margin > hr {
+  margin-top: 75px;
+  border: 0;
+  height: 1px;
+}
 .triangle__margin--left > hr {
   background-image: linear-gradient(to right, rgba(0,34,68,0), rgba(0,34,68,0.75));
 }
@@ -222,38 +240,42 @@ a { color: $sox-blue; }
   background-image: linear-gradient(to left, rgba(0,34,68,0), rgba(0,34,68,0.75));
 }
 
-//
-// SIZES
-//
+.say-hi, .copyright {
+  text-align: center;
+}
+.copyright {
+  font-size: 0.8em;
+}
 
 // medium triangle stylez
 @media (max-width: 1000px) and (min-width: 500px) {
-  .triangle__container { width: 50%; }
-  .triangle__margin { width: 25%; }
+  .triangle__container {
+    width: 50%;
+  }
+  .triangle__margin {
+    width: 25%;
+  }
 }
-// small triangle stylez
 @media (max-width: 499px) {
-  .triangle__container { width: 80%; }
+  .triangle__container {
+    width: 80%;
+  }
   .triangle__margin {
     width: 10%;
     padding: 0;
   }
 }
-
-// small grid
-@media (max-width: 666px) {
-  .container { width: 90%; }
-  h1 { font-size: 2.4em; }
-  h2 { font-size: 1.3em; }
-  .about,
-  .skills,
-  .work-piece { width: 100%; }
-  .icon { margin: 0 0.3em; }
-}
-
 @media (max-width: 370px) {
-  h1 { font-size: 2em; }
-  h2 { font-size: 1.30em; }
-  .icon { margin: 0 0.2em; }
-  .titles__icon-bar { padding-left: 0; }
+  h1 {
+    font-size: 2em;
+  }
+  h2 {
+    font-size: 1.30em;
+  }
+  .icon {
+    margin: 0 0.2em;
+  }
+  .titles__icon-bar {
+    padding-left: 0;
+  }
 }
