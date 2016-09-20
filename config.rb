@@ -12,7 +12,7 @@ page '/*.json', layout: false
 page '/*.txt', layout: false
 
 # With alternative layout
-page 'blag/index.html', layout: :index_layout
+page 'blag/index.html', layout: :blag_index_layout
 page 'blag/posts/*', layout: :post_layout
 page '/', layout: false
 
