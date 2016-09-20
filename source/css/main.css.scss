@@ -107,7 +107,7 @@ $sox-red:  #C60C30;
   font-variant: normal;
   text-transform: none;
   line-height: 1;
-  color: #fff;
+  color: rgba(240,240,240,0.85);
 
   /* Better Font Rendering =========== */
   -webkit-font-smoothing: antialiased;
@@ -167,7 +167,6 @@ header {
   & a { color: #fff888; }
 }
 .titles__icon-bar {
-  color: #fff;
   margin-bottom: 0.25em;
 }
 h1 {
