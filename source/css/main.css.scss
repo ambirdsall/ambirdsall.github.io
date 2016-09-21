@@ -226,7 +226,7 @@ header.block-group {
   margin: auto;
 }
 .triangle__margin {
-  width: calc(50% - #{$width_of_triangle / 2px});
+  width: calc(50% - #{$width_of_triangle / 2px}px);
 }
 .triangle__margin > hr {
   margin-top: 75px;
