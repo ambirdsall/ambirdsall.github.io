@@ -113,8 +113,11 @@ h1 {
 h2 {
   font-weight: $font-light;
   font-size: 2em;
-  margin: 0;
-  color: $sox-blue;
+  margin: 0.5em 0;
+  color: #888;
+}
+h3 {
+  margin: 1em 0;
 }
 a {
   color: $sox-blue;
@@ -177,11 +180,6 @@ header.block-group {
 
 .posts__container {
   padding: 1.4em 0 0 1em;
-}
-.posts__title {
-  color: #888;
-  font-size: 2em;
-  margin-bottom: 0.5em;
 }
 .posts__list {
   list-style: none;
