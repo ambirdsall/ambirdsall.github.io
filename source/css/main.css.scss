@@ -1,5 +1,14 @@
 @import "compass/reset";
+@import "compass/css3/font-face";
+@include font-face("icomoon", font-files("icomoon/fonts/icomoon.ttf", "icomoon/fonts/icomoon.woff"));
+
+$font-stack: "Muli", sans-serif;
+$font-light: 400;
+$sox-blue: #002244;
+$sox-blue--light: #224466;
+$sox-red:  #C60C30;
 $width_of_triangle: 216.5px;
+
 /*! PocketGrid 1.1.0// {
  * Copyright 2013 Arnaud Leray
  * MIT License
@@ -52,13 +61,6 @@ $width_of_triangle: 216.5px;
 .left { clear: left; }// }
 // fonts and icons// {
 //
-@import "compass/css3/font-face";
-@include font-face("icomoon", font-files("icomoon/fonts/icomoon.ttf", "icomoon/fonts/icomoon.woff"));
-$font-stack: "Muli", sans-serif;
-$font-light: 400;
-$sox-blue: #002244;
-$sox-blue--light: #224466;
-$sox-red:  #C60C30;
 
 .icon {
   float: left;
@@ -193,8 +195,37 @@ header.block-group {
   margin: 0 0 0.5em 1em;
 }
 
+.triangle__container {
+  padding-top: 1em;
+}
+[id=triangle] {
+  width: $width_of_triangle;
+  padding: 0;
+}
+.triangle {
+  display: block;
+  margin: auto;
+}
+.triangle__margin {
+  width: calc(50% - #{$width_of_triangle / 2px}px);
+}
+.triangle__margin > hr {
+  margin-top: 75px;
+  border: 0;
+  height: 1px;
+}
+.triangle__margin--left > hr {
+  background-image: linear-gradient(to right, rgba(0,34,68,0), rgba(0,34,68,0.75));
+}
+.triangle__margin--right > hr {
+  background-image: linear-gradient(to left, rgba(0,34,68,0), rgba(0,34,68,0.75));
+}
+
+.work-pieces__container {
+  clear: both;
+}
 .work-pieces__title {
-  margin-top: 2rem;
+  padding-top: 1.5em;
 }
 .work-piece {
   width: 1/3 * 100%;
@@ -217,28 +248,6 @@ header.block-group {
     margin-top: 0.5em;
     line-height: 2em;
   }
-
-.triangle__container {
-  width: $width_of_triangle;
-}
-.triangle {
-  display: block;
-  margin: auto;
-}
-.triangle__margin {
-  width: calc(50% - #{$width_of_triangle / 2px}px);
-}
-.triangle__margin > hr {
-  margin-top: 75px;
-  border: 0;
-  height: 1px;
-}
-.triangle__margin--left > hr {
-  background-image: linear-gradient(to right, rgba(0,34,68,0), rgba(0,34,68,0.75));
-}
-.triangle__margin--right > hr {
-  background-image: linear-gradient(to left, rgba(0,34,68,0), rgba(0,34,68,0.75));
-}
 
 .say-hi, .copyright {
   text-align: center;
