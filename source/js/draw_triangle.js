@@ -1,10 +1,5 @@
-// Draws a sierpinski triangle in response to mouse/device movement,
-// using the chaos game algorithm: a good rundown can be found (where else)
-// in wikipedia: https://en.wikipedia.org/wiki/Sierpinski_triangle#Chaos_game
-// 
-// A quick google search turned up a simple implementation by Aaron Patterson,
-// which I adapted to my own purposes. The original lives (or lived, as of this
-// writing) at https://gist.github.com/tenderlove/5898231
+// https://en.wikipedia.org/wiki/Sierpinski_triangle#Chaos_game
+// https://gist.github.com/tenderlove/5898231
 
 export default function triangleBuilder(scale, selector, color) {
   var w = 433 * scale,
@@ -53,8 +48,6 @@ export default function triangleBuilder(scale, selector, color) {
     return [x, y]
   }
 
-  // triangle
-  // - 
   return function buildGivenTriangle() {
     for (var i = 0; i < 8; ++i) {
       point = genpoint(triangle, point)

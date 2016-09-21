@@ -1,4 +1,5 @@
 @import "compass/reset";
+$width_of_triangle: 216.5px;
 /*! PocketGrid 1.1.0// {
  * Copyright 2013 Arnaud Leray
  * MIT License
@@ -219,14 +220,14 @@ header.block-group {
   }
 
 .triangle__container {
-  width: 25%
+  width: $width_of_triangle;
 }
 .triangle {
   display: block;
   margin: auto;
 }
 .triangle__margin {
-  width: 37.5%
+  width: calc(50% - #{$width_of_triangle / 2px});
 }
 .triangle__margin > hr {
   margin-top: 75px;
@@ -247,24 +248,6 @@ header.block-group {
   font-size: 0.8em;
 }
 
-// medium triangle stylez
-@media (max-width: 1000px) and (min-width: 500px) {
-  .triangle__container {
-    width: 50%;
-  }
-  .triangle__margin {
-    width: 25%;
-  }
-}
-@media (max-width: 499px) {
-  .triangle__container {
-    width: 80%;
-  }
-  .triangle__margin {
-    width: 10%;
-    padding: 0;
-  }
-}
 @media (max-width: 370px) {
   h1 {
     font-size: 2em;
