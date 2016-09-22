@@ -96,6 +96,7 @@ $width_of_triangle: 216.5px;
 .standard-margins {
   width: 62%;
   margin: 0 auto;
+  @media (max-width: 650px) { width: 90%; }
 }
 
 body {
