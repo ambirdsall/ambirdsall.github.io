@@ -110,6 +110,8 @@ h1 {
   font-size: 4em;
   margin: (2em/3) 0 0 0;
   color: $sox-blue;
+
+  @media (max-width: 500px) {font-size: 3em}
 }
 h2 {
   font-weight: $font-light;
@@ -230,6 +232,8 @@ header.block-group {
   width: 1/2 * 100%;
   list-style: none inside none;
   margin-bottom: 2em;
+
+  @media (max-width: 600px) { width: 100%; }
 }
   .work-piece:nth-child(2n-3) {
     clear: left;
