@@ -8,6 +8,7 @@ $font-light: 400;
 $sox-blue: #002244;
 $sox-blue--light: #224466;
 $sox-red:  #C60C30;
+$min-height: 7em;
 
 // fonts and icons// {
 //
@@ -75,6 +76,11 @@ ol {
     }
   }
 }
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1.5em 0;
+}
 article {
   line-height: 2em;
 }
@@ -103,8 +109,7 @@ header, footer {
     hsla(35, 91%, 65%, 0) 80px, hsla(35, 91%, 65%, 0) 90px, hsla(5, 53%, 63%, 0.5) 90px, hsla(5, 53%, 63%, 0.5) 110px,
     hsla(5, 53%, 63%, 0) 110px, hsla(5, 53%, 63%, 0) 140px, hsla(197, 62%, 11%, 0.5) 140px, hsla(197, 62%, 11%, 0.5) 160px
   );
-  margin-bottom: 3em;
-  min-height: 7em;
+  min-height: $min-height;
   width: 100%;
 
   h1, p {
@@ -118,25 +123,25 @@ header, footer {
 
   & a { color: #fff888; }
 }
-
-footer { line-height: 2.5; }
+header {
+  margin-bottom: 3em;
+}
+footer {
+  line-height: 2.5;
+}
 
 [id=post-list] ul, [id=post-list] ol { list-style: none; }
 
 .titles {
+  padding-top: 2em;
   background: linear-gradient(to right, rgba(0,0,0,0), rgba(100,100,100,0.35) 15%, rgba(100,100,100,0.35) 85%, rgba(0,0,0,0));
+  min-height: $min-height;
 }
 .titles__icon-bar {
   height: 1.2em;
   // FIXME: hack to emulate pocketgrid gutter impact on site index
   position: relative;
   left: -12px;
-}
-
-hr {
-  border: none;
-  border-top: 1px solid #ccc;
-  margin: 1.5em 0;
 }
 
 .section__title {
