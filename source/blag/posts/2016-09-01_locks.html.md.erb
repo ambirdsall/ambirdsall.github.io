@@ -56,15 +56,15 @@ compiler optimizations from happening, specifically for things like this shared
 counter.
 
 So, there's a shared counter and there's a procedure that uses it suitable for
-giving to a couple threads. Literally the only thing that happens with that
-shared bit of state:
+giving to a couple threads. I extracted all the code dealing with that shared
+bit of state:
 
 ``` c
 counter++
 ```
 
-A single line. So, let's add some logging and fire up two threads, each running
-`mythread`:
+That's it! A single line, with a single unary operator. How unsafe can THAT be?
+Let's add some logging and fire up a couple threads:
 
 ``` c
 #include <stdio.h>
