@@ -13,7 +13,7 @@ page '/*.txt', layout: false
 
 # With alternative layout
 page 'blag/index.html', layout: :blag_index_layout
-page 'blag/posts/*', layout: :post_layout
+# page 'blag/posts/*', layout: :post_layout
 page '/', layout: false
 
 set :markdown_engine, :redcarpet
@@ -41,7 +41,7 @@ activate :blog do |blog|
   # Matcher for blog source files
   blog.sources = "posts/{year}-{month}-{day}_{title}.html"
   # blog.taglink = "tags/{tag}.html"
-  # blog.layout = "layout"
+  blog.layout = :post_layout
   # blog.summary_separator = /(READMORE)/
   # blog.summary_length = 250
   # blog.year_link = "{year}.html"
