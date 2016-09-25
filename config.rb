@@ -12,14 +12,16 @@ page '/*.txt', layout: false
 
 # With alternative layout
 page 'blag/index.html', layout: :blag_index_layout
-# page 'blag/posts/*', layout: :post_layout
+page 'blag/posts/*', layout: :post_layout
 page '/', layout: false
 
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
 
 activate :syntax, :line_numbers => true
+
 activate :directory_indexes
+
 activate :external_pipeline,
   name: :rollup,
   command: "rollup -c#{build? ? '' : 'w'}",
@@ -77,6 +79,15 @@ helpers do
         <a class="section__title" href="##{titleize title}">§</a>
       </h2>
     EOMD
+  end
+
+  def strip_frontmatter(string)
+    lines = string.split("\n")
+    if lines.first =~ /<hr>/
+      next_line = lines.shift until next_line =~ /<\/p>/
+    end
+
+    lines.join("\n")
   end
 end
 
