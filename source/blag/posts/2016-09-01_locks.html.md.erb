@@ -4,7 +4,7 @@ category: operating_systems
 topic: concurrency
 date: 2016-09-01 07:20:17 UTC
 tags: operating_systems, concurrency, locks
----
+...
 
 I've been reading [Operating Systems: Three Easy
 Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP). I highly recommend the book if
@@ -224,6 +224,7 @@ void unlock(lock_t *lock) {
 ```
 
 This is a shitty lock for a few reasons:
+
 * If the lock is taken, the thread just wastes CPU cycles until the CPU
 scheduler decides to let the locking thread finish its work
 * It's possible to have a thread that "starves": i.e. never, ever gets the lock
