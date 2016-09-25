@@ -1,7 +1,6 @@
 ###
 # Page options, layouts, aliases and proxies
 ###
-require 'slim'
 require 'redcarpet'
 
 # Per-page layout changes:
