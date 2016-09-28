@@ -11,9 +11,15 @@ page '/*.json', layout: false
 page '/*.txt', layout: false
 
 # With alternative layout
+page '/', layout: false
+page 'blog-posts/*', layout: false
 page 'blag/index.html', layout: :blag_index_layout
 page 'blag/posts/*', layout: :post_layout
-page '/', layout: false
+
+# Prevent building layouts as if they're templates
+# (Presumably this is a middleman 4 bug, but tooooo lazy to properly isolate)
+ignore '**/layout.*'
+ignore '**/layouts/*'
 
 set :markdown_engine, :redcarpet
 set :markdown, :fenced_code_blocks => true, :smartypants => true
@@ -95,7 +101,4 @@ end
 configure :build do
   # Minify CSS on build
   activate :minify_css
-
-  # Minify Javascript on build
-  activate :minify_javascript
 end
