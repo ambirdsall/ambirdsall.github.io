@@ -35,6 +35,7 @@ activate :external_pipeline,
 
 activate :deploy do |deploy|
   deploy.deploy_method = :git
+  deploy.branch = :master
   deploy.build_before = true
 end
 
