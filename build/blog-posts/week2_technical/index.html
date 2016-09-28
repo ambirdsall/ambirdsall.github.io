@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Week 2 Technical Blog</title>
+		<link rel="stylesheet" href="stylesheets/week2_technical.css">
+	</head>
+	<body>
+		<div id="header">
+			<h1>Padding and Border and Margin. Oh my.</h1>
+		</div>
+		<div id="left">
+			<div id="date">
+			Alex Birdsall<br/>
+			5.25.2014
+			</div>
+		</div>
+		<div id="writing">
+			<p>
+				Welcome to the Box Model. It's the basic, generic structure of HTML elements. Each part of a website's HTML structure is built like this, so it's worth getting your head around a few of its quirks. First, though, take a look:
+			</p>
+
+			<img src="http://www.goer.org/images/html/boxbasic.png"/>
+
+			<p>
+				Let's start with the light blue box in the center. That's your content. What exactly it is depends on the type of element: the text of the paragraph in a <span>&ltp&gt</span> tag, the image in an <span>&ltimg&gt</span> tag, and so on. This is the starting point. If you use CSS to explicitly set the width*, this is the box you're sizing. Take note: if you set that <span>width</span> declaration to the entire space available, any <span>padding</span>, <span>margin</span>, or <span>border</span> on top of that will make your element overfill its space. This can cause havoc to a carefully-designed layout. So, having established the content box as a starting point, what's all that stuff around it all about?
+			</p>
+
+			<p>
+				The next piece to consider is the border. This one is fairly self-explanitory: it's a line around the outside of the element, which can serve as both demarcation and decoration. Background styling like <span>background-color</span> surrounds the content and ends here, at the border. For purposes of illustration, here's a <span>&ltdiv&gt</span> with a <span>width</span> of 300px, a <span>background-color</span> of <span>aqua</span>, and with <span>border</span>, <span>padding</span>, and <span>margin</span> all set to <span>none</span>:
+			</p>
+
+			<div id="demo-one">American sole duckbilled barracudina, ronquil sarcastic fringehead dab lungfish nurse shark. Blackchin, silver hake ground shark hagfish, Asian carps prickleback flagfin. Weatherfish, Black pickerel anchovy pilchard wolffish crappie bamboo shark bigmouth buffalo pickerel Blacksmelt. Thresher shark, lemon shark alooh longnose dace Mexican blind cavefish, jewelfish Black angelfish moonfish requiem shark.</div>
+
+			<p>
+				So far, so good. Now let's slap a border on it. Nothing fancy, just a <span>solid black 3px</span> line all around:
+			</p>
+
+			<div id="demo-two">American sole duckbilled barracudina, ronquil sarcastic fringehead dab lungfish nurse shark. Blackchin, silver hake ground shark hagfish, Asian carps prickleback flagfin. Weatherfish, Black pickerel anchovy pilchard wolffish crappie bamboo shark bigmouth buffalo pickerel Blacksmelt. Thresher shark, lemon shark alooh longnose dace Mexican blind cavefish, jewelfish Black angelfish moonfish requiem shark.</div>
+
+			<p>
+				Well, that's kind of boring. Let's make it <span>dotted</span>:
+			</p>
+
+			<div id="demo-three">American sole duckbilled barracudina, ronquil sarcastic fringehead dab lungfish nurse shark. Blackchin, silver hake ground shark hagfish, Asian carps prickleback flagfin. Weatherfish, Black pickerel anchovy pilchard wolffish crappie bamboo shark bigmouth buffalo pickerel Blacksmelt. Thresher shark, lemon shark alooh longnose dace Mexican blind cavefish, jewelfish Black angelfish moonfish requiem shark.</div>
+
+			<p>
+				Cool. Or at least illustrative, which is more important here. But notice how the text goes right up to the edge of the border there—a little space would look nice, and improve legibility some, too. Well, that space between the content and the border is the <span>padding</span>! Let's give our <span>div</span> <span>10px</span> of breathing room:
+			</p>
+
+			<div id="demo-four">American sole duckbilled barracudina, ronquil sarcastic fringehead dab lungfish nurse shark. Blackchin, silver hake ground shark hagfish, Asian carps prickleback flagfin. Weatherfish, Black pickerel anchovy pilchard wolffish crappie bamboo shark bigmouth buffalo pickerel Blacksmelt. Thresher shark, lemon shark alooh longnose dace Mexican blind cavefish, jewelfish Black angelfish moonfish requiem shark.</div>
+
+			<p>
+				Nicccccce. Notice that even though the <span>width</span> hasn't changed, the element as a whole is, well, wider. Careful of that. Anyway, now we're ready for the last, outermost box in our model: the <span>margin</span>. <span>Margin</span> works almost exactly like <span>padding</span>, with a few key differences:
+				<ul>
+					<li>It's outside of the <span>border</span>, not in, which means:</li>
+					<li>Element-specific styling like our good friend <span>background-color</span> don't affect the <span>margin</span>. It's invisible! It looks just like whatever's holding the element.</li>
+					<li>Vertical margins overlap. More on this later.</li>
+				</ul>
+				So. Just to make it obvious, let's give our <span>&ltdiv&gt</span> a <span>margin</span> of 50px:
+			</p>
+
+			<div id="demo-five">American sole duckbilled barracudina, ronquil sarcastic fringehead dab lungfish nurse shark. Blackchin, silver hake ground shark hagfish, Asian carps prickleback flagfin. Weatherfish, Black pickerel anchovy pilchard wolffish crappie bamboo shark bigmouth buffalo pickerel Blacksmelt. Thresher shark, lemon shark alooh longnose dace Mexican blind cavefish, jewelfish Black angelfish moonfish requiem shark.</div>
+
+			<p>
+				And lo, our <span>&ltdiv&gt</span> is set <span>50px</span> away from the left side of this column, where before, it was <span>0px</span> away, lined up with the far left edge of the text. It's <span>50px</span> above this paragraph and <span>50px</span> below the one above it, where before, it was... wait, it WASN'T <span>0px</span> away from the paragraphs before! That's because each <span>&ltp&gt</span> has its own margin. This is that vertical overlapping I was talking about earlier, and paragraphs are actually a great lens through which to understand it. Suppose that, in a world without vertically overlapping <span>margin</span>s, you want a <span>10px margin</span> above and below your paragraphs. You could just set those <span>margin</span>s to <span>10px</span>. Then there would be <span>10px</span> space above the first paragraph and <span>10px</span> below the last, but there would be <span>20px</span> in the middle! You could give the first and last paragraphs individual stylings with a <span>class</span>, but that's a huge, annoying hassle, especially if that ordering ever changes. Thus, vertically overlapping margins.
+			</p>
+
+			<p>
+				So if you came into this with a fuzzy notion of what each of these actually is, hopefully I've cleared some things up. If not, or if you wnat to get into the many, many details I ignored here (<span>margin-top</span>, I'm looking at you) here are some resources that I looked at while putting this together:
+				<ul>
+					<li><a href="http://www.goer.org/HTML/intermediate/margins_and_padding/">Box Model: Margins and Padding</a></li>
+					<li><a href="http://www.goer.org/HTML/intermediate/borders/">Box Model: Borders</a></li>
+					<li><a href="http://www.w3.org/TR/CSS2/box.html">Box Model</a></li>
+					<li><a href="http://www.w3.org/TR/CSS2/visudet.html">Visual Formatting Model Details</a></li>
+				</ul>
+				Now get out there and format some elements! Or, you know, don't. I mean, if you don't want to.
+			</p>
+
+		</div>
+		<div class="sidenote" id="note-one">This picture came from <a href="http://www.goer.org/HTML/intermediate/borders/">here</a>.</div> 
+		<div class="sidenote" id="note-two">* <span>p {width: 30px;}</span>, for example.</div>
+		<div class="sidenote" id="note-three">Filler text courtesy of <a href="www.tunaipsum.com">Tuna Ipsum</a></div>
+
+		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+	</body>
+</html>

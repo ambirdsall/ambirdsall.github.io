@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Week 6 Technical Blog</title>
+		<link rel="stylesheet" href="stylesheets/week6_technical.css">
+	</head>
+	<body>
+		<div id="header">
+			<h1>Blocks, Procs, and Lambdas</h1>
+		</div>
+		<div id="left">
+			<div id="date">
+			Alex Birdsall<br/>
+			6.22.2014
+			</div>
+		</div>
+		<div id="writing">
+			<p>
+				Part of the beauty of an object-oriented language like Ruby is the ability to use the same code over and over again in different places. Whether you're calling the same method on different objects, calling the same code on each element of an array, or whatnot, you'll have shorter, more flexible, and more elegant projects if you get a handle on various sorts of reusable code. Or maybe you just want to be less confused when reading through <a href="http://stackoverflow.com/">Stack Overflow</a>. Either way, here's a quick rundown of three of Ruby's less-celebrated ways to store runnable code: blocks, procs, and lambdas.
+			</p>
+			<p>
+				A block is a set of code delineated by <span>{}</span> or <span>do end</span>. The difference between the two formulations is that <span>{}</span> has higher precedence than <span>do end</span>. An example, from David A. Black's excellent <a href="http://www.amazon.com/The-Well-Grounded-Rubyist-David-Black/dp/1933988657/ref=pd_sim_b_2?ie=UTF8&refRID=1M2BTBP6Y484VW42JKCP">"The Well-Grounded Rubyist"</a>:
+				<blockquote><span>
+					>> array = [1,2,3] <br/>
+					=> [1, 2, 3]<br/>
+					>> array.map {|n| n * 10 }<br/>
+					=> [10, 20, 30]<br/>
+					>> array.map do |n| n * 10 end<br/>
+					=> [10, 20, 30] <br/>
+					>> puts array.map {|n| n * 10 }<br/>
+					10<br/>
+					20<br/>
+					30<br/>
+					=> nil<br/>
+					>> puts array.map do |n| n * 10 end<br/>
+					=>#&ltEnumerable::Enumerator:0x3ab664><br/>
+				</span></blockquote>
+				The block in curly braces has higher precedence than <span>puts</span> and is called on <span>array.map</span>; the block in <span>do end</span> has lower precedence, and so <span>puts</span> logs an <span>Enumerable</span>: exactly what <span>#map</span> returns with no block.
+			</p>
+			<p>
+				Control is <span>yield</span>ed to the code block by a method; after the block runs, however long it be, control returns to the statement immediately following the <span>yield</span>. Blocks can take parameters, but unlike method parameters, which are declared in parentheses, block parameters are declared in vertical pipes, like <span>|so|</span>. Within those parameter declarations, they do the same thing, though: required parameters like <span>|x|</span>default parameters like <span>|y=1|</span>, variable optional parameters like <span>|*z|</span>, and mixed sets like <span>|x, y=1, *z|</span> all work identically to their methodical counterparts.
+			</p>
+			<p>
+				A note about the scope of blocks: they have access to any variables that are local to the object that <span>yield</span>s to them, global variables, their parameter variables, and any local variables you specify for them. More on that last bit in just a sentence. Assignments and other potentially dangerous actions that happen within a block are not just temporary, which means that you have to be careful not to overwrite an identically-named outside variable when, say, setting a variable to store some results in your block. Luckily, there's a way to create a "safe", block-local variable: any variable names listed after a semicolon within the parameter-declaring pipes is treated within the block as a separate, totally local object. A quick demonstration in irb:
+				<blockquote><span>
+					>> x = "outer variable"<br/>
+					=> "outer variable"<br/>
+					>> [1,2,3].each {|n; x|<br/>
+					?> x="inner variable"<br/>
+					>> puts "#{n} is playing with the #{x}"<br/>
+					>> }<br/>
+					1 is playing with the inner variable<br/>
+					2 is playing with the inner variable<br/>
+					3 is playing with the inner variable<br/>
+					=> [1, 2, 3]<br/>
+					>> puts x<br/>
+					outer variable<br/>
+					=> nil<br/>
+				</span></blockquote>
+				Even though the block assigned a new value to a variable <span>x</span>, the post-semicolon definition "protected" the outer variable from accidental reassignment. NICE.
+			</p>
+			<p>
+				But for all their usefulness, blocks aren't actually objects, just syntactical constructs. You can't, for example, assign them to a variable and store them in an array to be called up when needed. But that's exactly what a proc is! It's just a block that's been objectified. To create a proc, you just call either <span>#proc</span> or <span>Proc.new</span> with a code block (they work identically); the code in that block is returned as a <span>Proc</span> object. So if you wanted to save and reuse the block from the first example, it might look like this:
+				<blockquote><span>
+					>> example_proc = proc {|n| n * 10 }<br/>
+					=> #<Proc:0x007fda2b807570@(irb):11><br/>
+					>> [1,2,3].map(&example_proc)<br/>
+					=> [10, 20, 30]<br/>
+				</span></blockquote>
+				The <span>&</span> is a wrapper for the <span>#to_proc</span> method; it tells <span>#map</span> to treat <span>example_proc</span> as the block it has stored, rather than as an argument. To use the proc per se, just call it with <span>#call</span>; in that example, <span>example_proc.call</span> would return the code block <span>{|n| n * 10 }</span>. It's not a great idea for this specific proc: <span>#call</span> provides no object to define its parameter <span>n</span>, so you'd get a syntax error.
+			</p>
+			<p>
+				Two other points of note about procs. First, like blocks, they have access to any local variables that are in scope when they are defined. And they continue to have access to those local variables' values, even if the proc is later called out of their scope. They carry their context around with themselves. This means that procs can be used to access a method's counter variable outside of the method; or to recall a block's storage variable from halfway through its operation; or whatever else you may want to dredge up later. Use your imagination! And second, procs are very lax about their arguments. If you call a one-argument proc with zero arguments, it just assigns its argument to <span>nil</span>. If you call that same proc with three arguments, it simply ignores the second and third arguments you sent.
+			</p>
+			<p>
+				But maybe you want a proc that IS a bit fussy about its arguments. Enter the lambda. A lambda is created with the <span>#lambda</span> method, which returns a lambda-type object of the class <span>Proc</span>. But there are two distinctions between the behavior of lambdas and ordinary procs. As mentioned, lambdas require the correct number of arguments. And they treat <span>return</span> statements differently. An example, again from "The Well-Grounded Rubyist", run in irb:
+				<blockquote><span>
+					>> def return_test<br/>
+					>> l = lambda { return }<br/>
+					>> l.call<br/>
+					>> puts "Still here!"<br/>
+					>> p = proc { return }<br/>
+					>> p.call<br/>
+					>> puts "You won't see this message!"<br/>
+					>> end<br/>
+					=> nil<br/>
+					>> return_test<br/>
+					Still here!<br/>
+					=> nil<br/>
+				</span></blockquote>
+				As you can see, running the method will output "Still here!", because <span>l</span>'s <span>return</span> statement only exits the lambda itself. But the second <span>puts</span> never gets run, because <span>p</span>'s <span>return</span> statement exits the whole method, instead of just itself.
+			</p>
+			<p>
+				And that's it! Armed with those distinctions, you're ready to divvy up your code's functionalities to suit the logic of the task at hand, with code structures you can seize upon like a wolf among lamb(da)s.
+			</p>
+		</div>
+		<div class="sidenote" id="note-one">You could even say they <a href="https://i.chzbgr.com/maxW500/6549389312/hD0A9078F/">ape</a> them.</div>
+		<div class="sidenote" id="note-two">I'm trying to be original, really! But, having just read a succinct example of the clearest way to demonstrate the difference, it seems downright dishonest to change some names and call it my own work. And it seems stupid to avoid giving the example at all, because it's genuinely helpful.</div>
+		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+	</body>
+</html>

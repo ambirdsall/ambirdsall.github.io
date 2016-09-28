@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Week 4 Technical Blog</title>
+		<link rel="stylesheet" href="stylesheets/week4_technical.css">
+	</head>
+	<body>
+		<div id="header">
+			<h1>Enumerable#group_by</h1>
+		</div>
+		<div id="left">
+			<div id="date">
+			Alex Birdsall<br/>
+			6.8.2014
+			</div>
+		</div>
+		<div id="writing">
+			<p>
+				Suppose you have some set of values stored up in your code, and you want to be able to sort them into groups based on some criterion. You could write a loop to iterate through your data structure, whatever it is, apply your criterion, and then write some conditionals or a case statement to store them different places based on the result. Logically sound, but a bit of a hassle for such an ordinary task. Life doesn't have to be this hard, friend! Regroup and check out #group_by, a really useful tool for, well, grouping. The syntax is pretty simple: 
+			</p>
+				<div class="code">
+					some_set.group_by {|object| block}
+				</div>
+			<p>
+				A concrete example might be clearer. Here's the one ruby-doc.org uses:
+			</p>
+				<div class="code">
+					(1..6).group_by {|i| i%3}
+				</div>
+			<p>
+				Here, #group_by is called on the range 1..6. For each member of the set i, the code block operates, and they're grouped by result. The format here is a hash: the keys are 0, 1, and 2, each of the possible results of the code block; each key's value is an array of all the members of that set for which the code returns that key. In this case, the method returns this hash:
+			</p>
+				<div class="code">
+					=> {0 => [3,6], 1 => [1,4], 2 => [2,5]}
+				</div>
+			</p>
+			<p>
+				That example was a bit arbitrary, but it's easy to adapt it to a more practical purpose. Dev Bootcamp is a 9-week program, spanning 9*7 = 63 days: suppose you want to know what day of the week day 47 is? Just for the sake of illustration, let's put those days, 1..63, into an array. Your code might look like this:
+			</p>
+				<div class="code">
+					daysUntilFinish = (1..63).to_a<br/>
+					daysUntilFinish.group_by {|i| i%7}
+				</div>
+			<p>
+				Since day 1 is a Monday, you simply find the key associated with 47, and that's the numerical day of the week (since 1 is Monday, 2 is Tuesday and so on). Check it out:
+			</p>
+				<div class="code">
+					=> {1=>[1, 8, 15, 22, 29, 36, 43, 50, 57], 2=>[2, 9, 16, 23, 30, 37, 44, 51, 58], 3=>[3, 10, 17, 24, 31, 38, 45, 52, 59], 4=>[4, 11, 18, 25, 32, 39, 46, 53, 60], 5=>[5, 12, 19, 26, 33, 40, 47, 54, 61], 6=>[6, 13, 20, 27, 34, 41, 48, 55, 62], 0=>[7, 14, 21, 28, 35, 42, 49, 56, 63]}
+				</div>
+			<p>
+				There it is, under 5—a Friday. But the code block can be used however you'd like. What if you're running a science experiment and you want to randomly group some people to see who gets each of three treatments?
+			</p>
+				<div class="code">
+					testSubjects = ["Mick Fleetwood", "John McVie", "Christine McVie", "Lindsay Buckingham", "Stevie Nicks", "Peter Green"]<br/>
+					testSubjects.group_by {rand(3) + 1}
+				</div>
+			<p>
+				This, as you might suspect, will give you different results nearly every time you run it. Here's the first three results I got with that method call:
+			</p>
+				<div class="code">
+					=> {3=>["Mick Fleetwood", "Stevie Nicks"], 2=>["John McVie", "Christine McVie"], 1=>["Lindsay Buckingham", "Peter Green"]}<br/>
+					=> {1=>["Mick Fleetwood", "Stevie Nicks"], 2=>["John McVie", "Christine McVie", "Peter Green"], 3=>["Lindsay Buckingham"]}<br/>
+					=> {2=>["Mick Fleetwood"], 1=>["John McVie", "Christine McVie", "Stevie Nicks", "Peter Green"], 3=>["Lindsay Buckingham"]}
+				</div>
+			<p>
+				You might notice that the hash keys are ordered differently with each iteration. That's because #group_by puts the keys in whatever order those results first appear when running the block. In this case, it's random; in any case, it hardly matters.
+			</p>
+			<p>
+				And, really, that's it! Group away to your heart's content.
+			</p>
+		</div>
+		<div class="sidenote" id="note-one">I'm using' "set" here in the generic, mathematical sense, rather than to refer to the class Set.</div> 
+		<div class="sidenote" id="note-two">It also works on an array or a hash. Just make sure to pick your object (or not! It's optional) to suit your needs.</div>
+		<div class="sidenote" id="note-three">\m/</div>
+		<div id="back-button"><a href="http://ambirdsall.github.io/index.html"><b>&lt=</b></a></div>
+	</body>
+</html>

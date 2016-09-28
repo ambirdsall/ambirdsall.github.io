@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog Name</title>
+  <subtitle>Blog subtitle</subtitle>
+  <id>http://blog.url.com/blag</id>
+  <link href="http://blog.url.com/blag"/>
+  <link href="http://blog.url.com/blag/feed.xml" rel="self"/>
+  <updated>2016-09-01T00:20:17-07:00</updated>
+  <author>
+    <name>Blog Author</name>
+  </author>
+  <entry>
+    <title>Locks are Some Shit</title>
+    <link rel="alternate" href="http://blog.url.com/blag/locks/"/>
+    <id>http://blog.url.com/blag/locks/</id>
+    <published>2016-09-01T00:20:17-07:00</published>
+    <updated>2016-09-25T13:53:09-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;hr&gt;
+
+&lt;p&gt;title: Locks are Some Shit
+category: operating&lt;em&gt;systems
+topic: concurrency
+date: 2016-09-01 07:20:17 UTC
+tags: operating&lt;/em&gt;systems, concurrency, locks
+&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I&amp;rsquo;ve been reading &lt;a href="http://pages.cs.wisc.edu/~remzi/OSTEP"&gt;Operating Systems: Three Easy
+Pieces&lt;/a&gt;. I highly recommend the book if
+you&amp;rsquo;re cool fiddling with C a bit.  Actually, scratch that: I recommend the book
+if you ever write code that runs on a server or any other linux/osx environment,
+&lt;em&gt;especially&lt;/em&gt; if you feel a little out of your depth with C. The code examples
+are not that intimidating, even if you don&amp;rsquo;t know from typecasting or a pointer
+(okay, learning the difference between &lt;code&gt;foo&lt;/code&gt;, &lt;code&gt;*foo&lt;/code&gt; and &lt;code&gt;&amp;amp;foo&lt;/code&gt; is useful, but
+not knowing it doesn&amp;rsquo;t prevent you from getting the gist of the code samples),
+and getting a deeper understanding of the environment your code works in will
+make a lot of known unknowns come into a bit more focus. Honest.&lt;/p&gt;
+
+&lt;p&gt;The first of the three parts was memory virtualization: that is, how computing
+time and resources get divvied up amongst processes. There was some fascinating
+stuff in there: the API for forking a new process, for instance, is weirder and
+cooler than I expected, and learning the topography of the boundary between the
+OS and application code (such as &lt;code&gt;ls&lt;/code&gt; or &lt;code&gt;Google Chrome.app&lt;/code&gt;) is rad. And then
+there are parts that are totally internal, though vital, to the kernel. Nothing
+against free space management, segmentation, or the five whole chapters on
+memory paging, but I&amp;rsquo;m just not as interested in the kernel&amp;rsquo;s implementation as
+its interface.&lt;/p&gt;
+
+&lt;p&gt;I kept wondering if I would be better off just jumping straight to concurrency,
+because that&amp;rsquo;s what I was really pumped to learn. Would I be missing out on some
+logically necessary information if I skipped them?? (Nope.) Learn from my
+mistake and jump to the shit you find interesting, because someday you&amp;rsquo;re going
+to die. So: &lt;a href="http://pages.cs.wisc.edu/~remzi/OSTEP/threads-locks.pdf"&gt;locks&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="i-dont-need-no-stinkin-lock"&gt;
+  I Don&amp;rsquo;t Need No Stinkin&amp;rsquo; Lock
+  &lt;a class="section__title" href="#i-dont-need-no-stinkin-lock"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Locks are what keep multiple threads, running in parallel, from fucking each
+other up when dealing with a shared bit of state. There is almost no operation
+too small for these little bastards to mess up, given the chance. Take this:&lt;/p&gt;
+&lt;pre class="highlight c"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="k"&gt;volatile&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;mythread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Because I had to look it up: &lt;code&gt;volatile&lt;/code&gt; is a keyword that prevents certain
+compiler optimizations from happening, specifically for things like this shared
+counter.&lt;/p&gt;
+
+&lt;p&gt;So, there&amp;rsquo;s a shared counter and there&amp;rsquo;s a procedure that uses it suitable for
+giving to a couple threads. I extracted all the code dealing with that shared
+bit of state:&lt;/p&gt;
+&lt;pre class="highlight c"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s it! A single line, with a single unary operator. How unsafe can THAT be?
+Let&amp;rsquo;s add some logging and fire up a couple threads:&lt;/p&gt;
+&lt;pre class="highlight c"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="cp"&gt;#include &amp;lt;stdio.h&amp;gt;
+#include &amp;lt;pthread.h&amp;gt;
+&lt;/span&gt;
+&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="k"&gt;volatile&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;mythread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%s: begin&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%s: end&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;pthread_t&lt;/span&gt; &lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"main: begin (counter = %d)&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;pthread_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mythread&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"A"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;pthread_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mythread&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;"B"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="c1"&gt;// wait for them fucks to finish
+&lt;/span&gt;  &lt;span class="n"&gt;pthread_join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="n"&gt;pthread_join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;p2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"main: done with both (counter = %d)"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So. &lt;code&gt;counter&lt;/code&gt; starts at 0, and then two threads each run &lt;code&gt;counter++&lt;/code&gt; 100,000
+times apiece. That makes 200,000, right?&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;main: begin (counter = 0)
+A: begin
+B: begin
+B: end
+A: end
+main: done with both (counter = 100745)
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;INTERESTING.&lt;/p&gt;
+
+&lt;p&gt;The trouble is that &lt;code&gt;counter++&lt;/code&gt; is &lt;em&gt;three&lt;/em&gt; operations, not one:
+1. Get the value of &lt;code&gt;counter&lt;/code&gt; out of whatever register it&amp;rsquo;s stored in
+2. Increment that value by one
+3. Store the new value in that register&lt;/p&gt;
+
+&lt;p&gt;So &lt;code&gt;p2&lt;/code&gt; reads the value of &lt;code&gt;counter&lt;/code&gt;&amp;rsquo;s register at, e.g., 17; then it increments
+the value to 18; at the same time as &lt;code&gt;p2&lt;/code&gt; is doing that incrementing, one core
+over, &lt;code&gt;p1&lt;/code&gt; reads that same register, which is still 17. In parallel, each adds
+one to the value it read and stores that new value in the register, and lo: 17 +
+1 + 1 = 18.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="lock-that-shit-down"&gt;
+  Lock That Shit Down
+  &lt;a class="section__title" href="#lock-that-shit-down"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s suppose you give a shit about the integrity of basic arithmetic in
+your code. The above nonsense won&amp;rsquo;t do at all. I ran it eight times (you can,
+too! Just stick the code above in a file (say, &lt;code&gt;bad_math.c&lt;/code&gt;), compile it with
+something like &lt;code&gt;gcc -o bad_math bad_math.c&lt;/code&gt;, and go hog wild), with the following
+results:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;ABAB 127499
+ABAB 144926
+ABAB 116942
+ABBA 102988
+ABBA 100745
+ABAB 114188
+AABB 200000
+ABBA 104161
+
+avg. 126431
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;m honestly pretty shocked that one run actually got 200,000. (As a sidenote,
+it looks like the &lt;code&gt;ABAB&lt;/code&gt; pattern of thread starts/finishes performs better than
+&lt;code&gt;ABBA&lt;/code&gt;, with respective averages of 125888 and 102631. &lt;code&gt;AABB&lt;/code&gt;, of course, will
+always get 200,000 (as would &lt;code&gt;BBAA&lt;/code&gt;, but &lt;code&gt;A&lt;/code&gt; gets kicked off first by
+synchronous code).)&lt;/p&gt;
+
+&lt;p&gt;So let&amp;rsquo;s lock this shit down. &lt;code&gt;main&lt;/code&gt; doesn&amp;rsquo;t need to change at all: we just need
+to initialize a commonly available lock, and use it in the &lt;code&gt;mythread&lt;/code&gt; procedure
+to ensure that only one thread at a time can access the critical section (that&amp;rsquo;s
+the term, coined by Dijkstra, for a section of code dealing with shared memory;
+here, &lt;code&gt;counter++&lt;/code&gt;).  Here&amp;rsquo;s the most vanilla implementation for a POSIX system:&lt;/p&gt;
+&lt;pre class="highlight c"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="k"&gt;volatile&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="n"&gt;pthread_mutex_t&lt;/span&gt; &lt;span class="n"&gt;lock&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;PTHREAD_MUTEX_INITIALIZER&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nf"&gt;mythread&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%s: begin&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;100000&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;pthread_mutex_lock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;counter&lt;/span&gt; &lt;span class="o"&gt;+=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;pthread_mutex_unlock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+  &lt;span class="n"&gt;printf&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"%s: end&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s"&gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="n"&gt;arg&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="nb"&gt;NULL&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;No need for extra headers; as you probably gathered from the naming, that
+locking mechanism is part of &lt;code&gt;pthread.h&lt;/code&gt;. When any thread calls
+&lt;code&gt;pthread_mutex_lock(&amp;amp;foo)&lt;/code&gt; for a lock &lt;code&gt;foo&lt;/code&gt;, one of two things happens: if no
+one else has the lock, it runs the critical section; or, if another thread has
+the lock, it waits for that thread to call &lt;code&gt;pthread_mutex_unlock(&amp;amp;foo)&lt;/code&gt; and THEN
+does its thing.&lt;/p&gt;
+
+&lt;p&gt;As you might expect, this version gets 200,000 every time (but don&amp;rsquo;t believe
+me&amp;hellip;). So what&amp;rsquo;s going on under the hood?&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="under-the-hood"&gt;
+  Under The Hood
+  &lt;a class="section__title" href="#under-the-hood"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;A huge disclaimer before we start playing around with implementing our own
+locks: this shit does not work. Checking some value to determine if a lock is in
+use and updating that value to secure that lock takes multiple operations, and
+at the application level, there&amp;rsquo;s no way to ensure that that happens atomically.
+In a real lock, the hardware exposes a prebundled set of operations that can be
+called from a C API.&lt;/p&gt;
+
+&lt;p&gt;Depending on your machine, those prebundled operations might look, if you
+squint, a little something like this:&lt;/p&gt;
+&lt;pre class="highlight c"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;&lt;span class="k"&gt;typedef&lt;/span&gt; &lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;__lock_t&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt; &lt;span class="n"&gt;lock_t&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;init&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lock_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="c1"&gt;// 0 =&amp;gt; lock is available, 1 =&amp;gt; lock is held
+&lt;/span&gt;  &lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;compare_and_swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;old_ptr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;expected&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;actual&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;old_ptr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="n"&gt;expected&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;old_ptr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;new&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+  &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lock_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="cm"&gt;/* while (compare_and_swap(&amp;amp;lock-&amp;gt;flag, 0, 1) == 1) */&lt;/span&gt;
+  &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;compare_and_swap&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="c1"&gt;// do butt-ass nothing until that lock gets released
+&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="nf"&gt;unlock&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;lock_t&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;lock&lt;/span&gt;&lt;span class="o"&gt;-&amp;gt;&lt;/span&gt;&lt;span class="n"&gt;flag&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a shitty lock for a few reasons:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;If the lock is taken, the thread just wastes CPU cycles until the CPU
+scheduler decides to let the locking thread finish its work&lt;/li&gt;
+&lt;li&gt;It&amp;rsquo;s possible to have a thread that &amp;ldquo;starves&amp;rdquo;: i.e. never, ever gets the lock&lt;/li&gt;
+&lt;li&gt;It does not work&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;But &lt;em&gt;how badly&lt;/em&gt; does it not work?&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;ABAB 156000
+ABAB 103114
+ABAB 129168
+ABBA 101519
+ABBA 114152
+ABAB 103095
+ABBA 100576
+ABAB 101809
+
+avg. 113679
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;So, I mean, that&amp;rsquo;s a worse average than no lock at all, but there was that fluky
+200,000 in there. Without the outlier, it would look a lot wors-&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;avg. 115921
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Oh. From an analytical perspective, there are more steps in &lt;code&gt;compare_and_swap&lt;/code&gt;
+than in &lt;code&gt;counter++&lt;/code&gt;, so there are more places for a malicious CPU scheduler to
+fuck with things; from a statistical perspective, we&amp;rsquo;re nowhere near solid
+ground for declaring a winner in the contest of &amp;ldquo;no locks vs useless locks&amp;rdquo;;
+from an engineering perspective, please just use &lt;code&gt;pthread_mutex_t&lt;/code&gt; locks.&lt;/p&gt;
+
+&lt;p&gt;There is a glimmer of hope in the book before we totally close the book on
+software locking:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src="/images/better_lock.png" class="post-img" alt="Better lock" /&gt;&lt;/p&gt;
+
+&lt;p&gt;Seems easy enough. Take the busted lock, swap in the new &lt;code&gt;CompareAndSwap&lt;/code&gt;
+implementation, however the fuck that works (looks like it&amp;rsquo;s evaluating literal
+strings as assembly language, but I&amp;rsquo;m in way over my head here), and give that a
+test run:&lt;/p&gt;
+&lt;pre class="highlight plaintext"&gt;&lt;code&gt;&lt;table class="rouge-table"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="rouge-gutter gl"&gt;&lt;pre class="lineno"&gt;1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+&lt;/pre&gt;&lt;/td&gt;&lt;td class="rouge-code"&gt;&lt;pre&gt;ABAB 141034
+ABAB 128868
+ABAB 149149
+ABAB 133336
+ABAB 165496
+ABAB 130632
+ABAB 163608
+ABAB 163309
+
+avg. 146929
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Not half bad*!&lt;/p&gt;
+
+&lt;p&gt;* Almost exactly half bad&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s all I got rght now on locks.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="a-brief-aside-about-c"&gt;
+  A Brief Aside About C
+  &lt;a class="section__title" href="#a-brief-aside-about-c"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Working in C feels like working with a database to me: the fundamental way to
+define the shape of your data is a struct: a behaviorless mapping of typed data
+fields to names, just like a table in a relational database.&lt;/p&gt;
+
+&lt;p&gt;Now, it&amp;rsquo;s more complicated than that, of course, and C is a good bit more
+expressive than SQL. For instance, you could use the convention of pointing
+certain fields at integers that are pointers to the memory address of functions
+and use them to call those functions (I believe that&amp;rsquo;s how C++ classes work
+under the hood, but don&amp;rsquo;t quote me on that as an authority).&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="stuff-in-this-chapter-that-i-left-out"&gt;
+  Stuff In This Chapter That I Left Out
+  &lt;a class="section__title" href="#stuff-in-this-chapter-that-i-left-out"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Various tradeoffs in balancing fairness and performance while maintaining
+mutual exclusion (thus, incidentally, the term &amp;ldquo;mutex&amp;rdquo;)&lt;/li&gt;
+&lt;li&gt;Some interesting historical locking mechanisms&lt;/li&gt;
+&lt;li&gt;Some background on what the hardware does and doesn&amp;rsquo;t do, and what that means
+for the OS&lt;/li&gt;
+&lt;li&gt;A cool-ass locking implementation from the linux kernel that tracks both the
+status of the lock and the size of its queue with a single integer&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Design Lessons</title>
+    <link rel="alternate" href="http://blog.url.com/blag/berkeley_db/"/>
+    <id>http://blog.url.com/blag/berkeley_db/</id>
+    <published>2016-08-31T01:16:08-07:00</published>
+    <updated>2016-09-25T13:51:07-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;hr&gt;
+
+&lt;p&gt;title: Design Lessons
+category: quotes
+topic: software_design
+date: 2016-08-31 01:16:08 -0700
+tags: quotes, design, architecture
+&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Taken from the &lt;a href="http://www.aosabook.org/en/bdb.html"&gt;Berkeley DB&lt;/a&gt; section of
+&lt;a href="http://www.aosabook.org/en/index.html"&gt;The Architecture of Open-Source
+Applications&lt;/a&gt;, which breaks up its
+discussion of the application&amp;rsquo;s specific architecture with general lessons
+and aphorisms. Read the whole thing, it&amp;rsquo;s great.&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s a grimness to these that I find utterly charming: &lt;a href="#design-lesson-3"&gt;lesson
+3&lt;/a&gt; warns &amp;ldquo;[s]oftware architecture degrades in direct
+proportion to the number of changes made to the software: bug fixes corrode the
+layering and new features stress design.&amp;rdquo; It&amp;rsquo;s an approach that treats software
+design in general and object orientation in specific (OO as in &amp;ldquo;code that goes
+&amp;lsquo;not my job, you figure it out&amp;rsquo;&amp;rdquo;, not as in &amp;ldquo;code that is organized with
+classes&amp;rdquo;) not like a matter of artistic composition so much as intellectual
+sanitation. It&amp;rsquo;s a dirty world out there: wash your ass.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-1"&gt;
+  Design Lesson 1
+  &lt;a class="section__title" href="#design-lesson-1"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;It is vital for any complex software package&amp;rsquo;s testing and maintenance that the
+software be designed and built as a cooperating set of modules with
+well-defined API boundaries. The boundaries can (and should!) shift as needs
+dictate, but they always need to be there. The existence of those boundaries
+prevents the software from becoming an unmaintainable pile of spaghetti. Butler
+Lampson once said that all problems in computer science can be solved by
+another level of indirection. More to the point, when asked what it meant for
+something to be object-oriented, Lampson said it meant being able to have
+multiple implementations behind an API. The Berkeley DB design and
+implementation embody this approach of permitting multiple implementations
+behind a common interface, providing an object-oriented look and feel, even
+though the library is written in C.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-2"&gt;
+  Design Lesson 2
+  &lt;a class="section__title" href="#design-lesson-2"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;A software design is simply one of several ways to force yourself to think
+through the entire problem before attempting to solve it. Skilled programmers
+use different techniques to this end: some write a first version and throw it
+away, some write extensive manual pages or design documents, others fill out a
+code template where every requirement is identified and assigned to a specific
+function or comment. For example, in Berkeley DB, we created a complete set of
+Unix-style manual pages for the access methods and underlying components before
+writing any code. Regardless of the technique used, it&amp;rsquo;s difficult to think
+clearly about program architecture after code debugging begins, not to mention
+that large architectural changes often waste previous debugging effort.
+Software architecture requires a different mind set from debugging code, and
+the architecture you have when you begin debugging is usually the architecture
+you&amp;rsquo;ll deliver in that release.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-3"&gt;
+  Design Lesson 3
+  &lt;a class="section__title" href="#design-lesson-3"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Software architecture does not age gracefully. Software architecture degrades
+in direct proportion to the number of changes made to the software: bug fixes
+corrode the layering and new features stress design. Deciding when the software
+architecture has degraded sufficiently that you should re-design or re-write a
+module is a hard decision. On one hand, as the architecture degrades,
+maintenance and development become more difficult and at the end of that path
+is a legacy piece of software maintainable only by having an army of
+brute-force testers for every release, because nobody understands how the
+software works inside. On the other hand, users will bitterly complain over the
+instability and incompatibilities that result from fundamental changes. As a
+software architect, your only guarantee is that someone will be angry with you
+no matter which path you choose.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-4"&gt;
+  Design Lesson 4
+  &lt;a class="section__title" href="#design-lesson-4"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;It doesn&amp;rsquo;t matter how you name your variables, methods, functions, or what
+comments or code style you use; that is, there are a large number of formats
+and styles that are &amp;ldquo;good enough.&amp;rdquo; What does matter, and matters very much, is
+that naming and style be consistent. Skilled programmers derive a tremendous
+amount of information from code format and object naming. You should view
+naming and style inconsistencies as some programmers investing time and effort
+to lie to the other programmers, and vice versa. Failing to follow house coding
+conventions is a firing offense.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-5"&gt;
+  Design Lesson 5
+  &lt;a class="section__title" href="#design-lesson-5"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Software architects must choose their upgrade battles carefully: users will
+accept minor changes to upgrade to new releases (if you guarantee compile-time
+errors, that is, obvious failures until the upgrade is complete; upgrade
+changes should never fail in subtle ways). But to make truly fundamental
+changes, you must admit it&amp;rsquo;s a new code base and requires a port of your user
+base. Obviously, new code bases and application ports are not cheap in time or
+resources, but neither is angering your user base by telling them a huge
+overhaul is really a minor upgrade.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-6"&gt;
+  Design Lesson 6
+  &lt;a class="section__title" href="#design-lesson-6"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;In library design, respect for the namespace is vital. Programmers who use your
+library should not need to memorize dozens of reserved names for functions,
+constants, structures, and global variables to avoid naming collisions between
+an application and the library.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-7"&gt;
+  Design Lesson 7
+  &lt;a class="section__title" href="#design-lesson-7"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Before we wrote a shared-memory linked-list package, Berkeley DB engineers
+hand-coded a variety of different data structures in shared memory, and these
+implementations were fragile and difficult to debug. The shared-memory list
+package, modeled after the BSD list package (queue.h), replaced all of those
+efforts. Once it was debugged, we never had to debug another shared memory
+linked-list problem. This illustrates three important design principles: First,
+if you have functionality that appears more than once, write the shared
+functions and use them, because the mere existence of two copies of any
+specific functionality in your code guarantees that one of them is incorrectly
+implemented. Second, when you develop a set of general purpose routines, write
+a test suite for the set of routines, so you can debug them in isolation.
+Third, the harder code is to write, the more important for it to be separately
+written and maintained; it&amp;rsquo;s almost impossible to keep surrounding code from
+infecting and corroding a piece of code.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-8"&gt;
+  Design Lesson 8
+  &lt;a class="section__title" href="#design-lesson-8"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Write-ahead logging is another example of providing encapsulation and layering,
+even when the functionality is never going to be useful to another piece of
+software: after all, how many programs care about LSNs in the cache?
+Regardless, the discipline is useful and makes the software easier to maintain,
+test, debug and extend.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-9"&gt;
+  Design Lesson 9
+  &lt;a class="section__title" href="#design-lesson-9"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Berkeley DB&amp;rsquo;s choice to use page-level locking was made for good reasons, but
+we&amp;rsquo;ve found that choice to be problematic at times. Page-level locking limits
+the concurrency of the application as one thread of control modifying a record
+on a database page will prevent other threads of control from modifying other
+records on the same page, while record-level locks permit such concurrency as
+long as the two threads of control are not modifying the same record.
+Page-level locking enhances stability as it limits the number of recovery paths
+that are possible (a page is always in one of a couple of states during
+recovery, as opposed to the infinite number of possible states a page might be
+in if multiple records are being added and deleted to a page). As Berkeley DB
+was intended for use as an embedded system where no database administrator
+would be available to fix things should there be corruption, we chose stability
+over increased concurrency.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-10"&gt;
+  Design Lesson 10
+  &lt;a class="section__title" href="#design-lesson-10"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Berkeley DB&amp;rsquo;s general-purpose design was well rewarded when we added concurrent
+data store functionality. Initially Berkeley DB provided only two modes of
+operation: either you ran without any write concurrency or with full
+transaction support. Transaction support carries a certain degree of complexity
+for the developer and we found some applications wanted improved concurrency
+without the overhead of full transactional support. To provide this feature, we
+added support for API-level locking that allows concurrency, while guaranteeing
+no deadlocks. This required a new and different lock mode to work in the
+presence of cursors. Rather than adding special purpose code to the lock
+manager, we were able to create an alternate lock matrix that supported only
+the lock modes necessary for the API-level locking. Thus, simply by configuring
+the lock manager differently, we were able provide the locking support we
+needed. (Sadly, it was not as easy to change the access methods; there are
+still significant parts of the access method code to handle this special mode
+of concurrent access.)&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-11"&gt;
+  Design Lesson 11
+  &lt;a class="section__title" href="#design-lesson-11"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;When you find an architectural problem you don&amp;rsquo;t want to fix &amp;ldquo;right now&amp;rdquo; and
+that you&amp;rsquo;re inclined to just let go, remember that being nibbled to death by
+ducks will kill you just as surely as being trampled by elephants. Don&amp;rsquo;t be too
+hesitant to change entire frameworks to improve software structure, and when
+you make the changes, don&amp;rsquo;t make a partial change with the idea that you&amp;rsquo;ll
+clean up later—do it all and then move forward. As has been often repeated, &amp;ldquo;If
+you don&amp;rsquo;t have the time to do it right now, you won&amp;rsquo;t find the time to do it
+later.&amp;rdquo; And while you&amp;rsquo;re changing the framework, write the test structure as
+well.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-12"&gt;
+  Design Lesson 12
+  &lt;a class="section__title" href="#design-lesson-12"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Mpool and Log use internal handle methods to facilitate write-ahead logging,
+and in some cases, the method declaration is longer than the code it runs,
+since the code is often comparing two integral values and nothing more. Why
+bother with such insignificant methods, just to maintain consistent layering?
+Because if your code is not so object-oriented as to make your teeth hurt, it
+is not object-oriented enough. Every piece of code should do a small number of
+things and there should be a high-level design encouraging programmers to build
+functionality out of smaller chunks of functionality, and so on. If there&amp;rsquo;s
+anything we have learned about software development in the past few decades, it
+is that our ability to build and maintain significant pieces of software is
+fragile. Building and maintaining significant pieces of software is difficult
+and error-prone, and as the software architect, you must do everything that you
+can, as early as you can, as often as you can, to maximize the information
+conveyed in the structure of your software.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-13"&gt;
+  Design Lesson 13
+  &lt;a class="section__title" href="#design-lesson-13"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;There is rarely such thing as an unimportant bug. Sure, there&amp;rsquo;s a typo now and
+then, but usually a bug implies somebody didn&amp;rsquo;t fully understand what they were
+doing and implemented the wrong thing. When you fix a bug, don&amp;rsquo;t look for the
+symptom: look for the underlying cause, the misunderstanding, if you will,
+because that leads to a better understanding of the program&amp;rsquo;s architecture as
+well as revealing fundamental underlying flaws in the design itself.&lt;/p&gt;
+
+&lt;p&gt;&lt;h3 id="design-lesson-14"&gt;
+  Design Lesson 14
+  &lt;a class="section__title" href="#design-lesson-14"&gt;§&lt;/a&gt;
+&lt;/h2&gt;&lt;/p&gt;
+
+&lt;p&gt;Database recovery is a complex topic, difficult to write and harder to debug
+because recovery simply shouldn&amp;rsquo;t happen all that often. In his Turing Award
+Lecture, Edsger Dijkstra argued that programming was inherently difficult and
+the beginning of wisdom is to admit we are unequal to the task. Our goal as
+architects and programmers is to use the tools at our disposal: design, problem
+decomposition, review, testing, naming and style conventions, and other good
+habits, to constrain programming problems to problems we can solve.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
