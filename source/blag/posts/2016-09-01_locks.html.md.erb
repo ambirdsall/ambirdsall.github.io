@@ -113,6 +113,7 @@ main: done with both (counter = 100745)
 INTERESTING.
 
 The trouble is that `counter++` is _three_ operations, not one:
+
 1. Get the value of `counter` out of whatever register it's stored in
 2. Increment that value by one
 3. Store the new value in that register
@@ -225,10 +226,10 @@ void unlock(lock_t *lock) {
 
 This is a shitty lock for a few reasons:
 
-* If the lock is taken, the thread just wastes CPU cycles until the CPU
+1. If the lock is taken, the thread just wastes CPU cycles until the CPU
 scheduler decides to let the locking thread finish its work
-* It's possible to have a thread that "starves": i.e. never, ever gets the lock
-* It does not work
+1. It's possible to have a thread that "starves": i.e. never, ever gets the lock
+1. It does not work.
 
 But _how badly_ does it not work?
 

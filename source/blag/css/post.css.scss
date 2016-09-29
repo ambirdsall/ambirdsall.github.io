@@ -70,6 +70,9 @@ h3 {
 p, li {
   margin-bottom: 1em;
 }
+ul {
+  list-style: inherit;
+}
 ol {
   list-style: none;
   counter-reset: shit -1;
@@ -91,6 +94,10 @@ hr {
 }
 pre {
   margin: 1.5em 0;
+}
+code {
+  font-family: monospace;
+  font-size: 1.2em;
 }
 article {
   line-height: 2em;
