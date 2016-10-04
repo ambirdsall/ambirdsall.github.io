@@ -42,6 +42,12 @@ $min-height: 7em;
 .icon-twitter:before { content: "\e601"; }
 .icon-github:before { content: "\e602"; }
 .icon-linkedin:before { content: "\e603"; }// }
+.youtube {
+  width: 560px;
+  max-width: 100%;
+  height: 315px;
+  margin: 2em 0;
+}
 
 body {
   background: url("../../images/bg.png");
@@ -99,8 +105,14 @@ code {
   font-family: monospace;
   font-size: 1.2em;
 }
+blockquote {
+  padding-left: 1.5em;
+  font-style: italic;
+  color: #888;
+}
 article {
   line-height: 2em;
+  position: relative;
 }
 article, header h1, header p, footer p, .center {
   width: 625px;
@@ -110,7 +122,6 @@ article, header h1, header p, footer p, .center {
     width: 90%;
   }
 }
-
 header, footer {
   background-color: hsl(34, 53%, 82%);
   background-image: repeating-linear-gradient(45deg, transparent 5px, hsla(197, 62%, 11%, 0.5) 5px, hsla(197, 62%, 11%, 0.5) 10px,
@@ -146,9 +157,21 @@ header {
 }
 footer {
   line-height: 2.5;
+  margin-top: 5em;
 }
 
 [id=post-list] ul, [id=post-list] ol { list-style: none; }
+.sidenote__mark { color: #aaa; }
+.sidenote {
+  position: absolute;
+  margin-right: -170px;
+  right: 0;
+  top: auto; /* default */
+  width: 150px;
+  font-size: 0.8em;
+  line-height: 1.3em;
+  color: #777;
+}
 
 .titles {
   padding-top: 2em;
