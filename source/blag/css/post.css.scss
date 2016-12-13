@@ -88,7 +88,7 @@ ul {
 }
 ol {
   list-style: none;
-  counter-reset: shit -1;
+  counter-reset: start-at-zero -1;
   margin: -0.7em 0 0.4em 0;
 
   >li {
@@ -96,8 +96,8 @@ ol {
     margin-bottom: 0;
     &::before {
       color: #888;
-      counter-increment: shit;
-      content: counter(shit)'. ';
+      counter-increment: start-at-zero;
+      content: counter(start-at-zero)'. ';
       margin: 0 0 0 -1em;
     }
   }
