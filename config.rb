@@ -30,7 +30,7 @@ activate :directory_indexes
 
 activate :external_pipeline,
   name: :rollup,
-  command: "rollup -c#{build? ? '' : 'w'}",
+  command: "rollup -c#{'w' unless build?}",
   source: ''
 
 activate :deploy do |deploy|
