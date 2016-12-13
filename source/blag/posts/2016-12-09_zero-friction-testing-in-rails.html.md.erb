@@ -16,12 +16,11 @@ I've found that it's a massive help to be able to have tests constantly
 rerunning in a splitscreen with vim every time I save a file. The constant
 feedback means I don't need to keep switching mental context to see if my code
 is correct: I can, while still in my editor, just glance over at a current test
-run. If I have to go to a bunch of extra work just to eat my vegetables, I'll
-eat fewer of them. This has utterly revolutionized how I feel about
-refactoring: knowing exactly when my code breaks and unbreaks as I rearrange
-things is a massive help for refactoring, and reveals bugs pretty much the
-instant they are introduced. I haven't had to write a `debugger` in anger in a
-shockingly long time. I want that confidence and speed in rails, too.
+run. This has utterly revolutionized how I feel about refactoring: knowing
+exactly when my code breaks and unbreaks as I rearrange things is a massive
+help for refactoring, and reveals bugs pretty much the instant they are
+introduced. I haven't had to write a `debugger` in anger in a shockingly long
+time. I want that confidence and speed when I work on rails projects, too.
 
 So, to recap, I want
 
@@ -179,8 +178,8 @@ Finished in 0.57317 seconds (files took 0.34346 seconds to load)
 spring rspec  0.27s user 0.08s system 25% cpu 1.398 total
 ```
 
-Either way, `spring` made the second run *much* faster, and those savings
-remain on each subsequent run.
+Either way, `spring` made the tests *much* faster after the first run, and
+those savings persist so long as the spring server is running.
 
 <%= section 'Setup Guard' %>
 
@@ -217,6 +216,6 @@ NICE.
 
 Now just fire up `guard` with the command `guard`. Shazam! Your tests will run on save.
 
-The little prompt `guard` gives you is an interactive ruby console (whether
-`pry` or `irb` depends on your `Gemfile`, I believe), too. So considerate. Use
-Ctrl-d to kill it, or just close your terminal.
+The little prompt `guard` gives you is an interactive ruby console, too, which
+is really handy for double-checking the syntax of quick snippets when fixing
+test failures. Use Ctrl-d to kill it, or just close your terminal.
