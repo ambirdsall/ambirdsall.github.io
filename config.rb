@@ -88,6 +88,12 @@ helpers do
     EOMD
   end
 
+  def aside(text)
+    <<~EOMD
+      <span class="sidenote__mark">*</span><span class="sidenote">#{text}</span>
+    EOMD
+  end
+
   def strip_frontmatter(string)
     lines = string.split("\n")
     if lines.first =~ /<hr>/
