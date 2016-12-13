@@ -56,6 +56,7 @@ body {
   color: $sox-blue--light;
   margin: 0;
 }
+em { font-style: italic; }
 h1 {
   font-size: 4em;
   color: $sox-blue;
@@ -73,8 +74,13 @@ h3 {
   color: #666;
   margin: 1.2em 0 0.5em 0;
 }
+h4 {
+  font-size: 1.2em;
+  color: #444;
+}
 p, li {
   margin-bottom: 1em;
+  font-family: "Century Schoolbook", serif;
 }
 ul {
   list-style: inherit;
@@ -82,9 +88,11 @@ ul {
 ol {
   list-style: none;
   counter-reset: shit -1;
+  margin: -0.7em 0 0.4em 0;
 
   >li {
     padding-left: 1em;
+    margin-bottom: 0;
     &::before {
       color: #888;
       counter-increment: shit;
@@ -99,19 +107,31 @@ hr {
   margin: 1.5em 0;
 }
 pre {
-  margin: 1.5em 0;
+  line-height: 1.4;
+  margin: 1em 0;
+  overflow: scroll;
+  padding: 0.45em;
+  border-radius: 5px;
 }
 code {
+  background-color: #f2f2f2;
   font-family: monospace;
   font-size: 1.2em;
+  padding: 3px;
+  border-radius: 3px;
 }
+  .highlight > code {
+    background-color: inherit;
+    padding: 0;
+  }
+
 blockquote {
   padding-left: 1.5em;
   font-style: italic;
   color: #888;
 }
 article {
-  line-height: 2em;
+  line-height: 1.5;
   position: relative;
 }
 article, header h1, header p, footer p, .center {
