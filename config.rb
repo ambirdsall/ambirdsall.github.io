@@ -12,7 +12,7 @@ page '/*.txt', layout: false
 
 # With alternative layout
 page '/', layout: false
-page 'blog-posts/*', layout: false
+page 'old-blog-posts/*', layout: false
 page 'blag/index.html', layout: :blag_index_layout
 page 'blag/posts/*', layout: :post_layout
 
