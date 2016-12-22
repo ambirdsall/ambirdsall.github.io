@@ -50,8 +50,7 @@
 
 
       <div class="work-pieces__container standard-margins">
-        <h2 class="work-pieces__title">some stuff I built ages ago</h2>
-        <h3>(I should really update this section)</h3>
+        <h2 class="work-pieces__title">some things I have made</h2>
         <ul class="work-piece-list">
           <li class="work-piece block">
             <a  target="_blank" href="https://github.com/ambirdsall/lawfetcher">
@@ -59,12 +58,38 @@
               <p class="work-piece__title">Lawfetcher</p>
             </a>
             <p class="work-piece__description">
-              A freelance project in collaboration with Prof. Peter W. Martin of
-              Cornell Law. A free tool for legal writing, it semantically parses US
-              legal citations and program&shy;matically builds direct links to the
-              full text in various free and subscription services. Techniques borrowed
-              from OOJS, functional- and aspect-oriented programming paradigms; more
-              regular expressions than you can shake a stick at.
+              A totally client-side app to parse US legal citations and
+              program&shy;matically build direct links to the source document
+              being cited. The project's was adopted to an institutional home
+              under the aegis of Cornell Law's Legal Information Institute and
+              rebranded as <a href="//law.cornell.edu/rio">RIO</a>.
+            </p>
+            <p class="work-piece__description">
+              Technically, the project has been an excellent vector for
+              learning about testing, build scripts, functional programming,
+              and javascript transpilation. It has also provided a fascinating,
+              albeit limited-scope, high-level overview of the structure of US
+              law.
+            </p>
+          </li>
+          <li class="work-piece block">
+            <a  target="_blank" href="https://alexandaudrey.com">
+              <img class="work-piece__img" src="images/wedding_gallery.jpg" alt="Wedding photo gallery screenshot">
+              <p class="work-piece__title">Wedding Photo Gallery</p>
+            </a>
+            <p class="work-piece__description">
+              As my wife and I were looking through the smugmug (really, who
+              names their company that?) gallery of our wedding photos, the
+              slideshow view kept freezing and then skipping photos. Suspecting
+              either a memory leak or some heavy-duty garbage collection (the
+              source photos from the photographer were very high-res), I
+              decided to roll my own gallery.
+            </p>
+            <p class="work-piece__description">
+              The technical motivation was, as much as anything, excitement at
+              finding such a perfect real-world application for the humble
+              doubly linked list. Also had some fun writing batch image
+              processing scripts with imagemagick.
             </p>
           </li>
           <li class="work-piece block">
@@ -81,28 +106,19 @@
             </p>
           </li>
           <li class="work-piece block">
-            <a target="_blank" href="https://github.com/ambirdsall/teeny_server">
-              <img class="work-piece__img" src="images/teeny_server.png" alt="teeny server screenshot">
-              <p class="work-piece__title">Teeny Server</p>
-            </a>
-            <p class="work-piece__description">
-              A simple command line program to serve any folder as static web
-              content on localhost. Takes an optional port arg&shy;ument. A tool
-              that does one small thing well—I use it constantly in front-end
-              work.
-            </p>
-          </li>
-          <li class="work-piece block">
             <a target="_blank" href="https://github.com/ambirdsall/buckets/pull/3">
               <img class="work-piece__img" src="images/buckets.png" alt="buckets screenshot">
               <p class="work-piece__title">Buckets</p>
             </a>
             <p class="work-piece__description">
               Here's the pull request I made for API inter&shy;actions and data
-              storage for an NBA stats app. I didn't finish the app, since
-              actually using NBA.com's API isn't legal; but it was a good
-              exercise in trying to write an <a href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a>
-              that isn't horrible.
+              storage for an NBA stats app. The app's development was arrested
+              at the proof of concept stage, once I read the small print and
+              saw it unambiguously stated that outside use of the stats.nba.com
+              API (at least circa when I was working on it) wasn't legal; but
+              it was a good exercise in trying to write an <a
+               href="https://en.wikipedia.org/wiki/Adapter_pattern">Adapter</a>
+              that isn't horrible and a thoroughly-documented PR.
             </p>
           </li>
         </ul>
