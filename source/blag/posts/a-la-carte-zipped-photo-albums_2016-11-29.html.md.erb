@@ -1,0 +1,109 @@
+---
+title: A la carte zipped photo albums
+topic: Ruby
+date: 2016-11-29 09:02:38 UTC
+published: false
+...
+
+<%= section "A Cool-ass photo album" %>
+
+Our wedding photographer was a little slow in getting us our images, so I got
+to thinking about what to do. I decided I wanted a static image gallery with a
+link to download the whole set of images as a zip file; but what if you just
+want some of them?
+
+I decided that what I wanted was the ability to
+
+1. Select any given subset of the images easily; and
+1. Download that set of images as a zip file
+
+This is a kinda fun UI problem AND has a fun backend problem despite dealing
+with static data. Which is great: since we're not barring our photos from
+anyone, there's no need to implement any auth, which is always annoying for
+everyone.
+
+The zipping part means there needs to be some server code running; a free
+heroku instance should be fine for this, and if it's slow we can scale it up a
+bit and it will still be cheap. I like ruby, so let's write it in that; there's
+only a static image gallery and an image-processing script, so Sinatra should
+be plenty.
+
+<%= section "Open zipper?" %>
+
+I searched for "zip" on [Ruby
+Toolbox](https://www.ruby-toolbox.com/search?q=zip), and found two projects
+that seemed to actually be intended for zipping files:
+
+<%= image_tag 'rubyzip-gem-stats.png', class: 'post-img' %>
+
+<%= image_tag 'zip-gem-stats.png', class: 'post-img' %>
+
+I don't know how a popularity rating is calculated, but it has a Science Beaker
+icon, so it must be important. [Rubyzip](https://github.com/rubyzip/rubyzip),
+it seems, is the gem for me.
+
+<%= section "Zip it up." %>
+
+That repo's `README.md` has some intro-type example code:
+
+``` ruby
+require 'rubygems'
+require 'zip'
+
+folder = "Users/me/Desktop/stuff_to_zip"
+input_filenames = ['image.jpg', 'description.txt', 'stats.csv']
+
+zipfile_name = "/Users/me/Desktop/archive.zip"
+
+Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+  input_filenames.each do |filename|
+    # Two arguments:
+    # - The name of the file as it will appear in the archive
+    # - The original file, including the path to find it
+    zipfile.add(filename, folder + '/' + filename)
+  end
+  zipfile.get_output_stream("myFile") { |os| os.write "myFile contains just this" }
+end
+```
+
+To get this to work, I ended up with the following `zipper.rb`:
+
+``` ruby
+require 'zip' # gem 'rubyzip'
+
+folder = "/Users/ambirdsall/Desktop/actual_preexisting_directory"
+input_filenames = ['actual_preexisting_file.png']
+
+zipfile_name = "/Users/ambirdsall/Desktop/not_yet_existing_archive_file.zip"
+
+Zip::File.open(zipfile_name, Zip::File::CREATE) do |zipfile|
+  input_filenames.each do |filename|
+    # Two arguments:
+    # - The name of the file as it will appear in the archive
+    # - The original file, including the path to find it
+    zipfile.add(filename, folder + '/' + filename)
+  end
+  zipfile.get_output_stream("myFile") do |os|
+    os.write "myFile contains just this"
+  end
+end
+```
+
+So `rubyzip` needs a full path to where its going (for just one image, I could
+have just hardcoded the whole path string instead of stitching the `folder` and
+`filename` back together from pieces, but this seems like an obviously useful
+way to work for the photo album subset use case), and that all throws a big
+error if the path given to `zipfile.add` isn't valid; but the `zipfile_name`
+doesn't need to exist yet, and neither does that `"myFile"` business
+(equivalent to `echo "myFile contains just this" > myFile` for the purposes of
+the archive, though it leaves no uncompressed `myFile` on disk). Nice.
+
+This is plenty to work with: just get a list of image filenames from the UI and
+use that to populate the `input_filenames` array. The
+`zipfile.get_output_stream(file) { |os| os.write "whatever" }` trick can be
+used for a friendly index.txt file: give a nice message and a list of the names
+of the people in each image selected by filename.
+
+<%= section "Temporary Zipfiles" %>
+
+
