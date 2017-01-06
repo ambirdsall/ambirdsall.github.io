@@ -29,9 +29,9 @@
           # of articles for each topic; with each list sorted most- to least-recent;
           # with topics sorted by the most recent article from each.
           blog.articles.group_by { |a| a.data.topic.downcase }
-                      .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
-                      .sort {|a, b| b.last.first.date <=> a.last.first.date}
-                      .each do |topic, list|
+                       .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
+                       .sort {|a, b| b.last.first.date <=> a.last.first.date}
+                       .each do |topic, list|
         %>
           <h3 class="topic__title"><%= topic.titleize %></h3>
           <ol class="posts__list">
@@ -73,23 +73,24 @@
             </p>
           </li>
           <li class="work-piece block">
-            <a  target="_blank" href="https://alexandaudrey.com">
+            <a  target="_blank" href="https://github.com/ambirdsall/wedding_photos">
               <img class="work-piece__img" src="images/wedding_gallery.jpg" alt="Wedding photo gallery screenshot">
               <p class="work-piece__title">Wedding Photo Gallery</p>
             </a>
             <p class="work-piece__description">
-              As my wife and I were looking through the smugmug (really, who
-              names their company that?) gallery of our wedding photos, the
-              slideshow view kept freezing and then skipping photos. Suspecting
-              either a memory leak or some heavy-duty garbage collection (the
-              source photos from the photographer were very high-res), I
-              decided to roll my own gallery.
+              As my wife and I were looking through the smugmug gallery of our
+              wedding photos, the slideshow UI kept locking up. I decided
+              making the photo list a doubly linked list would prevent that
+              sort of memory problem, and rolled my own 
+              <a target="_blank" href="https://alexandaudrey.com">gallery</a>.
             </p>
             <p class="work-piece__description">
-              The technical motivation was, as much as anything, excitement at
-              finding such a perfect real-world application for the humble
-              doubly linked list. Also had some fun writing batch image
-              processing scripts with imagemagick.
+              There's a rails backend that handles zipping sets of
+              full-resolution photos for download. Rails isn't a perfect choice
+              for such a small backend, but a) I wanted to practice testing in a
+              rails environment, and b) this setup will be easier to extend
+              down the line with features like tagging people and filtering the
+              photo list by last or full names.
             </p>
           </li>
           <li class="work-piece block">
