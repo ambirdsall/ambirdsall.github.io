@@ -23,11 +23,29 @@
 
     <div class="block-group">
       <div class="posts__container standard-margins">
+        <div class="posts__apologia">
+          <h4>
+            It has come to my attention that I have not updated this site in <em>*checks watch*</em> literally
+            years.
+          </h4>
+
+          <p>
+            Please do enjoy; a more up-to-date version will have quite a different portfolio and
+            feature blag posts on customized webpack builds, how to mold the git CLI to suit your
+            whims, how typescript's type system is more expressive than scala's for data modeling
+            but less expressive for computational side effects, emacs, observables, more emacs, how
+            partially pre-filling curried functions can achieve the syntactical efficiency of
+            stateful objects while retaining the testability of pure functions, and the beneficial
+            effects of unit testing on software design&mdash;but I guess I should show, not tell.
+          </p>
+        </div>
         <h2>thoughts | html &gt; browser</h2>
         <%
           # This sorting is a shitshow to read, but the goal is to end up with a list
           # of articles for each topic; with each list sorted most- to least-recent;
           # with topics sorted by the most recent article from each.
+
+          # blog.articles.select(&:published?).group_by { |a| a.data.topic.downcase }
           blog.articles.group_by { |a| a.data.topic.downcase }
                        .map {|topic, list| [topic, list.sort {|a,b| b.date <=> a.date}]}
                        .sort {|a, b| b.last.first.date <=> a.last.first.date}
