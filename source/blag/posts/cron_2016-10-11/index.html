@@ -1,0 +1,216 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="blag/css/style.css">
+
+    <title>ambirdsall</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blag/feed.xml" />
+  </head>
+  <body>
+    <header>
+      <h1></h1>
+    </header>
+
+    <article>
+      <hr>
+
+<p>title: &lsquo;Cron: Legacy&rsquo;
+topic: OSX &lt; UNIX
+date: 2016-10-11 22:15:35 UTC
+&hellip;</p>
+
+<p>I thought it would be cool to get my computer to automatically run <code>brew
+update</code> every so often in the background and email me if anything went wrong. I
+thought it would be pretty simple! It was not, in fact, prety simple: I ran
+into a bunch of super frustrating errors, usually because I was taking some
+aspect of my normal terminal environment for granted (the <code>$PATH</code> variable that
+tells the shell where to look to find commands; email protocols and
+authentication; ssh authentication; error handling in the shell; etc etc etc).</p>
+
+<p>But I learned a bunch in the process! So kick back, pour yourself a drink, and
+learn about <code>cron</code>, the old-school unix tool you can use to run programs behind
+your own back.</p>
+
+<p><h3 id="what-is-a-cron-and-how-does-it-cron">
+  What is a <code>cron</code> and how does it&hellip; cron?
+  <a class="section__title" href="#what-is-a-cron-and-how-does-it-cron">§</a>
+</h2></p>
+
+<p>Cron is an old unix program used to run commands repeatedly on a schedule.
+There are two main parts to the cron system: there is the cron daemon, a
+program that (once set up) is constantly running in the background; and there
+is the crontab file, which keeps the schedule of programs to run <span class="sidenote__mark">*</span><span class="sidenote">Depending on your operating system, there might be both system-wide
+crontabs and user-specific crontab files; I&rsquo;m only going to discuss systems
+with a single crontab file here.</span>
+. Once every minute on the minute,
+assuming your computer is awake and running, the cron daemon (the system
+automatically launches <code>cron</code> after you save your first valid crontab file, and
+on boot afterwards) evaluates each line of all of the relevant installed
+crontab files, running any commands whose schedules match on the current
+minute. Any output to <code>$STDERR</code> is assumed to be an error and is mailed to you:
+<code>cron</code>&rsquo;s default mailing strategy is a local &ldquo;mailbox&rdquo; originally used for
+pre-internet user-to-user messages within a multi-user system, but if you&rsquo;re
+fancy with the google, it&rsquo;s pretty manageable to teach it to use something like
+gmail instead.</p>
+
+<p><h3 id="the-crontab-file">
+  The <code>crontab</code> file
+  <a class="section__title" href="#the-crontab-file">§</a>
+</h2></p>
+
+<p>You edit the crontab file with the command <code>crontab -e</code>, regardless of where
+you are in the filesystem. You need to do some config to use this; more on that
+later.</p>
+
+<p>Each line either contains a shell variable definition, in which case <code>cron</code>
+updates its environment accordingly<span class="sidenote__mark">*</span><span
+class="sidenote">Setting <code>$SHELL</code>, <code>$PATH</code>, and <code>$MAILTO</code> correctly is quite
+important, and worth some googling if you have questions.</span>, or a
+scheduled command. Scheduled commands look a bit like this:</p>
+<pre class="highlight plaintext"><code>* * * * *  /absolute/path/of/command/to/execute
+│ │ │ │ │
+│ │ │ │ └─── day of week (0 - 7) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)
+│ │ │ └──────── month (1 - 12)
+│ │ └───────────── day of month (1 - 31)
+│ └────────────────── hour (0 - 23)
+└─────────────────────── min (0 - 59)
+</code></pre>
+<p>For any element of a schedule (hours, minutes, etc), you can use:</p>
+<pre class="highlight plaintext"><code>*  matches every value
+-  defines a range, like `9-17` for every hour from 9AM to 5PM
+,  separates multiple individual values, such as `MON,WED,FRI`
+</code></pre>
+<p>So, for example <code>0 9-17 * * 1-5</code> matches each hour from 9AM to 5PM on the hour,
+each weekday, with no restrictions by month or day of month.</p>
+
+<p><h3 id="editing-crontab-takes-special-config-because-life-is-suffering">
+  Editing <code>crontab</code> takes special config, because life is suffering
+  <a class="section__title" href="#editing-crontab-takes-special-config-because-life-is-suffering">§</a>
+</h2></p>
+
+<p>So <code>crontab -e</code> opens the file with whatever your have set to <code>$EDITOR</code> in your
+shell session. I use vim, which is secretly a problem: the <code>crontab</code> program
+sets some rules about how you save the file, and vim&rsquo;s defaults work
+differently.</p>
+
+<p>Specifically, when vim writes changes to a file, it first saves them as a
+backup file, then overwrites the original. This helps vim be more confident it
+won&rsquo;t corrupt data if it crashes partway through writing, but <code>crontab</code> won&rsquo;t
+let you write to anything but the file itself, in-place. To get around this,
+add to <code>~/.vimrc</code>:</p>
+<pre class="highlight viml"><code>autocmd <span class="k">filetype</span> crontab <span class="k">setlocal</span> nobackup nowritebackup
+</code></pre>
+<p><h3 id="cron-doesnt-have-a-lot-of-things-i-took-for-granted-about-the-shell-environment">
+  <code>cron</code> doesn&rsquo;t have a lot of things I took for granted about the shell environment
+  <a class="section__title" href="#cron-doesnt-have-a-lot-of-things-i-took-for-granted-about-the-shell-environment">§</a>
+</h2></p>
+
+<p>This isn&rsquo;t that bad to deal with once you get your head around it, but it took
+me a while to realize just how much implicit environment I rely on when working
+in a terminal. The main one is the <code>$PATH</code> variable: for every command that
+isn&rsquo;t built-in shell syntax, odds are good you&rsquo;ll need to prepend the <code>/bin/</code>
+or <code>/usr/local/bin/</code> or <code>/usr/sbin/</code> or what have you. If you don&rsquo;t know the
+full path of some command you use a lot, for example, <code>git</code>, pop open a
+terminal and run <code>which git</code>.</p>
+
+<p>My first instinct was to make one of my <code>crontab</code> file&rsquo;s first lines something like</p>
+<pre class="highlight shell"><code><span class="nv">PATH</span><span class="o">=</span>/Users/ambirdsall/bin:/usr/local/bin:/usr/bin:/bin:/I/dunno/maybe/sbin:/other/things/I<span class="s1">'m/used/to/also
+</span></code></pre>
+<p>If my crontab environment has access to all the same stuff I use everyday in my
+terminal, then writing a cron command is just like writing any old terminal
+command. But I think that&rsquo;s the wrong approach, for two reasons:</p>
+
+<ol>
+<li>Anything more complicated than a one-liner (and even many of those), you&rsquo;re
+better off just saving in a shell script</li>
+<li>If you succeed, you&rsquo;ve just hidden from yourself how things work under the
+hood AND made it easier for part of your terminal-based life to get out of
+sync.</li>
+</ol>
+
+<p>If you feel a little lost when working with the full absolute paths of programs
+and would like a better handle on why different programs live in <code>/bin</code> vs
+&rsquo;/sbin&rsquo; vs <code>/usr/sbin</code> vs <code>/usr/local/bin</code>—or even why some programs live in
+more than one of those places—just run <code>man hier</code> in your terminal and give it
+a quick read.</p>
+
+<p><h3 id="lets-put-almost-all-of-it-together">
+  Let&rsquo;s put almost all of it together
+  <a class="section__title" href="#lets-put-almost-all-of-it-together">§</a>
+</h2></p>
+
+<p>Disclaimer: we&rsquo;re skipping over some hoops I had to jump through to send actual
+emails to my gmail account from the command line (google it) and the way
+thornier issue of how to authenticate an SSH connection with github (which is
+where <code>brew</code> searches for updates) in a bare-bones scripting environment
+(google &ldquo;askpass&rdquo; or go <em>really</em> HAM and learn to use <code>expect</code>). So:</p>
+<pre class="highlight shell"><code>0 <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> <span class="k">*</span> /usr/local/bin/brew update
+</code></pre>
+<p>will run <code>brew update</code> every hour on the hour, every single day, with zero
+conscious effort on my part. Awesome! Awesome.</p>
+
+<p>Wait, this <em>is</em> actually awesome, right?</p>
+
+<p><img src="/images/dumb-cron-error-email.png" alt="Dumb cron error email" /></p>
+
+<p>Goddamn it.</p>
+
+<p><h3 id="okay-lets-just-go-through-one-of-the-dumb-problems">
+  Okay, let&rsquo;s just go through <em>one</em> of the dumb problems
+  <a class="section__title" href="#okay-lets-just-go-through-one-of-the-dumb-problems">§</a>
+</h2></p>
+
+<p>Here&rsquo;s what was going on:</p>
+
+<ol>
+<li>If everything is up to date, <code>brew</code> exits with a heads-up to <code>$STDERR</code></li>
+<li>Seeing a message in the error stream, <code>cron</code> emailed me</li>
+<li>I don&rsquo;t want email alerts every hour that things are still up-to-date</li>
+</ol>
+
+<p>So:</p>
+<pre class="highlight shell"><code>/usr/local/bin/brew update 2&gt;&amp;1 &gt; /dev/null | grep -v <span class="s1">'up-to-date'</span> &gt;&amp;2
+</code></pre>
+<p>First, a quick note: I use <code>zsh</code>, not <code>bash</code>, and there are a few differences
+in how the two shells handle redirection, so if you use <code>bash</code>, you might
+need to make a few changes to get it working properly
+<span class="sidenote__mark">*</span><span class="sidenote">If you don&rsquo;t know what shell you&rsquo;re using, it&rsquo;s probably <code>bash</code>,
+but you can check by running <code>echo $SHELL</code>.</span>
+.  Let&rsquo;s break this down:</p>
+<pre class="highlight shell"><code>2&gt;&amp;1 &gt; /dev/null
+</code></pre>
+<p>The <code>2&gt;&amp;1</code> redirects <code>$STDERR</code> to <code>$STDOUT</code>. The <code>&gt; /dev/null</code> redirects
+<code>$STDOUT</code> to the Pit of Despair. If you think this seems like it will redirect
+EVERYTHING to <code>/dev/null</code>, leaving you nothing useful to work with, you think
+like I do. But it doesn&rsquo;t! Whatever redirections you specify don&rsquo;t take effect
+until the next pipe (or the end of the pipeline if there is no next pipe). It
+makes sense: this system lets you redirect a bunch of things
+<span class="sidenote__mark">*</span><span class="sidenote">There&rsquo;s no rule that says <code>$STDIN</code>, <code>$STDOUT</code>, and <code>$STDERR</code> are the
+only <a href='https://en.wikipedia.org/wiki/File_descriptor'>file
+descriptors</a> your process can have open, after all.</span>
+ to each
+others&rsquo; old handles at the same time without having to worry too much about
+overwriting important data streams because of accidental collisions along the
+way.</p>
+<pre class="highlight shell"><code>grep -v <span class="s1">'up-to-date'</span>
+</code></pre>
+<p>So it&rsquo;s the contents of <code>$STDERR</code> alone going through that pipe. Nice. <code>grep</code>&rsquo;s
+<code>-v</code> flag reverses the pattern, meaning lines that DON&rsquo;T contain &#39;up-to-date&rsquo;
+are printed. Effectively, this filters out the &#39;up-to-date&rsquo; error while letting
+other errors pass through.</p>
+<pre class="highlight shell"><code>&gt;&amp;2
+</code></pre>
+<p>The last token there, <code>&gt;&amp;2</code>, redirects this filtered error stream from <code>$STDOUT</code>
+back to <code>$STDERR</code>; if anything else goes wrong, <code>cron</code> will email as it should,
+but it won&rsquo;t spam my inbox with nonsense just because I&rsquo;m already good.</p>
+
+<h3>NICE.</h3>
+
+<p>Nice. Now go forth and automate the fuck out of some stuff!</p>
+
+    </article>
+  </body>
+</html>
