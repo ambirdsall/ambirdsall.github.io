@@ -64,7 +64,7 @@ $width_of_triangle: 216.5px;
 
 .icon {
   float: left;
-  margin: 0 0.455em;
+  margin-right: 0.91em;
 }
 .icon:hover {
   color: $sox-blue--light;
@@ -183,7 +183,7 @@ header.block-group {
   margin-top: 1em;
 }
 .titles__icon-bar {
-  margin: 2rem 0 0.25rem;
+  margin: 2rem 0;
 }
 .about {
   margin-bottom: (8em/3);
@@ -192,11 +192,14 @@ header.block-group {
 .posts__apologia {
   background: antiquewhite;
   border: 1px solid darkgrey;
-  border-radius: 10px;
   line-height: 1.2;
   padding: 0.6em 1em;
   margin-bottom: 2em;
   max-width: 40em;
+
+  & p:not(:first-child) {
+    margin-top: 1em;
+  }
 }
 
 .posts__container {
@@ -285,7 +288,7 @@ header.block-group {
     font-size: 1.30em;
   }
   .icon {
-    margin: 0 0.2em;
+      margin: 0 0.2em;
   }
   .titles__icon-bar {
     padding-left: 0;
