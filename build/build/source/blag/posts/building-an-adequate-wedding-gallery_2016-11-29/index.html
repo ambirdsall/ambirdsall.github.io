@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv='X-UA-Compatible' content='IE=edge;chrome=1' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="blag/css/style.css">
+
+    <title>ambirdsall</title>
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/blag/feed.xml" />
+  </head>
+  <body>
+    <header>
+      <h1></h1>
+    </header>
+
+    <article>
+      <hr>
+
+<p>title: Building An Adequate Wedding Gallery
+topic: Ruby
+date: 2016-11-29 09:02:38 UTC
+&hellip;</p>
+
+<p><h3 id="a-cool-ass-photo-album">
+  A Cool-ass photo album
+  <a class="section__title" href="#a-cool-ass-photo-album">§</a>
+</h2></p>
+
+<p>Our wedding photographer was a little slow in getting us our images, so I got
+to thinking about what to do. I decided I wanted a static image gallery, and I
+wanted it to be easy for anyone who came to get copies of photos they like,
+whether for online use or making prints. For prints, people should be able to
+download the high-resolution originals, and those are such big files, it makes
+sense to zip the files before downloading. For digital use, there should be
+smaller image files for download<span class="sidenote__mark">*</span><span class="sidenote">I whipped up some <code>imagemagick</code> scripts to do batch resizing and optimizing, and hosted all the photos as public-read files in an s3 bucket</span>
+,
+but that could easily be handled entirely client-side.</p>
+
+<p>I decided that, in addition to normal &ldquo;download this photo&rdquo; usage, I wanted the
+ability to</p>
+
+<ol>
+<li>Select any given subset of the images easily; and</li>
+<li>Download that set of images as a zip file</li>
+</ol>
+
+<p>This is a kinda fun UI problem AND has a fun backend problem despite dealing
+with static data. Which is great: since we&rsquo;re not barring our photos from
+anyone, there&rsquo;s no need to implement any auth, which simplifies things.</p>
+
+<p>The zipping part means there needs to be some server code running; I decided to use
+a rails app hosted on elastic beanstalk. I was already hosting the images on
+s3, and AWS designs all their services for easy interop (naturally, to keep all
+your money going their way); besides, I had never hosted an app that way and I
+wanted to learn.</p>
+
+<p>Admittedly, for the initial version of this gallery, rails was overkill: just
+within the world of ruby development, Sinatra would be plenty for just an image
+gallery and a single zipping endpoint. But server-side overkill isn&rsquo;t
+necessarily bad: as lost as it&rsquo;s fast and I don&rsquo;t mind paying for it (let&rsquo;s be
+real, my family photos aren&rsquo;t going to get millions of distinct views any day
+soon), there&rsquo;s no real downside<span class="sidenote__mark">*</span><span class="sidenote">Certainly nothing compared to sites
+that make you download megabytes of javascript before the first paint on
+mobile</span>
+. Besides:</p>
+
+<ol>
+<li>I have notions of extending the app with the ability to search and filter by
+name, and rails makes building out the additional models down the line quite
+straightforward; and</li>
+<li>I wanted to practice working in and testing rails code for professional reasons</li>
+</ol>
+
+<p>So fuck it, rails it is.</p>
+
+<p><h3 id="open-zipper">
+  Open zipper?
+  <a class="section__title" href="#open-zipper">§</a>
+</h2></p>
+
+<p>I searched for &ldquo;zip&rdquo; on <a href="https://www.ruby-toolbox.com/search?q=zip">Ruby
+Toolbox</a>, and found two projects
+that seemed to actually be intended for zipping files:</p>
+
+<p><img src="/images/rubyzip-gem-stats.png" class="post-img" alt="Rubyzip gem stats" /></p>
+
+<p><img src="/images/zip-gem-stats.png" class="post-img" alt="Zip gem stats" /></p>
+
+<p>I don&rsquo;t know how a popularity rating is calculated, but it has a Science Beaker
+icon, so it must be important. <a href="https://github.com/rubyzip/rubyzip">Rubyzip</a>,
+it seems, is the gem for me.</p>
+
+<p><h3 id="zip-it-up">
+  Zip it up.
+  <a class="section__title" href="#zip-it-up">§</a>
+</h2></p>
+
+<p>That repo&rsquo;s <code>README.md</code> has some intro-type example code:</p>
+<pre class="highlight ruby"><code><span class="nb">require</span> <span class="s1">'rubygems'</span>
+<span class="nb">require</span> <span class="s1">'zip'</span>
+
+<span class="n">folder</span> <span class="o">=</span> <span class="s2">"Users/me/Desktop/stuff_to_zip"</span>
+<span class="n">input_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'image.jpg'</span><span class="p">,</span> <span class="s1">'description.txt'</span><span class="p">,</span> <span class="s1">'stats.csv'</span><span class="p">]</span>
+
+<span class="n">zipfile_name</span> <span class="o">=</span> <span class="s2">"/Users/me/Desktop/archive.zip"</span>
+
+<span class="no">Zip</span><span class="o">::</span><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">zipfile_name</span><span class="p">,</span> <span class="no">Zip</span><span class="o">::</span><span class="no">File</span><span class="o">::</span><span class="no">CREATE</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">zipfile</span><span class="o">|</span>
+  <span class="n">input_filenames</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">filename</span><span class="o">|</span>
+    <span class="c1"># Two arguments:</span>
+    <span class="c1"># - The name of the file as it will appear in the archive</span>
+    <span class="c1"># - The original file, including the path to find it</span>
+    <span class="n">zipfile</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">folder</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">zipfile</span><span class="p">.</span><span class="nf">get_output_stream</span><span class="p">(</span><span class="s2">"myFile"</span><span class="p">)</span> <span class="p">{</span> <span class="o">|</span><span class="n">os</span><span class="o">|</span> <span class="n">os</span><span class="p">.</span><span class="nf">write</span> <span class="s2">"myFile contains just this"</span> <span class="p">}</span>
+<span class="k">end</span>
+</code></pre>
+<p>It&rsquo;s not clear from the example alone what files do and don&rsquo;t need to already
+exist to get this to work. I fiddled around until I got a minimal POC working,
+which looked something like this:</p>
+<pre class="highlight ruby"><code><span class="c1"># In the Gemfile, mind, you need</span>
+<span class="c1">#   gem 'rubyzip'</span>
+<span class="nb">require</span> <span class="s1">'zip'</span>
+
+<span class="n">folder</span> <span class="o">=</span> <span class="s2">"/Users/ambirdsall/Desktop/actual_preexisting_directory"</span>
+<span class="n">input_filenames</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'actual_preexisting_file.png'</span><span class="p">]</span>
+
+<span class="n">zipfile_name</span> <span class="o">=</span> <span class="s2">"/Users/ambirdsall/Desktop/not_yet_existing_archive_file.zip"</span>
+
+<span class="no">Zip</span><span class="o">::</span><span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="n">zipfile_name</span><span class="p">,</span> <span class="no">Zip</span><span class="o">::</span><span class="no">File</span><span class="o">::</span><span class="no">CREATE</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">zipfile</span><span class="o">|</span>
+  <span class="n">input_filenames</span><span class="p">.</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">filename</span><span class="o">|</span>
+    <span class="c1"># Two arguments:</span>
+    <span class="c1"># - The name of the file as it will appear in the archive</span>
+    <span class="c1"># - The original file, including the path to find it</span>
+    <span class="n">zipfile</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">folder</span> <span class="o">+</span> <span class="s1">'/'</span> <span class="o">+</span> <span class="n">filename</span><span class="p">)</span>
+  <span class="k">end</span>
+  <span class="n">zipfile</span><span class="p">.</span><span class="nf">get_output_stream</span><span class="p">(</span><span class="s2">"new_filename_for_streamed_data.txt"</span><span class="p">)</span> <span class="k">do</span> <span class="o">|</span><span class="n">os</span><span class="o">|</span>
+    <span class="n">os</span><span class="p">.</span><span class="nf">write</span> <span class="s2">"I'm a dynamically-created plain text file"</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre>
+<p>To work inside a filesystem like this, <code>rubyzip</code> needs a full path to the
+source files and the zipfile&rsquo;s directory (that all throws a big error if the
+path given to <code>zipfile.add</code> isn&rsquo;t valid); but the <code>zipfile_name</code> doesn&rsquo;t need to
+exist yet.</p>
+
+<p>More significantly, that <code>&quot;new_filename_for_streamed_data&quot;</code> business implies
+that the filesystem can be skipped altogether for data which can be
+streamed—from a database, say, <a href="https://github.com/ambirdsall/wedding_photos/blob/383ddcb249c657bfbf944533373d7d560cea11ab/app/actors/photo_fetcher.rb#L12-L16">or s3</a>.</p>
+
+<p>This is plenty to work with: just get a list of selected images from the UI;
+use that list to generate the corresponding s3 URLs; and then stream the
+contents of each photo into a zipfile which is then sent to the user&rsquo;s browser
+for download. The <code>zipfile.get_output_stream</code> trick can be used for a friendly
+index.txt file down the line, after I&rsquo;ve mapped each photo to the names of the
+people in it.</p>
+
+<p><h3 id="coming-soon">
+  Coming Soon&hellip;
+  <a class="section__title" href="#coming-soon">§</a>
+</h2></p>
+
+<p>I&rsquo;ll dive into the design of the UI and of the server code soon, each in its own post.</p>
+
+    </article>
+  </body>
+</html>
