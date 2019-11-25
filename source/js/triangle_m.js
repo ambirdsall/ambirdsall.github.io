@@ -1,4 +1,4 @@
-import triangleBuilder from './draw_triangle.js'
+import { triangleBuilder } from './draw_triangle.js'
 import setIntervalX from './interval_n_times.js'
 // import { once } from 'lodash-es'
 

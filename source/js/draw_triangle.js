@@ -1,31 +1,31 @@
 // https://en.wikipedia.org/wiki/Sierpinski_triangle#Chaos_game
 // https://gist.github.com/tenderlove/5898231
 
-export default function triangleBuilder(scale, selector, color) {
-  var w = 433 * scale,
-      h = 300 * scale,
-      padding = 10,
-      page = d3.select(window),
-      // Create SVG element in which to draw triangle
-      svg = d3.select(selector)
-              .insert("svg", ".name")
-              .attr("width", w)
-              .attr("height", h)
-              .classed("triangle", true),
+export function triangleBuilder(scale, selector, color) {
+  const w = 433 * scale
+  const h = 300 * scale
+  const padding = 10
+  const page = d3.select(window)
+  // Create SVG element in which to draw triangle
+  const svg = d3.select(selector)
+                .insert("svg", ".name")
+                .attr("width", w)
+                .attr("height", h)
+                .classed("triangle", true)
 
-      xScale = d3.scale.linear()
-                      .domain([0, w])
-                      .range([padding, w - padding]),
-      yScale = d3.scale.linear()
-                      .domain([0, w])
-                      .range([padding, w - padding]),
+  const xScale = d3.scale.linear()
+                         .domain([0, w])
+                         .range([padding, w - padding])
+  const yScale = d3 .scale.linear()
+                          .domain([0, w])
+                          .range([padding, w - padding])
 
-      // start with the three vertices of the triangle
-      dataset = [[0, 0], [w, 0], [w / 2, h]],
-      triangle = dataset.slice(0),
+  // start with the three vertices of the triangle
+  const dataset = [[0, 0], [w, 0], [w / 2, h]]
+  const triangle = dataset.slice(0)
 
-      // Seed the triangle with a starting point in the middle
-      point = [w / 2, h / 2]
+  // Seed the triangle with a starting point in the middle
+  const point = [w / 2, h / 2]
   dataset.push(point)
 
 
