@@ -5,7 +5,7 @@ topic: Ruby
 date: 2016-11-29 09:02:38 UTC
 ---
 
-<%= section "A Cool-ass photo album" %>
+## A Cool-ass photo album
 
 Our wedding photographer was a little slow in getting us our images, so I got
 to thinking about what to do. I decided I wanted a static image gallery, and I
@@ -48,7 +48,7 @@ mobile" %>. Besides:
 
 So fuck it, rails it is.
 
-<%= section "Open zipper?" %>
+## Open zipper?
 
 I searched for "zip" on [Ruby
 Toolbox](https://www.ruby-toolbox.com/search?q=zip), and found two projects
@@ -62,11 +62,11 @@ I don't know how a popularity rating is calculated, but it has a Science Beaker
 icon, so it must be important. [Rubyzip](https://github.com/rubyzip/rubyzip),
 it seems, is the gem for me.
 
-<%= section "Zip it up." %>
+## Zip it up.
 
 That repo's `README.md` has some intro-type example code:
 
-``` ruby
+```ruby
 require 'rubygems'
 require 'zip'
 
@@ -90,7 +90,7 @@ It's not clear from the example alone what files do and don't need to already
 exist to get this to work. I fiddled around until I got a minimal POC working,
 which looked something like this:
 
-``` ruby
+```ruby
 # In the Gemfile, mind, you need
 #   gem 'rubyzip'
 require 'zip'
@@ -129,6 +129,6 @@ for download. The `zipfile.get_output_stream` trick can be used for a friendly
 index.txt file down the line, after I've mapped each photo to the names of the
 people in it.
 
-<%= section "Coming Soon..." %>
+## Coming Soon...
 
 I'll dive into the design of the UI and of the server code soon, each in its own post.

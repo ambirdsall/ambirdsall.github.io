@@ -22,7 +22,7 @@ classes") not like a matter of artistic composition so much as intellectual
 sanitation. It's a dirty world out there: wash your ass.
 
 ---
-<%= section('Design Lesson 1') %>
+## Design Lesson 1
 
 It is vital for any complex software package's testing and maintenance that the
 software be designed and built as a cooperating set of modules with
@@ -37,7 +37,7 @@ implementation embody this approach of permitting multiple implementations
 behind a common interface, providing an object-oriented look and feel, even
 though the library is written in C.
 
-<%= section('Design Lesson 2') %>
+## Design Lesson 2
 
 A software design is simply one of several ways to force yourself to think
 through the entire problem before attempting to solve it. Skilled programmers
@@ -53,7 +53,7 @@ Software architecture requires a different mind set from debugging code, and
 the architecture you have when you begin debugging is usually the architecture
 you'll deliver in that release.
 
-<%= section('Design Lesson 3') %>
+## Design Lesson 3
 
 Software architecture does not age gracefully. Software architecture degrades
 in direct proportion to the number of changes made to the software: bug fixes
@@ -68,7 +68,7 @@ instability and incompatibilities that result from fundamental changes. As a
 software architect, your only guarantee is that someone will be angry with you
 no matter which path you choose.
 
-<%= section('Design Lesson 4') %>
+## Design Lesson 4
 
 It doesn't matter how you name your variables, methods, functions, or what
 comments or code style you use; that is, there are a large number of formats
@@ -79,7 +79,7 @@ naming and style inconsistencies as some programmers investing time and effort
 to lie to the other programmers, and vice versa. Failing to follow house coding
 conventions is a firing offense.
 
-<%= section('Design Lesson 5') %>
+## Design Lesson 5
 
 Software architects must choose their upgrade battles carefully: users will
 accept minor changes to upgrade to new releases (if you guarantee compile-time
@@ -90,14 +90,14 @@ base. Obviously, new code bases and application ports are not cheap in time or
 resources, but neither is angering your user base by telling them a huge
 overhaul is really a minor upgrade.
 
-<%= section('Design Lesson 6') %>
+## Design Lesson 6
 
 In library design, respect for the namespace is vital. Programmers who use your
 library should not need to memorize dozens of reserved names for functions,
 constants, structures, and global variables to avoid naming collisions between
 an application and the library.
 
-<%= section('Design Lesson 7') %>
+## Design Lesson 7
 
 Before we wrote a shared-memory linked-list package, Berkeley DB engineers
 hand-coded a variety of different data structures in shared memory, and these
@@ -114,7 +114,7 @@ Third, the harder code is to write, the more important for it to be separately
 written and maintained; it's almost impossible to keep surrounding code from
 infecting and corroding a piece of code.
 
-<%= section('Design Lesson 8') %>
+## Design Lesson 8
 
 Write-ahead logging is another example of providing encapsulation and layering,
 even when the functionality is never going to be useful to another piece of
@@ -122,7 +122,7 @@ software: after all, how many programs care about LSNs in the cache?
 Regardless, the discipline is useful and makes the software easier to maintain,
 test, debug and extend.
 
-<%= section('Design Lesson 9') %>
+## Design Lesson 9
 
 Berkeley DB's choice to use page-level locking was made for good reasons, but
 we've found that choice to be problematic at times. Page-level locking limits
@@ -138,7 +138,7 @@ was intended for use as an embedded system where no database administrator
 would be available to fix things should there be corruption, we chose stability
 over increased concurrency.
 
-<%= section('Design Lesson 10') %>
+## Design Lesson 10
 
 Berkeley DB's general-purpose design was well rewarded when we added concurrent
 data store functionality. Initially Berkeley DB provided only two modes of
@@ -156,7 +156,7 @@ needed. (Sadly, it was not as easy to change the access methods; there are
 still significant parts of the access method code to handle this special mode
 of concurrent access.)
 
-<%= section('Design Lesson 11') %>
+## Design Lesson 11
 
 When you find an architectural problem you don't want to fix "right now" and
 that you're inclined to just let go, remember that being nibbled to death by
@@ -168,7 +168,7 @@ you don't have the time to do it right now, you won't find the time to do it
 later." And while you're changing the framework, write the test structure as
 well.
 
-<%= section('Design Lesson 12') %>
+## Design Lesson 12
 
 Mpool and Log use internal handle methods to facilitate write-ahead logging,
 and in some cases, the method declaration is longer than the code it runs,
@@ -185,7 +185,7 @@ and error-prone, and as the software architect, you must do everything that you
 can, as early as you can, as often as you can, to maximize the information
 conveyed in the structure of your software.
 
-<%= section('Design Lesson 13') %>
+## Design Lesson 13
 
 There is rarely such thing as an unimportant bug. Sure, there's a typo now and
 then, but usually a bug implies somebody didn't fully understand what they were
@@ -194,7 +194,7 @@ symptom: look for the underlying cause, the misunderstanding, if you will,
 because that leads to a better understanding of the program's architecture as
 well as revealing fundamental underlying flaws in the design itself.
 
-<%= section('Design Lesson 14') %>
+## Design Lesson 14
 
 Database recovery is a complex topic, difficult to write and harder to debug
 because recovery simply shouldn't happen all that often. In his Turing Award

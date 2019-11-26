@@ -6,7 +6,7 @@ date: 2016-12-15 19:44:32 UTC
 published: false
 ---
 
-<%= section "Pick it up" %>
+## Pick it up
 
 Under the hood, the UI should be connected to a form: selecting an image means its
 filename will be part of the `input_filenames` list in the processing script;
@@ -31,14 +31,14 @@ has to happen to actually process a selected image; just about how to toggle
 and display the concept of "selection" in the page. Once we've got that, THEN
 we worry about what the event handlers should do besides update the UI.
 
-<%= section "Clicking" %>
+## Clicking
 [Next](https://developer.mozilla.org/en-US/docs/Web/Events/click).
 
-<%= section "Click-and-drag" %>
+## Click-and-drag
 Not hard to find [serviceable
 libraries](https://jqueryui.com/selectable/#display-grid) here, either.
 
-<%= section "Keyboard Navigation" %>
+## Keyboard Navigation
 Okay, this is the fun one. Using the keyboard to move around means there needs
 to be some concept of an "in-focus" photo: the one to be selected or from which
 the user can move around the grid in any direction. That is, a
@@ -67,6 +67,6 @@ checkmark appear, too, which should make things clear when the cursor moves and
 the selected image keeps a checkmark) or starts using arrow keys to move
 around.
 
-<%= section "Okay, you selected some photos. That means...?" %>
+## Okay, you selected some photos. That means...?
 
 

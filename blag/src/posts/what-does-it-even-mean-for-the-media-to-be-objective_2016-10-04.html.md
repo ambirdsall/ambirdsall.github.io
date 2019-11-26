@@ -14,7 +14,7 @@ ideas matter. It's not so much a problem because that false objectivity is bad p
 it's a problem because the alternative exists and I think getting it right is really,
 really important.
 
-<%= section 'Science is not what, but how' %>
+## Science is not what, but how
 
 > "The first principle is that you must not fool yourself – and you are the easiest person
 > to fool."
@@ -59,7 +59,7 @@ wrong about a lot of things. Shit, we didn't even need to bring up intentional l
 willful ignorance: even if everyone is trying their very best, people alone can't be
 relied on for truth. No folk tradition managed to invent antibiotics, you know?
 
-<%= section 'What that article means when it says "objectivity"' %>
+## What that article means when it says "objectivity"
 
 Considering this definition of "objectivity", the following paragraph becomes absurd:
 
@@ -107,7 +107,7 @@ for judging "objectivity". And as long as that's in place, journalists either ha
 on the side of not being to critical or they need to get rid of "objectivity" as the
 primary standard. And that's hogwash.
 
-<%= section "Why that's a problem" %>
+## Why that's a problem
 
 That definition needs to be demoted to the second concern: the primary metric by which the
 media's objectivity should be measured is integrity with objective reality as best we can

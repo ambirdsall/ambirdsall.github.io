@@ -30,7 +30,7 @@ So, to recap, I want
 1. run by a persistent server I can ogle in a tmux split while I vim away in
 the same terminal window.
 
-<%= section 'Fast tests' %>
+## Fast tests
 The speed can be helped by `spring`, a gem that comes in rails' default
 `Gemfile` but which takes a bit of setup. Once you *have* set it up, though,
 it's brilliant. After the first command which requires loading your rails app,
@@ -50,7 +50,7 @@ The point of this is to lower the cognitive load of testing, after all. With a
 massive test suite, though, the time savings might be worth switching over. As
 always, measure: the old command-line standby `time` is your friend.
 
-<%= section 'Running automatically on file save' %>
+## Running automatically on file save
 `guard` is the gem of choice here. It reads a `Guardfile` in the root of your
 project: in that `Guardfile`, which is written in a ruby DSL, you define what
 actions `guard` should run for given project files and which files to ignore.
@@ -75,11 +75,11 @@ spring 2.0.0
 spring-command-rspec 1.0.4
 ```
 
-<%= section "Let's set these bad not-specifically-gendered children up" %>
+## Let's set these bad not-specifically-gendered children up
 
 In your `Gemfile`:
 
-``` ruby
+```ruby
 group :development, :test do
   gem 'spring-commands-rspec'
   gem 'rspec-rails'
@@ -90,21 +90,21 @@ end
 
 And
 
-``` sh
+```shell
 bundle
 ```
 
-<%= section 'Setup Spring' %>
+## Setup Spring
 
 To generate the command wrappers necessary to use the preloaded app, run
 
-``` sh
+```shell
 spring binstub --all
 ```
 
 which should generate some output along the lines of
 
-``` sh
+```shell
 * bin/rake: spring inserted
 * bin/rspec: spring inserted
 * bin/rails: spring inserted
@@ -113,33 +113,33 @@ which should generate some output along the lines of
 If you forgot to rebundle before running this or otherwise need to change the
 configuration for `spring`, you'll need to stop and restart `spring` with
 
-``` sh
+```shell
 spring stop
 ```
 
 Otherwise, it will keep reusing the old outdated preloaded environment. And, if you're paranoid:
 
-``` sh
+```shell
 spring status
 ```
 
 For those quick tests I mentioned, just run
 
-``` sh
+```shell
 bin/rspec
 ```
 
 `bin/rspec` is the wrapper script genreated back in the `spring binstub --all`
 step. You could also run `rspec` through `spring` manually with
 
-``` sh
+```shell
 spring rspec
 ```
 
 Life is full of choices, and many of them don't matter. I timed both on some
 empty spec files I scaffolded (with test output truncated, of course):
 
-``` sh
+```shell
 % spring stop
 Spring stopped.
 
@@ -182,17 +182,17 @@ spring rspec  0.27s user 0.08s system 25% cpu 1.398 total
 Either way, `spring` made the tests *much* faster after the first run, and
 those savings persist so long as the spring server is running.
 
-<%= section 'Setup Guard' %>
+## Setup Guard
 
 I assume you already ran
 
-``` sh
+```shell
 rails g rspec:install
 ```
 
 but if you didn't yet, do. Then run
 
-``` sh
+```shell
 % guard init
 
 01:34:28 - INFO - Writing new Guardfile to /Users/ambirdsall/code/rails/event_scheduler/Guardfile
@@ -201,19 +201,19 @@ but if you didn't yet, do. Then run
 
 Find this line of your new `Guardfile`:
 
-``` ruby
+```ruby
 guard :rspec, cmd: "bundle exec rspec" do
 ```
 
 and change it to
 
-``` ruby
+```ruby
 guard :rspec, cmd: "bin/rspec" do
 ```
 
 NICE.
 
-<%= section 'There you go' %>
+## There you go
 
 Now just fire up `guard` with the command `guard`. Shazam! Your tests will run on save.
 
