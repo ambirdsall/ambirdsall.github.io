@@ -9,11 +9,11 @@ date: 2016-10-04 04:23:06 UTC
 is a timely and important article, and it drove me absolutely crazy. Before I
 quote anything, I think I need to do some conceptual prep work. The problem, you
 see, is that the article suffers from a fatal fault—in calling out a false
-notion objectivity, it leaves unquestioned its right to be framed as
+notion of objectivity, it leaves unquestioned its right to be framed as
 "objectivity". Look, I know I might sound ridiculous, but goddamn it, ideas
-matter. It's not so much a problem because that false objectivity is bad per se;
-it's a problem because the alternative exists and I think getting it right is
-really, really important.
+matter. It's not so much a problem because that false objectivity is bad per se
+(though it is); it's a problem because a better alternative exists and I think
+getting it right is really, really important.
 
 ## Science is not what, but how
 
@@ -29,11 +29,7 @@ parallel kind and the brilliant insight kind; optical illusions; artistic licens
 intuition; suspicions; logical fallacies; madness.
 
 Basically every social interaction we have, every use of language, is running on hardware
-that, when you get down to it, is just doing a bunch of sloppy pattern matching<span
-class="sidenote__mark">*</span><span class="sidenote">European philosophy has spent
-lifetimes failing to get around this fact, which is why it is so
-[beautiful](http://www.fullbooks.com/The-Ethics.html) and so
-[tedious](https://tractatus-online.appspot.com/Tractatus/jonathan/index.html).</span>. And
+that, when you get down to it, is just doing a bunch of sloppy pattern matching[^1]. And
 we're ridiculously good at it! It has literally taken us to [the
 moon](http://joshworth.com/dev/pixelspace/pixelspace_solarsystem.html). But if jumping to
 conclusions is fundamental to being an alive human, it means we're never going to not be
@@ -63,27 +59,24 @@ relied on for truth. No folk tradition managed to invent antibiotics, you know?
 
 ## What that article means when it says "objectivity"
 
-Considering this definition of "objectivity", the following paragraph becomes absurd:
+Defining "objectivity" in terms of empirical truth, the following paragraph
+becomes absurd:
 
 > Is it the media’s responsibility to cover groups or persons who purposefully use hateful
 > and provocative speech as a means to gain attention? In what way should this coverage
 > manifest? And, perhaps most importantly—at what point are journalists obligated to
 > repudiate notions of objectivity for the sake of humanity and morality?
 
-What the fuck kind of objectivity can you consider opposed to humanity and morality? It
-makes no sense. Whether a thing is true or false has nothing to do with whether it's good
-or bad<span class="sidenote__mark">*</span><span class="sidenote">
-Don't EVER tell me we can't change capitalism because of consensus unless we're talking
-tactics. You can tell me we can't change it because the alternative would be worse, and if
-you do, I'll want to take a good hard look at what the best measurements are and whether
-they suggest otherwise. If you want me to come down off this high horse you're going to
-have to make me.</span>, and vice versa.
+Humanity and morality are, in general, best served by dilligent, unassuming
+respect for empirical truth. Furthermore, whether a thing is true or false has
+little to do with whether it's good or bad[^2], and vice versa.
 
-The most frustrating part of writing this is that I haven't found a way not to come down
-too harshly. The article is talking about the same problem I am, and in many ways it's
-doing an astonishingly good job of it. While it doesn't properly name the concept it
-targets, it pins it down precisely through a series of incisive and well-sourced takedowns
-of media uncritically airing people who are demonstrably in the wrong:
+The most frustrating part of writing this is that I haven't found a way not to
+come down too harshly. The article is talking about the same problem I am, and
+in many ways it's doing quite a good job of it. While it doesn't properly name
+the concept it targets, it pins it down precisely through a series of incisive
+and well-sourced takedowns of media uncritically airing people who are
+demonstrably in the wrong:
 
 > The Milo profile was far from the first time that an outlet has, I’d argue, favored an
 > obscure notion of objectivity over the protection of human rights and civil liberties. In
@@ -96,18 +89,20 @@ of media uncritically airing people who are demonstrably in the wrong:
 > reach has had a documented [impact](http://www.advocate.com/transgender/2016/7/13/survey-shows-how-trans-bathroom-predator-myth-hurts-real-people) on the psychological and physical safety of the
 > transgender community.
 
-The problem is that that "obscure notion of objectivity" is neither obscure nor, I would
-argue, objectivity. I suspect, if asked to define "media objectivity", a lot of Americans
-would sketch out a concept similar to this: an objective media does not try to shape
-events, it merely reports on them. I suspect FAR more strongly that this is how the
-American media itself sees its mission. If the pitfall to be avoided is a thumb on the
-scales, then you're at the mercy of the existing terms of debate; which is at the mercy of
-what humans believe; which, c'mon, we've been over that already. Like [400 years
-ago](https://www.gutenberg.org/files/5500/5500-h/5500-h.htm). But for all the "obscure
-notion" shade it's trying to throw, the article doesn't challenge that as the framework
-for judging "objectivity". And as long as that's in place, journalists either have to err
-on the side of not being to critical or they need to get rid of "objectivity" as the
-primary standard. And that's hogwash.
+The problem is that that "obscure notion of objectivity" is neither obscure nor,
+I would argue, objectivity. I suspect, if asked to define "media objectivity", a
+lot of Americans would sketch out a concept similar to this: an objective media
+does not try to shape events, it merely reports on them. I suspect FAR more
+strongly that this is how the American media itself sees its mission. If the
+pitfall to be avoided is a thumb on the scales, then you're at the mercy of the
+existing terms of debate; which is at the mercy of what humans believe; which,
+c'mon, we've been over that already. Like [400 years
+ago](https://www.gutenberg.org/files/5500/5500-h/5500-h.htm) already. But for
+all the "obscure notion" shade it's trying to throw, the article doesn't
+challenge that as the framework for judging "objectivity". And as long as that's
+in place, journalists either have to err on the side of not being to critical or
+they need to get rid of "objectivity" as the primary standard. And that's
+hogwash.
 
 ## Why that's a problem
 
@@ -131,7 +126,20 @@ damaging, false, or repugnant rhetoric, ESPECIALLY uncritically, reinforces it i
 audience's minds, corroding truth and/or the common good. But that logic seems awfully
 open to extension: repeating this implicit notion that objective balance in a conflict is
 primarily determined by the social force of one or another "side", rather than by its
-verifiable truth<span class="sidenote__mark">*</span> <span class="sidenote">It is always
-both, of course, for we are awash in a sea of opinions.</span> literally builds that link in
+verifiable truth[^3] literally builds that link in
 readers' minds. People use words the same way the folks around them do: for the sake of
 the people around us, America has to step up at using them in service of truth.
+
+[^1]: European philosophy has spent lifetimes failing to get around this fact,
+    which is why it is so [beautiful](http://www.fullbooks.com/The-Ethics.html)
+    and so
+    [tedious](https://tractatus-online.appspot.com/Tractatus/jonathan/index.html).
+
+[^2]: The most pernicious form this takes is "we can't change `$THING` because
+    that's just the way things are". Beyond the surface-level problem of
+    squelching analysis of `$THING` in good/bad terms because of a tautological
+    assertion of its truth value, it nihilistically sweeps away any reasonable
+    question of the upside risk of attempting to change `$THING` _and_ it's
+    almost always wrong, historically speaking.
+
+[^3]:It is always both, of course, for we are awash in a sea of opinions.

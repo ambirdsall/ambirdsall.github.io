@@ -24,6 +24,14 @@ module.exports = {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
+          {
+            resolve: `gatsby-remark-footnotes`,
+            options: {
+              footnoteBackRefDisplay: `inline`,
+              footnoteBackRefPreviousElementDisplay: `inline`,
+              footnoteBackRefAnchorStyle: `text-decoration: none;`,
+            },
+          },
           `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-images`,

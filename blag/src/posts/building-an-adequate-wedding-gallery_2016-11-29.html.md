@@ -13,7 +13,7 @@ wanted it to be easy for anyone who came to get copies of photos they like,
 whether for online use or making prints. For prints, people should be able to
 download the high-resolution originals, and those are such big files, it makes
 sense to zip the files before downloading. For digital use, there should be
-smaller image files for download<%= aside("I whipped up some `imagemagick` scripts to do batch resizing and optimizing, and hosted all the photos as public-read files in an s3 bucket") %>,
+smaller image files for download[^1],
 but that could easily be handled entirely client-side.
 
 I decided that, in addition to normal "download this photo" usage, I wanted the
@@ -37,9 +37,7 @@ within the world of ruby development, Sinatra would be plenty for just an image
 gallery and a single zipping endpoint. But server-side overkill isn't
 necessarily bad: as lost as it's fast and I don't mind paying for it (let's be
 real, my family photos aren't going to get millions of distinct views any day
-soon), there's no real downside<%= aside "Certainly nothing compared to sites
-that make you download megabytes of javascript before the first paint on
-mobile" %>. Besides:
+soon), there's no real downside[^2]. Besides:
 
 1. I have notions of extending the app with the ability to search and filter by
   name, and rails makes building out the additional models down the line quite
@@ -132,3 +130,9 @@ people in it.
 ## Coming Soon...
 
 I'll dive into the design of the UI and of the server code soon, each in its own post.
+
+[^1]: I whipped up some `imagemagick` scripts to do batch resizing and
+    optimizing, and hosted all the photos as public-read files in an s3 bucket.
+
+[^2]: Certainly nothing compared to sites that make you download megabytes of
+    javascript before the first paint on mobile.
