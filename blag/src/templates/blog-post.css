@@ -2,3 +2,8 @@
     padding: 0 10%;
     margin: auto;
 }
+
+.blog-post-date {
+    color: #dd9;
+    margin-top: -1em;
+}

@@ -6,19 +6,21 @@ date: 2016-10-04 04:23:06 UTC
 ---
 
 [This](http://www.theestablishment.co/2016/09/29/the-dangerous-myth-of-media-objectivity/)
-is a timely and important article, and it drove me absolutely crazy. Before I quote
-anything, I think I need to do some conceptual prep work. The problem, you see, is that
-the article suffers from a fatal fault—in calling out a perversion of objectivity, it
-keeps calling it "objectivity", which, okay, I know I sound ridiculous, but goddamn it,
-ideas matter. It's not so much a problem because that false objectivity is bad per se;
-it's a problem because the alternative exists and I think getting it right is really,
-really important.
+is a timely and important article, and it drove me absolutely crazy. Before I
+quote anything, I think I need to do some conceptual prep work. The problem, you
+see, is that the article suffers from a fatal fault—in calling out a false
+notion objectivity, it leaves unquestioned its right to be framed as
+"objectivity". Look, I know I might sound ridiculous, but goddamn it, ideas
+matter. It's not so much a problem because that false objectivity is bad per se;
+it's a problem because the alternative exists and I think getting it right is
+really, really important.
 
 ## Science is not what, but how
 
-> "The first principle is that you must not fool yourself – and you are the easiest person
+> "The first principle is that you must not fool yourself–and you are the easiest person
 > to fool."
-> - Richard Feynman
+>
+> –Richard Feynman
 
 Human brains have all sorts of shortcuts for finding patterns. It's our greatest talent,
 and it's what's behind the best of us. Here are some ways to conceive of various shortcuts

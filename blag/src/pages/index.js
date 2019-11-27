@@ -1,28 +1,25 @@
 import React from "react"
-import { Link } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
-import { Section, Aside } from "../utils/text"
 
 const IndexPage = ({
   data: {
     allMarkdownRemark: { edges },
   },
 }) => {
+  // TODO: group by category
+  //       within each category, sort by date
+  //       `new Date(/* something in past */) < new Date() === true`
   const Posts = edges
         .filter(edge => edge.node.frontmatter.published !== null)
         .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
 
   return <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <Section>this is a Demo section</Section>
-    <p>
-      Welcome to this here site<Aside>it's trying really hard to be be a good site</Aside>.
-    </p>
 
     {Posts}
 
