@@ -54,9 +54,9 @@ I searched for "zip" on [Ruby
 Toolbox](https://www.ruby-toolbox.com/search?q=zip), and found two projects
 that seemed to actually be intended for zipping files:
 
-<%= image_tag 'rubyzip-gem-stats.png', class: 'post-img' %>
+![Rubyzip gem stats](../../rubyzip-gem-stats.png)
 
-<%= image_tag 'zip-gem-stats.png', class: 'post-img' %>
+![Zip gem stats](../../zip-gem-stats.png)
 
 I don't know how a popularity rating is calculated, but it has a Science Beaker
 icon, so it must be important. [Rubyzip](https://github.com/rubyzip/rubyzip),

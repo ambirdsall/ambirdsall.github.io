@@ -7,6 +7,7 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url(../../static/bg.png)
 }
 article,
 aside,
@@ -437,11 +438,11 @@ blockquote {
   margin-left: 1.45rem;
   margin-right: 1.45rem;
   margin-top: 0;
-  padding-bottom: 0;
-  padding-left: 0;
-  padding-right: 0;
-  padding-top: 0;
+  padding: 11px;
   margin-bottom: 1.45rem;
+  font-style: italic;
+  background: #e9e9d0;
+  border-radius: 3px;
 }
 form {
   margin-left: 0;

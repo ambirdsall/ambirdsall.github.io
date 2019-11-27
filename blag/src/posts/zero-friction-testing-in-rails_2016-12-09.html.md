@@ -5,6 +5,14 @@ topic: Testing
 date: 2016-12-09 08:12:22 UTC
 ---
 
+> **AUTHOR'S NOTE:** this post is several years old, but it's a fun time
+capsule. Professionally I was but a babe, and had just left one of my first
+programming jobs, where I had encountered my first truly heinous codebase. I was
+almost comically thirsty for quality and blessed with a project that was
+conceptually reducible to a pure function. Nonetheless, what is describes
+remains my favorite programming workflow: in a split terminal window, running
+vim or `emacsclient -nw` on one side and unit tests on the other.
+
 So. It wasn't until a few months ago that I finally worked on a software
 project with full test coverage. Now that I have, I'm a little shocked and
 horrified it took this long: the quality of life is drastically better on

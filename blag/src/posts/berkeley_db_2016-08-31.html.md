@@ -24,7 +24,7 @@ sanitation. It's a dirty world out there: wash your ass.
 ---
 ## Design Lesson 1
 
-It is vital for any complex software package's testing and maintenance that the
+> It is vital for any complex software package's testing and maintenance that the
 software be designed and built as a cooperating set of modules with
 well-defined API boundaries. The boundaries can (and should!) shift as needs
 dictate, but they always need to be there. The existence of those boundaries
@@ -39,7 +39,7 @@ though the library is written in C.
 
 ## Design Lesson 2
 
-A software design is simply one of several ways to force yourself to think
+> A software design is simply one of several ways to force yourself to think
 through the entire problem before attempting to solve it. Skilled programmers
 use different techniques to this end: some write a first version and throw it
 away, some write extensive manual pages or design documents, others fill out a
@@ -55,7 +55,7 @@ you'll deliver in that release.
 
 ## Design Lesson 3
 
-Software architecture does not age gracefully. Software architecture degrades
+> Software architecture does not age gracefully. Software architecture degrades
 in direct proportion to the number of changes made to the software: bug fixes
 corrode the layering and new features stress design. Deciding when the software
 architecture has degraded sufficiently that you should re-design or re-write a
@@ -70,7 +70,7 @@ no matter which path you choose.
 
 ## Design Lesson 4
 
-It doesn't matter how you name your variables, methods, functions, or what
+> It doesn't matter how you name your variables, methods, functions, or what
 comments or code style you use; that is, there are a large number of formats
 and styles that are "good enough." What does matter, and matters very much, is
 that naming and style be consistent. Skilled programmers derive a tremendous
@@ -81,7 +81,7 @@ conventions is a firing offense.
 
 ## Design Lesson 5
 
-Software architects must choose their upgrade battles carefully: users will
+> Software architects must choose their upgrade battles carefully: users will
 accept minor changes to upgrade to new releases (if you guarantee compile-time
 errors, that is, obvious failures until the upgrade is complete; upgrade
 changes should never fail in subtle ways). But to make truly fundamental
@@ -92,14 +92,14 @@ overhaul is really a minor upgrade.
 
 ## Design Lesson 6
 
-In library design, respect for the namespace is vital. Programmers who use your
+> In library design, respect for the namespace is vital. Programmers who use your
 library should not need to memorize dozens of reserved names for functions,
 constants, structures, and global variables to avoid naming collisions between
 an application and the library.
 
 ## Design Lesson 7
 
-Before we wrote a shared-memory linked-list package, Berkeley DB engineers
+> Before we wrote a shared-memory linked-list package, Berkeley DB engineers
 hand-coded a variety of different data structures in shared memory, and these
 implementations were fragile and difficult to debug. The shared-memory list
 package, modeled after the BSD list package (queue.h), replaced all of those
@@ -116,7 +116,7 @@ infecting and corroding a piece of code.
 
 ## Design Lesson 8
 
-Write-ahead logging is another example of providing encapsulation and layering,
+> Write-ahead logging is another example of providing encapsulation and layering,
 even when the functionality is never going to be useful to another piece of
 software: after all, how many programs care about LSNs in the cache?
 Regardless, the discipline is useful and makes the software easier to maintain,
@@ -124,7 +124,7 @@ test, debug and extend.
 
 ## Design Lesson 9
 
-Berkeley DB's choice to use page-level locking was made for good reasons, but
+> Berkeley DB's choice to use page-level locking was made for good reasons, but
 we've found that choice to be problematic at times. Page-level locking limits
 the concurrency of the application as one thread of control modifying a record
 on a database page will prevent other threads of control from modifying other
@@ -140,7 +140,7 @@ over increased concurrency.
 
 ## Design Lesson 10
 
-Berkeley DB's general-purpose design was well rewarded when we added concurrent
+> Berkeley DB's general-purpose design was well rewarded when we added concurrent
 data store functionality. Initially Berkeley DB provided only two modes of
 operation: either you ran without any write concurrency or with full
 transaction support. Transaction support carries a certain degree of complexity
@@ -158,7 +158,7 @@ of concurrent access.)
 
 ## Design Lesson 11
 
-When you find an architectural problem you don't want to fix "right now" and
+> When you find an architectural problem you don't want to fix "right now" and
 that you're inclined to just let go, remember that being nibbled to death by
 ducks will kill you just as surely as being trampled by elephants. Don't be too
 hesitant to change entire frameworks to improve software structure, and when
@@ -170,7 +170,7 @@ well.
 
 ## Design Lesson 12
 
-Mpool and Log use internal handle methods to facilitate write-ahead logging,
+> Mpool and Log use internal handle methods to facilitate write-ahead logging,
 and in some cases, the method declaration is longer than the code it runs,
 since the code is often comparing two integral values and nothing more. Why
 bother with such insignificant methods, just to maintain consistent layering?
@@ -187,7 +187,7 @@ conveyed in the structure of your software.
 
 ## Design Lesson 13
 
-There is rarely such thing as an unimportant bug. Sure, there's a typo now and
+> There is rarely such thing as an unimportant bug. Sure, there's a typo now and
 then, but usually a bug implies somebody didn't fully understand what they were
 doing and implemented the wrong thing. When you fix a bug, don't look for the
 symptom: look for the underlying cause, the misunderstanding, if you will,
@@ -196,7 +196,7 @@ well as revealing fundamental underlying flaws in the design itself.
 
 ## Design Lesson 14
 
-Database recovery is a complex topic, difficult to write and harder to debug
+> Database recovery is a complex topic, difficult to write and harder to debug
 because recovery simply shouldn't happen all that often. In his Turing Award
 Lecture, Edsger Dijkstra argued that programming was inherently difficult and
 the beginning of wisdom is to admit we are unequal to the task. Our goal as
