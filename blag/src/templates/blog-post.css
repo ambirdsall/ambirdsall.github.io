@@ -1,9 +1,11 @@
 .blog-post-container {
     padding: 0 10%;
     margin: auto;
+    font-family: "Century Schoolbook", serif;
 }
 
 .blog-post-date {
     color: #dd9;
-    margin-top: -1em;
+    margin-top: -2em;
+    margin-bottom: 2em;
 }

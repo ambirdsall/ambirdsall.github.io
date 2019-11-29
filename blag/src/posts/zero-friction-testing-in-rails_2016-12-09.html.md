@@ -11,7 +11,7 @@ programming jobs, where I had encountered my first truly heinous codebase. I was
 almost comically thirsty for quality and blessed with a project that was
 conceptually reducible to a pure function. Nonetheless, what is describes
 remains my favorite programming workflow: in a split terminal window, running
-vim or `emacsclient -nw` on one side and unit tests on the other.
+`vim` or `emacsclient -nw` on one side and unit tests on the other.
 
 So. It wasn't until a few months ago that I finally worked on a software
 project with full test coverage. Now that I have, I'm a little shocked and

@@ -1,0 +1,8 @@
+.post-link {
+    margin: 0 0 0.5em 1em;
+    font-size: 0.9em;
+}
+
+.post-link:last-child {
+    margin-bottom: 1.3em;
+}

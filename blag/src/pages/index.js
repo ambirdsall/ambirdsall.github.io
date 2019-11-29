@@ -5,6 +5,7 @@ import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
+import "./index.css"
 
 // for use as comparator in Array.prototype.sort(comparator)
 const newestFirst = (a, b) => {
@@ -51,7 +52,7 @@ const IndexPage = ({
           const { topic } = postList[0].frontmatter
           return <>
                    <h3>{topic}</h3>
-                   <div className="topic">{
+                   <div>{
                      postList.map(node => <PostLink key={node.id} post={node} />)
                    }</div>
                  </>
