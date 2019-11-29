@@ -1,29 +1,67 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
 
+// for use as comparator in Array.prototype.sort(comparator)
+const newestFirst = (a, b) => {
+  const [dateA, dateB] = [
+    new Date(a.frontmatter.date),
+    new Date(b.frontmatter.date),
+  ]
+
+  if (dateA > dateB) return -1 // if a is newer, a comes first
+  if (dateB > dateA) return 1  // same with b
+  return 0                     // it's a tie!
+}
+
 const IndexPage = ({
   data: {
     allMarkdownRemark: { edges },
+    site: { siteMetadata: { title }},
   },
 }) => {
-  // TODO: group by category
-  //       within each category, sort by date
-  //       `new Date(/* something in past */) < new Date() === true`
-  const Posts = edges
-        .filter(edge => edge.node.frontmatter.published !== null)
-        .map(edge => <PostLink key={edge.node.id} post={edge.node} />)
+  // Group the posts by topic, with each topic sorted by recency of post.
+  // Is it inefficient to sort the entire topic each time a single post is added? Yes.
+  // Do I care, given that the slow stuff happens at build time? No.
+  const postsByTopic = edges
+        .filter(e => !e.node.frontmatter.draft)
+        .map(e => e.node)
+        .reduce((topics, n) => {
+          const { topic } = n.frontmatter
 
-  return <Layout>
+          // nobody likes to evaluate `undefined.push(n)`
+          topics[topic] = topics[topic]
+            ? topics[topic]
+            : []
+
+          topics[topic].push(n)
+          topics[topic].sort((a, b) => newestFirst(a, b))
+
+          return topics
+        }, {})
+
+  // Order the topics by date of most recent post
+  const Posts = Object.values(postsByTopic)
+        .sort((a, b) => newestFirst(a[0], b[0]))
+        .map(postList => {
+          const { topic } = postList[0].frontmatter
+          return <>
+                   <h3>{topic}</h3>
+                   <div className="topic">{
+                     postList.map(node => <PostLink key={node.id} post={node} />)
+                   }</div>
+                 </>
+        })
+
+  return <Layout defaultHeader={true}>
     <SEO title="Home" />
 
+    <h2>html &lt; thoughts &gt; browser</h2>
     {Posts}
-
-    <Link to="/page-2/">Go to page 2</Link>
   </Layout>
  }
 
@@ -39,9 +77,16 @@ export const pageQuery = graphql`
           frontmatter {
             date
             path
+            topic
             title
+            draft
           }
         }
+      }
+    }
+    site {
+      siteMetadata {
+        title
       }
     }
   }

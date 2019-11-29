@@ -3,7 +3,7 @@ path: "/blag/building-an-adequate-wedding-gallery-part-two"
 title: Building An Adequate Wedding Gallery, Part Two
 topic: Ruby
 date: 2016-12-15 19:44:32 UTC
-published: false
+draft: true
 ---
 
 ## Pick it up
