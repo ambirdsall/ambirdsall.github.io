@@ -7,13 +7,13 @@
 
 import React from "react"
 import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
 import "./layout.css"
 import "./prism-overrides.css"
 
-const Layout = ({ children }) => {
+const DefaultHeader = _ => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -24,9 +24,25 @@ const Layout = ({ children }) => {
     }
   `)
 
+  return <Header withIcons>
+           <h1>
+             <Link
+               to="/"
+               style={{
+                 color: `white`,
+                 textDecoration: `none`,
+               }}
+             >
+               {data.site.siteMetadata.title}
+             </Link>
+           </h1>
+         </Header>
+}
+
+const Layout = ({ children, defaultHeader }) => {
   return (
     <>
-      <Header pageTitle={data.site.siteMetadata.title} withIcons />
+      {defaultHeader ? <DefaultHeader/> : <></>}
       <div
         style={{
           margin: `0 auto`,

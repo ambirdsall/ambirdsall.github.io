@@ -1,4 +1,3 @@
-import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
 import {
@@ -17,7 +16,7 @@ const IconBar = _props => (
   </div>
 )
 
-const Header = ({ pageTitle, withIcons }) => {
+const Header = ({ children, withIcons }) => {
   const icons = withIcons
         ? <IconBar/>
         : <></>
@@ -30,37 +29,10 @@ const Header = ({ pageTitle, withIcons }) => {
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{
-        margin: "1em auto",
-        textAlign: 'left',
-        fontWeight: 400,
-        fontSize: '3.14159em',
-        maxWidth: '70%',
-        height: '100%',
-        letterSpacing: '7px',
-      }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {pageTitle}
-        </Link>
-      </h1>
+      {children}
       {icons}
     </div>
   </header>
  }
-
-Header.propTypes = {
-  pageTitle: PropTypes.string,
-  withIcons: PropTypes.bool,
-}
-
-Header.defaultProps = {
-  pageTitle: ``,
-}
 
 export default Header

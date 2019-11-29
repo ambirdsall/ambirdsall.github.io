@@ -5,6 +5,20 @@ header {
   color: rgb(240,240,240);
 }
 
+header h1 {
+  margin: 1em auto;
+  text-align: left;
+  font-weight: 400;
+  font-size: 3.14159em;
+  max-width: 70%;
+  height: 100%;
+  letter-spacing: 7px;
+}
+header h3 {
+  margin: 1em auto;
+  text-align: left;
+  max-width: 70%;
+}
 header > :first-child {
     background: linear-gradient(to right, transparent, rgba(100,100,100,0.35) 15%, rgba(100,100,100,0.38) 85%, transparent);
     height: 100%;
