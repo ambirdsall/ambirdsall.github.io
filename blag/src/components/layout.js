@@ -10,6 +10,8 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
 import Header from "./header"
+import Nothing from "./nothing"
+
 import "./layout.css"
 import "./prism-overrides.css"
 
@@ -42,7 +44,7 @@ const DefaultHeader = _ => {
 const Layout = ({ children, defaultHeader }) => {
   return (
     <>
-      {defaultHeader ? <DefaultHeader/> : <></>}
+      {defaultHeader ? <DefaultHeader/> : <Nothing/>}
       <div
         style={{
           margin: `0 auto`,

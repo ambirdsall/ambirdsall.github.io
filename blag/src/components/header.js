@@ -5,6 +5,7 @@ import {
   FaLinkedin,
   FaTwitter,
 } from "react-icons/fa"
+import Nothing from "./nothing"
 
 import "./header.css"
 
@@ -19,7 +20,7 @@ const IconBar = _props => (
 const Header = ({ children, withIcons }) => {
   const icons = withIcons
         ? <IconBar/>
-        : <></>
+        : <Nothing/>
 
   return <header>
     <div

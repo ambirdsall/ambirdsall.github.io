@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
+import Nothing from "../components/nothing"
+
 import "./index.css"
 
 // for use as comparator in Array.prototype.sort(comparator)
@@ -58,9 +60,13 @@ const IndexPage = ({
                  </>
         })
 
+  // FIXME: placeholder components
+  const Triangle = Nothing
+
   return <Layout defaultHeader={true}>
     <SEO title="Home" />
 
+    <Triangle/>
     <h2>html &lt; thoughts &gt; browser</h2>
     {Posts}
   </Layout>
