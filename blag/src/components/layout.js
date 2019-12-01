@@ -54,8 +54,11 @@ const Layout = ({ children, defaultHeader }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, ya boy
+        <footer style={{
+          color: "#bbb",
+          textAlign: "center",
+        }}>
+          © {new Date().getFullYear()} Alex Birdsall
         </footer>
       </div>
     </>
