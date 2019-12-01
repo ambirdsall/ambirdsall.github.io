@@ -24,9 +24,12 @@ Two things help:
 
 Some would argue that the `$()` subshell operator has strictly more powerful semantics than
 backticks because it can be nested; they are, of course, correct. Other people like subshells
-because when you nest them, it reads just like lisp code; they are, of course, nerds. When you don't
+because when you nest them, it reads just like lisp code; they are, of course, nerds[^1]. When you don't
 have to nest anything, though, backticks have a killer advantage over subshells:
 
 1. 33% fewer keystrokes
 
 Choose your own adventure.
+
+[^1]: When it comes to lisp, I am, of course, [a gigantic
+    nerd](https://github.com/ambirdsall/moon-phase) myself.
