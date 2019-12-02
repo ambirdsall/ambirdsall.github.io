@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-// import Image from "../components/image"
+import Legend from "../components/year-color-legend"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
 import Triangle from "../components/triangle"
@@ -41,10 +41,14 @@ const IndexPage = ({
         .sort((a, b) => newestFirst(a[0], b[0]))
         .map(postList => {
           const { topic } = postList[0].frontmatter
+
           return <>
                    <h3>{topic}</h3>
                    <div>{
-                     postList.map(node => <PostLink key={node.id} post={node} />)
+                     postList.map(node => <PostLink
+                                            key={node.id}
+                                            post={node}
+                                          />)
                    }</div>
                  </>
         })
@@ -57,6 +61,7 @@ const IndexPage = ({
     }}>
       <Triangle/>
       <h2>html &lt; thoughts &gt; browser</h2>
+      <Legend/>
       {Posts}
     </div>
   </Layout>
