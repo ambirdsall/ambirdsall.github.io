@@ -6,20 +6,9 @@ import Layout from "../components/layout"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
 import Triangle from "../components/triangle"
+import newestFirst from "../utils/newest-first"
 
 import "./index.css"
-
-// for use as comparator in Array.prototype.sort(comparator)
-const newestFirst = (a, b) => {
-  const [dateA, dateB] = [
-    new Date(a.frontmatter.date),
-    new Date(b.frontmatter.date),
-  ]
-
-  if (dateA > dateB) return -1 // if a is newer, a comes first
-  if (dateB > dateA) return 1  // same with b
-  return 0                     // it's a tie!
-}
 
 const IndexPage = ({
   data: {
