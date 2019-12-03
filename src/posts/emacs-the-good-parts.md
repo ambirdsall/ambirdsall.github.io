@@ -1,7 +1,8 @@
 ---
 path: "/blag/emacs-the-good-parts"
-title: emacs: the good parts
+title: "emacs: the good parts"
 topic: emacs
+draft: true
 date: 2019-12-02 06:34:30 UTC
 ---
 
