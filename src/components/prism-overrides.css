@@ -1,1 +1,5 @@
 .token.operator { background: none; }
+
+code[class*="language-"], pre[class*="language-"] {
+    font-size: 0.8em;
+}

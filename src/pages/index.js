@@ -60,7 +60,7 @@ const IndexPage = ({
       width: "fit-content",
     }}>
       <Triangle/>
-      <h2>html &lt; thoughts &gt; browser</h2>
+      <h2 className="subtitle">html &lt; thoughts &gt; browser</h2>
       <Legend/>
       {Posts}
     </div>
