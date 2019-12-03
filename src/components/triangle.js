@@ -56,19 +56,21 @@ export default function Triangle() {
       return [x, y]
     }
 
-    function buildGivenTriangle() {
+    function buildGivenTriangle(stepSize) {
       // Why 8? I did a little manual testing and 8 circles per mousemove event
       // felt like right speed to populate the triangle
-      for (var i = 0; i < 8; ++i) {
+      for (var i = 0; i < stepSize; ++i) {
         point = genpoint(triangle, point)
         dataset.push(point)
       }
       draw(dataset)
     }
 
-    // and now to actually do stuff
-    page.on("mousemove",    buildGivenTriangle)
-    page.on("devicemotion", buildGivenTriangle)
+    const timer = setInterval(() => {
+      if (dataset.length > 8888) clearInterval(timer)
+
+      buildGivenTriangle(11)
+    }, 10)
   }, [])
 
   return <div ref={el} style={{
