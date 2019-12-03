@@ -1,0 +1,91 @@
+---
+path: "/blag/emacs-the-good-parts"
+title: emacs: the good parts
+topic: emacs
+date: 2019-12-02 06:34:30 UTC
+---
+
+This was originally titled "The emacs workflows that make putting up with a
+mostly single-threaded text editor UI that can be slow and freeze worth it";
+suffice it to say I have a love-hate relationship with emacs[^1].
+
+[^1]: I hope that after [remacs](https://github.com/remacs/remacs) is fully
+ported to rust, they feel comfortable adding to the user experience of the
+default installation; I realize that this would be very difficult to design in a
+way that wouldn't add maintenance overhead to the elisp portion of the
+fork though, and the majority of the editor is implemented in elisp.
+
+## magit
+
+### show off magit-status a little
+
+#### jump to line in source code
+
+#### stage and unstage a chunk quickly
+
+#### highlight and unstage a targeted bit of code
+
+#### jump to log and view a specific commit's diff
+
+1.  you can visit that commit, of course, but let's not be so tediously thorough as to actually do it
+
+### staging and committing
+
+#### stage some lines visually
+
+#### look, there in the menu: INSTANT FIXUP!
+
+Oh, it's so good. Especially if you've done a deep dive on git, you may know
+about fixup commits, but interactively choosing the commit from a lineup instead
+of the whole run-commit-with-obscure-flag song and dance is a big step up in
+convenience and intuitiveness.
+
+### when it comes time to write your commit, you're in your full editor
+
+you can split a screen, copy-paste some code from the source, etc
+
+## dired
+
+dired intends to replace the following shell commands directly:
+
+-   ls
+-   cd
+-   opening some file in $EDITOR
+-   mkdir
+-   rm
+
+See how it looks like `ls -l` output? It literally is `ls -l` output, and that's
+useful: you can edit a variable to change the options passed to `ls`, if you so
+desire, and you can test run your selections by running `ls -l` [<sup>1</sup>].
+
+[1]: That's the thing about emacs: its integration with the underlying operating 
+  system is just as deep as a shell environments', and it shares a lot of
+  details with one because of it. But it's different: it evolved in parallel
+  with the modern implementations of a shell, though unix shells are much older.
+  How much time you've invested learning a shell first will shape how you learn
+  and use emacs.
+
+dired also has one super-power:
+
+### wdired
+
+This level of functionality, where you have a super mario version of a specific
+mode with its own keybindings, is why you have to be down with `M-x` and looking
+up commands by name to get the most out of emacs: it would be insane to have to
+remember some cryptic keyboard shortcut for something so dired-specific, because
+dired is just one mode out of many. To get to this level of functionality in a
+sane way, the emacs tradeoff is to be willing to memorize a name or two, as with
+a codebase, in order to use it. (but that's the point: emacs *is* a codebase).
+So:
+
+#### `M-x wdired` + use autocomplete + hit enter
+
+If you want to type out the full command like a psycho, it's `M-x
+wdired-change-to-wdired-mode`, but why would you? Of course, you have to
+manually set up autocomplete, because a blank emacs install is optimized for
+maintainers, not for beginners. This is a design antipattern, though I
+understand the appeal.
+
+#### make a executable file in wdired; it's just changing one character
+
+afterward run that file with `M-!`
