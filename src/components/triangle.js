@@ -13,7 +13,6 @@ export default function Triangle() {
     const w = 433 * 0.5
     const h = 300 * 0.5
     const padding = 10
-    const page = select(window)
     const svg = select(el.current)
           .insert("svg", ".name")
           .attr("width", w)
