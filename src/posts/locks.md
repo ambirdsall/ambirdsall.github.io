@@ -1,6 +1,6 @@
 ---
 path: "/blag/locks-are-some-shit"
-title: Locks are Some Shit
+title: Locks Are Some Shit
 category: operating_systems
 topic: concurrency
 date: 2016-09-01 07:20:17 UTC
