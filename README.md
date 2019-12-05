@@ -8,6 +8,10 @@ My personal site! Hullo!
   Game](https://en.wikipedia.org/wiki/Chaos_game) algorithm. Right now I'm just
   blogging about programming, but I may change that.
   
+  I also like the thought of doing something fun to expand the triangle doodad.
+  For example, clicking on the triangle could start them flocking around using
+  the 2d version of the boids algorithm.
+
 ## 🚀 Quick start
 
 1.  **Start developing.**
