@@ -2,7 +2,7 @@
 path: "/blag/cut-out-the-middleman"
 title: 'Rewriting a middleman site with gatsby'
 topic: M E T A B L A G
-date: 2019-12-02 01:03:30 UTC
+date: 2019-12-05 01:03:30 UTC
 ---
 
 It came to pass that after 3 years of neglect, I wanted to revive my old
