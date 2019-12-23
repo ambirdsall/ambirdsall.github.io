@@ -20,7 +20,7 @@ const IndexPage = ({
 }) => {
   // Group the posts by topic, with each topic sorted by recency of post.
   // Is it inefficient to sort the entire topic each time a single post is added? Yes.
-  // Do I care, given that the slow stuff happens at build time? No.
+  // Do I care, given that the slow stuff happens once, at build time? No.
   const postsByTopic = edges
     .filter(e => !e.node.frontmatter.draft)
     .map(e => e.node)
@@ -54,6 +54,11 @@ const IndexPage = ({
       )
     })
 
+  // TODO: handle post volume in a sane way. There should be reasonable caps on category length and
+  // number on the root page; there should be a separate blag/ index route with a comprehensive
+  // list; and there should be a fuzzy search for specific posts (maybe just on posts index page).
+  // Just by title? Title and category? Title, category, AND FULL TEXT???? That may be flying too
+  // close to the sun.
   return (
     <Layout defaultHeader={true}>
       <SEO title="Home" />
