@@ -28,7 +28,7 @@ const IndexPage = ({
       const { topic } = n.frontmatter
 
       // nobody likes to evaluate `undefined.push(n)`
-      topics[topic] = topics[topic] ? topics[topic] : []
+      topics[topic] = topics[topic] || []
 
       topics[topic].push(n)
       topics[topic].sort((a, b) => newestFirst(a, b))
