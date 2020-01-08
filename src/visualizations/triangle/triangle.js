@@ -37,7 +37,6 @@ export default class Triangle {
       .style("width", "216.5px")
       .style("margin", "15px auto 0")
       .on("input", function() {
-        console.log(this.value)
         points.resize(+this.value)
       })
 
@@ -51,7 +50,6 @@ export default class Triangle {
 
   update() {
     const circles = this.svg.selectAll("circle").data(this.points.data)
-    // debugger
     circles.exit().remove()
 
     circles
