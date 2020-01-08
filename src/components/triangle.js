@@ -14,6 +14,7 @@ export default function TriangleWrapper() {
       ref={el}
       style={{
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         margin: "3em 0",
       }}

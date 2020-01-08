@@ -43,14 +43,14 @@ const IndexPage = ({
       const { topic } = postList[0].frontmatter
 
       return (
-        <>
+        <div key={topic}>
           <h3>{topic}</h3>
           <div>
             {postList.map(node => (
               <PostLink key={node.id} post={node} />
             ))}
           </div>
-        </>
+        </div>
       )
     })
 
