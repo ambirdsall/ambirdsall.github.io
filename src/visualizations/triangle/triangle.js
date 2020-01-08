@@ -35,7 +35,7 @@ export default class Triangle {
       .attr("type", "range")
       .style("justify-self", "center")
       .style("width", "216.5px")
-      .style("margin", "15px auto 0")
+      .style("margin", "30px auto -10px")
       .on("input", function() {
         points.resize(+this.value)
       })
