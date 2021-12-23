@@ -43,3 +43,12 @@ header > :first-child {
 .icon-bar > a > svg:first-of-type {
     margin-left: 0;
 }
+
+.shh {
+    position:absolute;
+    left:-10000px;
+    top:auto;
+    width:1px;
+    height:1px;
+    overflow:hidden;
+}

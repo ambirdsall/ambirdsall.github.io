@@ -8,11 +8,13 @@ import Nothing from "./nothing"
 
 import "./header.css"
 
+const Shh = ({ children }) => <span className="shh">{children}</span>
+
 const IconBar = _props => (
   <div className="icon-bar">
-    <a href="https:www.github.com/ambirdsall"><FaGithub/></a>
-    <a href="https:www.linkedin.com/in/ambirdsall"><FaLinkedin/></a>
-    <a href="https:www.twitter.com/gobslapped"><FaTwitter/></a>
+    <a href="https:www.github.com/ambirdsall"><FaGithub/><Shh>github</Shh></a>
+    <a href="https:www.linkedin.com/in/ambirdsall"><FaLinkedin/><Shh>linkedin</Shh></a>
+    <a href="https:www.twitter.com/gobslapped"><FaTwitter/><Shh>twitter</Shh></a>
   </div>
 )
 
