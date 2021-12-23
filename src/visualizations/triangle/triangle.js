@@ -31,14 +31,16 @@ export default class Triangle {
       .style("margin", "auto")
 
     this.resizer = select(el)
+      .insert("div")
+      .style("margin", "auto")
       .insert("input")
       .attr("type", "range")
       .style("justify-self", "center")
       .style("width", "216.5px")
       .style("margin", "30px auto -10px")
-      .on("input", function() {
-        points.resize(+this.value)
-      })
+      .on("input", function() { points.resize(+this.value) })
+      .append("span")
+      .text(function() { return this.value })
 
     this.x = scaleLinear()
       .domain([0, w])
@@ -69,17 +71,11 @@ export default class Triangle {
   }
 
   drawSomeDots(stepSize) {
-    // Why 8? I did a little manual testing and 8 circles per mousemove event
-    // felt like right speed to populate the triangle
     for (var i = 0; i < stepSize; ++i) this.next()
     this.update()
   }
 
   run() {
-    interval(() => {
-      // if (this.points.length > 8888) clearInterval(timer)
-
-      this.drawSomeDots(11)
-    }, 10)
+    interval(() => this.drawSomeDots(11), 10)
   }
 }
