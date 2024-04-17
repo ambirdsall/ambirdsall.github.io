@@ -4,6 +4,16 @@
   "description": "A blog.",
   "version": "0.1.0",
   "author": "Alex Birdsall <ambirdsall@gmail.com>",
+  "scripts": {
+    "build": "gatsby build",
+    "watch": "ls gatsby-config.js | entr -r gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "lint": "prettier",
+    "deploy": "gatsby build && gh-pages -d public -b master"
+  },
   "dependencies": {
     "d3": "^5.14.2",
     "gatsby": "^2.17.11",
@@ -30,24 +40,9 @@
     "gh-pages": "^2.1.1",
     "prettier": "^1.19.1"
   },
-  "keywords": [
-    "gatsby"
-  ],
   "license": "MIT",
-  "scripts": {
-    "build": "gatsby build",
-    "develop": "ls gatsby-config.js | entr -r gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "npm run develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby build && gh-pages -d public -b master"
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-default"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
+    "url": "https://github.com/ambirdsall/ambirdsall.github.io"
   }
 }
