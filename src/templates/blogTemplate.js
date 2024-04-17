@@ -9,19 +9,24 @@ export default function Template({
 }) {
   const { markdownRemark } = data // data.markdownRemark holds your post data
   const { frontmatter, html } = markdownRemark
-  return <>
-    <Header withIcons={false}>
-      <h1>{frontmatter.title}</h1>
-      <h3 className="blog-post-date">{new Date(frontmatter.date).toDateString()}</h3>
-    </Header>
-    <div className="blog-post-container">
-      <div className="blog-post">
-        <div className="blog-post-content"
-             dangerouslySetInnerHTML={{ __html: html }}
-        />
+  return (
+    <>
+      <Header plaid withIcons={false}>
+        <h1>{frontmatter.title}</h1>
+        <h3 className="blog-post-date">
+          {new Date(frontmatter.date).toDateString()}
+        </h3>
+      </Header>
+      <div className="blog-post-container">
+        <div className="blog-post">
+          <div
+            className="blog-post-content"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        </div>
       </div>
-    </div>
-  </>
+    </>
+  )
 }
 export const pageQuery = graphql`
   query($path: String!) {

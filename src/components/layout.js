@@ -9,7 +9,7 @@ import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
-import Header from "./header"
+import { Header, Footer } from "./header"
 import Nothing from "./nothing"
 
 import "./layout.css"
@@ -27,12 +27,11 @@ const DefaultHeader = _ => {
   `)
 
   return (
-    <Header withIcons>
+    <Header>
       <h1>
         <Link
           to="/"
           style={{
-            color: `white`,
             textDecoration: `none`,
           }}
         >
@@ -55,15 +54,8 @@ const Layout = ({ children, defaultHeader }) => {
       {defaultHeader ? <DefaultHeader /> : <Nothing />}
       <div className="container">
         <main>{children}</main>
-        <footer
-          style={{
-            color: "#bbb",
-            textAlign: "center",
-          }}
-        >
-          © {new Date().getFullYear()} Alex Birdsall
-        </footer>
       </div>
+      <Footer withIcons />
     </>
   )
 }
