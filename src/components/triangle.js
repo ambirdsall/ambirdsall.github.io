@@ -1,15 +1,13 @@
-import React, { useRef, useEffect } from "react"
+import React, { useCallback } from "react"
+import D3Wrapper from "./d3wrapper"
 import Triangle from "../visualizations/triangle/triangle"
 
 import "./triangle.css"
 
 export default function TriangleWrapper() {
-  // d3 needs an actual DOM node to do its thing on, so let's give it one
-  const el = useRef(null)
-
-  useEffect(() => {
-    new Triangle(el.current).run()
+  const d3Triangle = useCallback(el => {
+    new Triangle(el).run()
   }, [])
 
-  return <div className="triangle" ref={el} />
+  return <D3Wrapper d3RenderFn={d3Triangle} className="triangle" />
 }
