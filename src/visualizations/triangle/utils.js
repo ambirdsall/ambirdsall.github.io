@@ -45,4 +45,8 @@ export class Ring {
 
     this.removeOverflow()
   }
+
+  length() {
+    return this.data.length
+  }
 }

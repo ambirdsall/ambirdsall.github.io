@@ -11,15 +11,5 @@ export default function TriangleWrapper() {
     new Triangle(el.current).run()
   }, [])
 
-  return (
-    <div
-      ref={el}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        margin: "3em 0",
-      }}
-    />
-  )
+  return <div className="triangle" ref={el} />
 }

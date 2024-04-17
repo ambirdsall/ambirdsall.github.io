@@ -5,7 +5,7 @@
  * See: https://www.gatsbyjs.org/docs/use-static-query/
  */
 
-import React from "react"
+import React, { useEffect } from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
 
@@ -26,31 +26,41 @@ const DefaultHeader = _ => {
     }
   `)
 
-  return <Header withIcons>
-           <h1>
-             <Link
-               to="/"
-               style={{
-                 color: `white`,
-                 textDecoration: `none`,
-               }}
-             >
-               {data.site.siteMetadata.title}
-             </Link>
-           </h1>
-         </Header>
+  return (
+    <Header withIcons>
+      <h1>
+        <Link
+          to="/"
+          style={{
+            color: `white`,
+            textDecoration: `none`,
+          }}
+        >
+          {data.site.siteMetadata.title}
+        </Link>
+      </h1>
+    </Header>
+  )
 }
 
 const Layout = ({ children, defaultHeader }) => {
+  useEffect(() => {
+    if ("ontouchstart" in window || navigator.maxTouchPoints) {
+      document.body.classList.add("touch-device")
+    }
+  }, [])
+
   return (
     <>
-      {defaultHeader ? <DefaultHeader/> : <Nothing/>}
+      {defaultHeader ? <DefaultHeader /> : <Nothing />}
       <div className="container">
         <main>{children}</main>
-        <footer style={{
-          color: "#bbb",
-          textAlign: "center",
-        }}>
+        <footer
+          style={{
+            color: "#bbb",
+            textAlign: "center",
+          }}
+        >
           © {new Date().getFullYear()} Alex Birdsall
         </footer>
       </div>

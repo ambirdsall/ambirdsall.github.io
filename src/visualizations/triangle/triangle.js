@@ -28,15 +28,23 @@ export default class Triangle {
       .insert("svg", ".name")
       .attr("width", w)
       .attr("height", h)
-      .classed("triangle", true)
-      .style("justify-self", "center")
-      .style("margin", "auto")
 
-    this.resizer = select(el)
+    const sliderContainer = select(el)
       .insert("div")
-      .style("margin", "auto")
+      .attr("class", "resizer")
+      .style("margin-top", "2em")
+
+    this.sliderLabel = sliderContainer
+      .insert("label")
+      .attr("for", "triangle-point-selector")
+      .style("display", "block")
+      .style("text-align", "center")
+      .style("color", "rgba(170, 150, 104, 1)")
+
+    sliderContainer
       .insert("input")
       .attr("type", "range")
+      .attr("id", "triangle-point-selector")
       .style("justify-self", "center")
       .style("width", "216.5px")
       .attr("value", `${startingSliderValue}`)
@@ -69,6 +77,10 @@ export default class Triangle {
       .style("fill", "#aa9668")
 
     circles.attr("cx", d => this.x(d.x)).attr("cy", d => this.y(d.y))
+
+    this.sliderLabel.html(
+      () => `<i>Number of points:</i> ${this.points.length()}`
+    )
   }
 
   next() {
