@@ -7,6 +7,8 @@ export default class Triangle {
     const w = 433 * 0.5
     const h = 300 * 0.5
     const padding = 10
+    // this looked nice in manual testing
+    const startingSliderValue = 18
 
     /* DATA SETUP */
     // start with the three vertices of the triangle
@@ -37,10 +39,14 @@ export default class Triangle {
       .attr("type", "range")
       .style("justify-self", "center")
       .style("width", "216.5px")
-      .style("margin", "30px auto -10px")
-      .on("input", function() { points.resize(+this.value) })
+      .attr("value", `${startingSliderValue}`)
+      .on("input", function() {
+        points.resize(+this.value)
+      })
       .append("span")
-      .text(function() { return this.value })
+      .text(function() {
+        return this.value
+      })
 
     this.x = scaleLinear()
       .domain([0, w])
@@ -48,6 +54,8 @@ export default class Triangle {
     this.y = scaleLinear()
       .domain([0, w])
       .range([padding, w - padding])
+
+    points.resize(startingSliderValue)
   }
 
   update() {
