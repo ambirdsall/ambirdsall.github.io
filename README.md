@@ -14,11 +14,14 @@ My personal site! Hullo!
 
 ## 🚀 Quick start
 
+1. **It's 2024 and only `yarn` will install the deps without error**
+¯\\_(ツ)\_/¯
+
 1.  **Start a development server.**
 
     ```shell
     cd ambirdsall.github.io/
-    {npm,yarn} develop
+    yarn develop
     ```
 
 1.  **Open the source code and start editing!**
@@ -28,6 +31,14 @@ My personal site! Hullo!
     - Play around in `src/pages`
     - Write some mdx markdown in `src/posts/` and there you go! A blog post.
 
+## important bits
+| file                            | wat                                        |
+|:--------------------------------|:-------------------------------------------|
+| `src/templates/blogTemplate.js` | the template for/layout of blog post pages |
+| `src/components/layout.js`      | the layout of the front page               |
+| `src/pages/index.js`            | the front page                             |
+
+# the rest is just Gatsby-generated framework documentation
 ## 🧐 What's inside?
 
 A quick look at the top-level files and directories you'll see in a Gatsby project.
