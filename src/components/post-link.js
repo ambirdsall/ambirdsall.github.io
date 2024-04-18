@@ -8,7 +8,10 @@ const year = node => new Date(node.frontmatter.date).getFullYear()
 
 const PostLink = ({ post }) => (
   <div className="post-link">
-  <Link to={post.frontmatter.path} style={{color: numberToColor(year(post))}}>
+    <Link
+      to={post.frontmatter.path}
+      style={{ color: numberToColor(year(post)) }}
+    >
       {post.frontmatter.title}
     </Link>
   </div>

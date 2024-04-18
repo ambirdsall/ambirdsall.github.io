@@ -11,6 +11,7 @@ mostly single-threaded text editor UI that can be slow and freeze worth it";
 suffice it to say I have a love-hate relationship with emacs[^1].
 
 [^1]: I hope that after [remacs](https://github.com/remacs/remacs) is fully
+
 ported to rust, they feel comfortable adding to the user experience of the
 default installation; I realize that this would be very difficult to design in a
 way that wouldn't add maintenance overhead to the elisp portion of the
@@ -49,22 +50,22 @@ you can split a screen, copy-paste some code from the source, etc
 
 dired intends to replace the following shell commands directly:
 
--   ls
--   cd
--   opening some file in $EDITOR
--   mkdir
--   rm
+- ls
+- cd
+- opening some file in \$EDITOR
+- mkdir
+- rm
 
 See how it looks like `ls -l` output? It literally is `ls -l` output, and that's
 useful: you can edit a variable to change the options passed to `ls`, if you so
 desire, and you can test run your selections by running `ls -l` [<sup>1</sup>].
 
-[1]: That's the thing about emacs: its integration with the underlying operating 
-  system is just as deep as a shell environments', and it shares a lot of
-  details with one because of it. But it's different: it evolved in parallel
-  with the modern implementations of a shell, though unix shells are much older.
-  How much time you've invested learning a shell first will shape how you learn
-  and use emacs.
+[1]: That's the thing about emacs: its integration with the underlying operating
+system is just as deep as a shell environments', and it shares a lot of
+details with one because of it. But it's different: it evolved in parallel
+with the modern implementations of a shell, though unix shells are much older.
+How much time you've invested learning a shell first will shape how you learn
+and use emacs.
 
 dired also has one super-power:
 
@@ -76,13 +77,12 @@ up commands by name to get the most out of emacs: it would be insane to have to
 remember some cryptic keyboard shortcut for something so dired-specific, because
 dired is just one mode out of many. To get to this level of functionality in a
 sane way, the emacs tradeoff is to be willing to memorize a name or two, as with
-a codebase, in order to use it. (but that's the point: emacs *is* a codebase).
+a codebase, in order to use it. (but that's the point: emacs _is_ a codebase).
 So:
 
 #### `M-x wdired` + use autocomplete + hit enter
 
-If you want to type out the full command like a psycho, it's `M-x
-wdired-change-to-wdired-mode`, but why would you? Of course, you have to
+If you want to type out the full command like a psycho, it's `M-x wdired-change-to-wdired-mode`, but why would you? Of course, you have to
 manually set up autocomplete, because a blank emacs install is optimized for
 maintainers, not for beginners. This is a design antipattern, though I
 understand the appeal.

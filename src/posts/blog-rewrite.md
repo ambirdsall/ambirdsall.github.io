@@ -1,6 +1,6 @@
 ---
 path: "/blag/cut-out-the-middleman"
-title: 'Rewriting a middleman site with gatsby'
+title: "Rewriting a middleman site with gatsby"
 topic: M E T A B L A G
 date: 2019-12-05 01:03:30 UTC
 ---
@@ -11,6 +11,7 @@ HTML and CSS, and then I could rewrite it in a different stack at my leisure.
 I think a lot of things that are wrong, though.
 
 ## Problem: I had a new computer and my webpage had a fussy development env;
+
 I tried to run the development build, but ran into an error: I needed the right
 ruby version. I've never done ruby development on this operating system, so I
 don't have any tool in place to manage ruby versions. To fix things, I needed to
@@ -32,6 +33,7 @@ insurmountable, but why go to all that effort when I wanted to rewrite it
 anyway?
 
 ## and, having been exposed to JSX,
+
 In the ruby version, I used `.erb` files to handle dynamic data and a few bits
 of html boilerplate. The way `.erb` files treat the non-logic contents as a dumb
 text stream, not something with a tree structure, makes it fundamentally a worse
@@ -43,10 +45,12 @@ within the content has begun to feel inside out. I didn't want to use another
 templating system.
 
 ## and wanting to maintain a statically-generated site,
+
 (While `create-react-app` is dope and all, there is zero dynamic content on this
 whole site.)
 
 ## the choice of gatsby seemed good, so I set to work.
+
 First I made the page shell; that was just porting some html to react
 components. It happened that all I needed were well-documented, [easily
 searchable plugins](https://www.gatsbyjs.org/plugins/) to [render
@@ -67,6 +71,7 @@ Anyway, I had the existing posts rendering acceptably to HTML from pure
 markdown, getting autolinking and asides without needing any .erb equivalent.
 
 ## I had to figure out how to sort a list of posts;
+
 This was straightforward: I wanted to group by topic, sort each topic by date,
 and sort the set of topics by date of most recent post. All the data I needed
 was easily queryable from the markdown frontmatter via graphQL. You'll notice
@@ -84,26 +89,24 @@ Whatever.
 //   },
 // })
 const postsByTopic = edges
-      .filter(e => !e.node.frontmatter.draft)
-      .map(e => e.node)
-      .reduce((topics, n) => {
-        const { topic } = n.frontmatter
+  .filter(e => !e.node.frontmatter.draft)
+  .map(e => e.node)
+  .reduce((topics, n) => {
+    const { topic } = n.frontmatter
 
-        // nobody likes to evaluate `undefined.push(n)`
-        topics[topic] = topics[topic]
-          ? topics[topic]
-          : []
+    // nobody likes to evaluate `undefined.push(n)`
+    topics[topic] = topics[topic] ? topics[topic] : []
 
-        topics[topic].push(n)
-        topics[topic].sort((a, b) => newestFirst(a, b))
+    topics[topic].push(n)
+    topics[topic].sort((a, b) => newestFirst(a, b))
 
-        return topics
-      }, {})
+    return topics
+  }, {})
 
 // Order the topics by date of most recent post
 const Posts = Object.values(postsByTopic)
-      .sort((a, b) => newestFirst(a[0], b[0]))
-      .map(renderSingleTopic)
+  .sort((a, b) => newestFirst(a[0], b[0]))
+  .map(renderSingleTopic)
 ```
 
 Before you ask, yes, I know that sorting topics each time a new post is added is
@@ -121,7 +124,8 @@ arguments, and `Array.prototype` methods are just as chainable as
 `Enumerable`s[^4]. The definition of that `newestFirst` comparator function is
 left as an exercise to the reader, that's already a fair chunk of code.
 
-## then how to update the d3 triangle thing to modern d3 using es6 imports 
+## then how to update the d3 triangle thing to modern d3 using es6 imports
+
 This wasn't too bad: I changed all the `var` statements to `const`; fixed the
 one variable I mutate in place (it's the easiest way to implement the algorithm)
 to use `let` instead; and imported `d3`. Modern versions of `d3` export their
@@ -131,8 +135,10 @@ object to have everything. `d3.scale.linear()` had become `d3.scaleLinear()`,
 but otherwise this was a pretty mechanical translation.
 
 ## then how to embed a d3-controlled element in a react component
+
 Figuring this part out was kind of fun! The basic 2-step to mounting a
 self-contained `d3` visualization inside of a react app:
+
 1. `const domElementRef = useRef(null)`
 2. `useEffect(() => d3.select(domElementRef.current).doStuffWith(props.data), [props.data])`
 
@@ -145,9 +151,12 @@ need to use both `componentDidMount` and `componentDidUpdate` to ensure the
 visualization ran at all the appropriate times.
 
 ## and then I had a site!
+
 I hope you like it.
 
-[^1]: It is very popular to try to dunk on the javascript ecosystem in various parts
+[^1]:
+
+  It is very popular to try to dunk on the javascript ecosystem in various parts
   of programmer culture[^2], and one of the very most popular ways is to clown on
   the size of the `node_modules` directory. Since `npm` installs every package on
   a per-project basis; since it errs on the side of having multiple (potentially
@@ -158,7 +167,9 @@ I hope you like it.
   that approach would have saved me a bunch of hassle here. Or maybe I just had a
   badly-written `Gemfile`.
 
-[^2]: I have the strong impression that this is at least in
+[^2]:
+
+  I have the strong impression that this is at least in
   part sub-rosa sexism: frontend work, being user-facing and visual, fits
   stereotypes of women's work, and indeed many female programmers are channeled
   into frontend work regardless of their specific interests or abilities.
@@ -167,11 +178,15 @@ I hope you like it.
   never pausing to consider that those are all part and
   [parcel](https://parceljs.org/) of frontend work. But I digress.
 
-[^3]: I have an intuition that this has to do with the ol' Chomsky hierarchy,
+[^3]:
+
+  I have an intuition that this has to do with the ol' Chomsky hierarchy,
   akin to how regular expression can scan text streams in sophisticated ways but
   can't validate structural features like valid nesting or pairing.
 
-[^4]: A rant: what the fuck is up with how `sort` mutates the array in place?
+[^4]:
+
+  A rant: what the fuck is up with how `sort` mutates the array in place?
   It's totally out of character with the rest of the `Array.prototype` chainable
   methods, which return new arrays, and its idiosyncracy offers no benefit: it's
   just a footgun which makes it easy to mutate your application data behind your

@@ -9,7 +9,7 @@ tags: operating_systems, concurrency, locks
 
 I've been reading [Operating Systems: Three Easy
 Pieces](http://pages.cs.wisc.edu/~remzi/OSTEP). I highly recommend the book if
-you're cool fiddling with C a bit.  Actually, scratch that: I recommend the book
+you're cool fiddling with C a bit. Actually, scratch that: I recommend the book
 if you ever write code that runs on a server or any other linux/osx environment,
 _especially_ if you feel a little out of your depth with C. The code examples
 are not that intimidating, even if you don't know from typecasting or a pointer
@@ -156,7 +156,7 @@ So let's lock this shit down. `main` doesn't need to change at all: we just need
 to initialize a commonly available lock, and use it in the `mythread` procedure
 to ensure that only one thread at a time can access the critical section (that's
 the term, coined by Dijkstra, for a section of code dealing with shared memory;
-here, `counter++`).  Here's the most vanilla implementation for a POSIX system:
+here, `counter++`). Here's the most vanilla implementation for a POSIX system:
 
 ```c
 static volatile int counter = 0;
@@ -228,7 +228,7 @@ void unlock(lock_t *lock) {
 This is a shitty lock for a few reasons:
 
 1. If the lock is taken, the thread just wastes CPU cycles until the CPU
-scheduler decides to let the locking thread finish its work
+   scheduler decides to let the locking thread finish its work
 1. It's possible to have a thread that "starves": i.e. never, ever gets the lock
 1. It does not work.
 
@@ -283,13 +283,14 @@ ABAB 163309
 avg. 146929
 ```
 
-Not half bad*!
+Not half bad\*!
 
 \* Almost exactly half bad
 
 That's all I got rght now on locks.
 
 ## A Brief Aside About C
+
 Working in C feels like working with a database to me: the fundamental way to
 define the shape of your data is a struct: a behaviorless mapping of typed data
 fields to names, just like a table in a relational database.
@@ -301,10 +302,11 @@ and use them to call those functions (I believe that's how C++ classes work
 under the hood, but don't quote me on that as an authority).
 
 ## Stuff In This Chapter That I Left Out
-* Various tradeoffs in balancing fairness and performance while maintaining
-mutual exclusion (thus, incidentally, the term "mutex")
-* Some interesting historical locking mechanisms
-* Some background on what the hardware does and doesn't do, and what that means
-for the OS
-* A cool-ass locking implementation from the linux kernel that tracks both the
-status of the lock and the size of its queue with a single integer
+
+- Various tradeoffs in balancing fairness and performance while maintaining
+  mutual exclusion (thus, incidentally, the term "mutex")
+- Some interesting historical locking mechanisms
+- Some background on what the hardware does and doesn't do, and what that means
+  for the OS
+- A cool-ass locking implementation from the linux kernel that tracks both the
+  status of the lock and the size of its queue with a single integer

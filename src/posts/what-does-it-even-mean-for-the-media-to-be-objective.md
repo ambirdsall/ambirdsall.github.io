@@ -130,16 +130,20 @@ verifiable truth[^3] literally builds that link in
 readers' minds. People use words the same way the folks around them do: for the sake of
 the people around us, America has to step up at using them in service of truth.
 
-[^1]: European philosophy has spent lifetimes failing to get around this fact,
-    which is why it is so [beautiful](http://www.fullbooks.com/The-Ethics.html)
-    and so
-    [tedious](https://tractatus-online.appspot.com/Tractatus/jonathan/index.html).
+[^1]:
 
-[^2]: The most pernicious form this takes is "we can't change `$THING` because
-    that's just the way things are". Beyond the surface-level problem of
-    squelching analysis of `$THING` in good/bad terms because of a tautological
-    assertion of its truth value, it nihilistically sweeps away any reasonable
-    question of the upside risk of attempting to change `$THING` _and_ it's
-    almost always wrong, historically speaking.
+  European philosophy has spent lifetimes failing to get around this fact,
+  which is why it is so [beautiful](http://www.fullbooks.com/The-Ethics.html)
+  and so
+  [tedious](https://tractatus-online.appspot.com/Tractatus/jonathan/index.html).
 
-[^3]:It is always both, of course, for we are awash in a sea of opinions.
+[^2]:
+
+  The most pernicious form this takes is "we can't change `$THING` because
+  that's just the way things are". Beyond the surface-level problem of
+  squelching analysis of `$THING` in good/bad terms because of a tautological
+  assertion of its truth value, it nihilistically sweeps away any reasonable
+  question of the upside risk of attempting to change `$THING` _and_ it's
+  almost always wrong, historically speaking.
+
+[^3]: It is always both, of course, for we are awash in a sea of opinions.

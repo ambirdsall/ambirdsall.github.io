@@ -40,8 +40,8 @@ real, my family photos aren't going to get millions of distinct views any day
 soon), there's no real downside[^2]. Besides:
 
 1. I have notions of extending the app with the ability to search and filter by
-  name, and rails makes building out the additional models down the line quite
-  straightforward; and
+   name, and rails makes building out the additional models down the line quite
+   straightforward; and
 1. I wanted to practice working in and testing rails code for professional reasons
 
 So fuck it, rails it is.
@@ -131,8 +131,12 @@ people in it.
 
 I'll dive into the design of the UI and of the server code soon, each in its own post.
 
-[^1]: I whipped up some `imagemagick` scripts to do batch resizing and
-    optimizing, and hosted all the photos as public-read files in an s3 bucket.
+[^1]:
 
-[^2]: Certainly nothing compared to sites that make you download megabytes of
-    javascript before the first paint on mobile.
+  I whipped up some `imagemagick` scripts to do batch resizing and
+  optimizing, and hosted all the photos as public-read files in an s3 bucket.
+
+[^2]:
+
+  Certainly nothing compared to sites that make you download megabytes of
+  javascript before the first paint on mobile.

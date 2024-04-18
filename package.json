@@ -5,13 +5,13 @@
   "version": "0.1.0",
   "author": "Alex Birdsall <ambirdsall@gmail.com>",
   "scripts": {
-    "build": "gatsby build",
-    "watch": "ls gatsby-config.js | entr -r gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "prettier",
+    "build":  "gatsby build",
+    "watch":  "ls gatsby-config.js | entr -r gatsby develop",
+    "format": "prettier --write \"src/**/*.{js,jsx,json,md}\"",
+    "check":  "prettier --check \"src/**/*.{js,jsx,json,md}\"",
+    "start":  "gatsby develop",
+    "serve":  "gatsby serve",
+    "test":   "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "deploy": "gatsby build && gh-pages -d public -b master"
   },
   "dependencies": {

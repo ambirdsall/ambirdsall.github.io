@@ -6,12 +6,12 @@ date: 2016-12-09 08:12:22 UTC
 ---
 
 > **AUTHOR'S NOTE:** this post is several years old, but it's a fun time
-capsule. Professionally I was but a babe, and had just left one of my first
-programming jobs, where I had encountered my first truly heinous codebase. I was
-almost comically thirsty for quality and blessed with a project that was
-conceptually reducible to a pure function. Nonetheless, what is describes
-remains my favorite programming workflow: in a split terminal window, running
-`vim` or `emacsclient -nw` on one side and unit tests on the other.
+> capsule. Professionally I was but a babe, and had just left one of my first
+> programming jobs, where I had encountered my first truly heinous codebase. I was
+> almost comically thirsty for quality and blessed with a project that was
+> conceptually reducible to a pure function. Nonetheless, what is describes
+> remains my favorite programming workflow: in a split terminal window, running
+> `vim` or `emacsclient -nw` on one side and unit tests on the other.
 
 So. It wasn't until a few months ago that I finally worked on a software
 project with full test coverage. Now that I have, I'm a little shocked and
@@ -36,11 +36,12 @@ So, to recap, I want
 1. fast tests that
 1. run automatically on file save
 1. run by a persistent server I can ogle in a tmux split while I vim away in
-the same terminal window.
+   the same terminal window.
 
 ## Fast tests
+
 The speed can be helped by `spring`, a gem that comes in rails' default
-`Gemfile` but which takes a bit of setup. Once you *have* set it up, though,
+`Gemfile` but which takes a bit of setup. Once you _have_ set it up, though,
 it's brilliant. After the first command which requires loading your rails app,
 `spring` keeps running as a background process, with your application
 environment loaded into memory. This means that the next time you run a command
@@ -59,6 +60,7 @@ massive test suite, though, the time savings might be worth switching over. As
 always, measure: the old command-line standby `time` is your friend.
 
 ## Running automatically on file save
+
 `guard` is the gem of choice here. It reads a `Guardfile` in the root of your
 project: in that `Guardfile`, which is written in a ruby DSL, you define what
 actions `guard` should run for given project files and which files to ignore.
@@ -187,7 +189,7 @@ Finished in 0.57317 seconds (files took 0.34346 seconds to load)
 spring rspec  0.27s user 0.08s system 25% cpu 1.398 total
 ```
 
-Either way, `spring` made the tests *much* faster after the first run, and
+Either way, `spring` made the tests _much_ faster after the first run, and
 those savings persist so long as the spring server is running.
 
 ## Setup Guard

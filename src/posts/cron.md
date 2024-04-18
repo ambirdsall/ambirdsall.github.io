@@ -1,12 +1,11 @@
 ---
 path: "/blag/cron-legacy"
-title: 'Cron: Legacy'
+title: "Cron: Legacy"
 topic: OSX < UNIX
 date: 2016-10-11 22:15:35 UTC
 ---
 
-I thought it would be cool to get my computer to automatically run `brew
-update` every so often in the background and email me if anything went wrong. I
+I thought it would be cool to get my computer to automatically run `brew update` every so often in the background and email me if anything went wrong. I
 thought it would be pretty simple! It was not, in fact, prety simple: I ran
 into a bunch of super frustrating errors, usually because I was taking some
 aspect of my normal terminal environment for granted (the `$PATH` variable that
@@ -103,10 +102,10 @@ terminal, then writing a cron command is just like writing any old terminal
 command. But I think that's the wrong approach, for two reasons:
 
 1. Anything more complicated than a one-liner (and even many of those), you're
-  better off just saving in a shell script
+   better off just saving in a shell script
 1. If you succeed, you've just hidden from yourself how things work under the
-  hood AND made it easier for part of your terminal-based life to get out of
-  sync.
+   hood AND made it easier for part of your terminal-based life to get out of
+   sync.
 
 If you feel a little lost when working with the full absolute paths of programs
 and would like a better handle on why different programs live in `/bin` vs
@@ -120,21 +119,22 @@ Disclaimer: we're skipping over some hoops I had to jump through to send actual
 emails to my gmail account from the command line (google it) and the way
 thornier issue of how to authenticate an SSH connection with github (which is
 where `brew` searches for updates) in a bare-bones scripting environment
-(google "askpass" or go *really* HAM and learn to use `expect`). So:
+(google "askpass" or go _really_ HAM and learn to use `expect`). So:
 
 ```bash
 0 * * * * /usr/local/bin/brew update
 ```
+
 will run `brew update` every hour on the hour, every single day, with zero
 conscious effort on my part. Awesome! Awesome.
 
-Wait, this *is* actually awesome, right?
+Wait, this _is_ actually awesome, right?
 
 ![A dumb cron error email](../../dumb-cron-error-email.png)
 
 Goddamn it.
 
-## Okay, let's just go through *one* of the dumb problems
+## Okay, let's just go through _one_ of the dumb problems
 
 Here's what was going on:
 
@@ -151,11 +151,12 @@ So:
 First, a quick note: I use `zsh`, not `bash`, and there are a few differences
 in how the two shells handle redirection, so if you use `bash`, you might
 need to make a few changes to get it working properly
-[^3].  Let's break this down:
+[^3]. Let's break this down:
 
 ```bash
 2>&1 > /dev/null
 ```
+
 The `2>&1` redirects `$STDERR` to `$STDOUT`. The `> /dev/null` redirects
 `$STDOUT` to the Pit of Despair. If you think this seems like it will redirect
 EVERYTHING to `/dev/null`, leaving you nothing useful to work with, you think
@@ -179,6 +180,7 @@ other errors pass through.
 ```bash
 >&2
 ```
+
 The last token there, `>&2`, redirects this filtered error stream from `$STDOUT`
 back to `$STDERR`; if anything else goes wrong, `cron` will email as it should,
 but it won't spam my inbox with nonsense just because I'm already good.
@@ -187,16 +189,24 @@ but it won't spam my inbox with nonsense just because I'm already good.
 
 Nice. Now go forth and automate the fuck out of some stuff!
 
-[^1]: Depending on your operating system, there might be both system-wide
-    crontabs and user-specific crontab files; I'm only going to discuss systems
-    with a single crontab file here.
+[^1]:
 
-[^2]: Setting `$SHELL`, `$PATH`, and `$MAILTO` correctly is quite important, and
-    worth some googling if you have questions.
+  Depending on your operating system, there might be both system-wide
+  crontabs and user-specific crontab files; I'm only going to discuss systems
+  with a single crontab file here.
 
-[^3]: If you don't know what shell you're using, it's probably `bash`, but you
-    can check by running `echo $SHELL`.
+[^2]:
 
-[^4]: There's no rule that says `$STDIN`, `$STDOUT`, and `$STDERR` are the only
-    [file descriptors](https://en.wikipedia.org/wiki/File_descriptor) your
-    process can have open, after all.
+  Setting `$SHELL`, `$PATH`, and `$MAILTO` correctly is quite important, and
+  worth some googling if you have questions.
+
+[^3]:
+
+  If you don't know what shell you're using, it's probably `bash`, but you
+  can check by running `echo $SHELL`.
+
+[^4]:
+
+  There's no rule that says `$STDIN`, `$STDOUT`, and `$STDERR` are the only
+  [file descriptors](https://en.wikipedia.org/wiki/File_descriptor) your
+  process can have open, after all.

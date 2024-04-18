@@ -22,10 +22,9 @@ What are those properties? Well:
     less&#x2026; magical.
 
 2.  Literally everything you can do in emacs, including really basic stuff like
-    "move the cursor forwards 15 characters" and "insert the text `function fo()
-    { return "haha this was not named foo" }`" can be scripted with emacs lisp.
+    "move the cursor forwards 15 characters" and "insert the text `function fo() { return "haha this was not named foo" }`" can be scripted with emacs lisp.
     Here:
-    
+
     ```emacs-lisp
     (forward-char 15)
     (insert "function fo() { return \"haha this was not named foo\" }")
@@ -44,7 +43,7 @@ What are those properties? Well:
     want.
 
 I know I used "literally" a lot in there, but lots of programs make sweeping
-"[verb] any [noun]!"-type claims that are only *mostly* true.
+"[verb] any [noun]!"-type claims that are only _mostly_ true.
 
 Anyway, once you internalize the logic of this system, you have superpowers! Did
 something weird just happen? Type `C-h k`, then hit the same keystroke again to
@@ -68,7 +67,7 @@ github.
 
 ## seriously, before you get started: remap caps lock to control
 
-Caps lock is useless. Control is *constantly* used in emacs. As a bonus, lots of
+Caps lock is useless. Control is _constantly_ used in emacs. As a bonus, lots of
 standard emacs shortcuts for text navigation (`C-a` to jump to start of line;
 `C-e` to jump to end of line; `C-k` to delete from the cursor to the end of text
 or the next newline, whichever comes first; `C-t` to "transpose" two characters
@@ -234,7 +233,7 @@ probably leave it behind as you internalize a more keyboard-driven workflow.
 Modes are how emacs lets you apply or remove related configurations and
 keybindings en masse. Functions that manipulate ruby code only make sense if
 you're editing a ruby file; so those keybindings only apply when `ruby-mode` is
-active. `ruby-mode` is a *major* mode.
+active. `ruby-mode` is a _major_ mode.
 
 Every buffer has one (1) major mode. This says what kind of thing that buffer
 is. Is it a file of some programming language? Each programming language has its

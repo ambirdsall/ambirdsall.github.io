@@ -32,17 +32,20 @@ and display the concept of "selection" in the page. Once we've got that, THEN
 we worry about what the event handlers should do besides update the UI.
 
 ## Clicking
+
 [Next](https://developer.mozilla.org/en-US/docs/Web/Events/click).
 
 ## Click-and-drag
+
 Not hard to find [serviceable
 libraries](https://jqueryui.com/selectable/#display-grid) here, either.
 
 ## Keyboard Navigation
+
 Okay, this is the fun one. Using the keyboard to move around means there needs
 to be some concept of an "in-focus" photo: the one to be selected or from which
 the user can move around the grid in any direction. That is, a
-[cursor](https://en.wikipedia.org/wiki/Cursor_(user_interface)).
+[cursor](<https://en.wikipedia.org/wiki/Cursor_(user_interface)>).
 
 #### What's it look like?
 
@@ -68,5 +71,3 @@ the selected image keeps a checkmark) or starts using arrow keys to move
 around.
 
 ## Okay, you selected some photos. That means...?
-
-
