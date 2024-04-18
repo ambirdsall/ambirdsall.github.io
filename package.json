@@ -6,7 +6,7 @@
   "author": "Alex Birdsall <ambirdsall@gmail.com>",
   "scripts": {
     "build": "gatsby build",
-    "watch": "ls gatsby-config.js src/visualizations/**/*.js | entr -r gatsby develop",
+    "watch": "ls gatsby-config.js | entr -r gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "gatsby develop",
     "serve": "gatsby serve",
