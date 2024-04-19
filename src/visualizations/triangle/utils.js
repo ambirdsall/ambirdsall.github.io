@@ -19,12 +19,11 @@ export const sample = arr => arr[Math.floor(Math.random() * arr.length)]
 // inspiration came from the emacs kill-ring
 // (https://www.gnu.org/software/emacs/manual/html_node/emacs/Kill-Ring.html)
 export class Ring {
-  constructor(initialContents = [], maxSize = 2000) {
+  constructor(initialContents = [], { maxSize, minSize }) {
     this.data = initialContents
-    this.actualMax = maxSize
-    // divide by two as a hack to simulate the default starting point of a range
-    // input
-    this.maxSize = maxSize / 2
+    this.actualMax = maxSize || 2000
+    this.actualMin = minSize || 60
+    this.maxSize = this.actualMax
   }
 
   removeOverflow() {
@@ -39,11 +38,21 @@ export class Ring {
     this.removeOverflow()
   }
 
-  resize(percent) {
-    const newMax = 60 + (percent / 100) * this.actualMax
-    this.maxSize = newMax
+  resize(proposedMax) {
+    const aboveMin = Math.max(proposedMax, this.actualMin)
+    const safeMax = Math.min(aboveMin, this.actualMax)
 
+    this.maxSize = safeMax
     this.removeOverflow()
+  }
+
+  resizeToPct(percent) {
+    const newMax = (percent / 100) * this.actualMax
+    this.resize(newMax)
+  }
+
+  resizeBy(count) {
+    this.resize(this.maxSize + count)
   }
 
   length() {

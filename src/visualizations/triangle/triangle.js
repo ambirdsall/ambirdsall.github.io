@@ -3,33 +3,53 @@ import { select, scaleLinear, interval } from "d3"
 import { Point, halfwayPoint, sample, Ring } from "./utils"
 
 export default class Triangle {
+  #el
+  #w = 433 * 0.5
+  #h = 300 * 0.5
+  #startingSliderValue = 18
+  #maxSize = 2000
+  #minSize = 60
+
   constructor(el) {
-    const w = 433 * 0.5
-    const h = 300 * 0.5
-    const padding = 10
-    // this looked nice in manual testing
-    const startingSliderValue = 18
+    this.#el = el
+    this.initPoints()
+    this.initVisualization()
 
-    /* DATA SETUP */
-    // start with the three vertices of the triangle
-    this.vertices = [Point(0, 0), Point(w, 0), Point(w / 2, h)]
+    this.resize(this.#startingSliderValue)
+  }
 
-    // the const reference exists apart from the property so that it can be
-    // passed to the input update function without messing with its `this` value
-    const points = new Ring([...this.vertices])
-    this.points = points
+  initPoints() {
+    this.vertices = [
+      Point(0, 0),
+      Point(this.#w, 0),
+      Point(this.#w / 2, this.#h),
+    ]
+
+    this.points = new Ring([...this.vertices], {
+      maxSize: this.#maxSize,
+      minSize: this.#minSize,
+    })
 
     // Seed the triangle with a starting point in the middle
-    this.current = Point(w / 2, h / 2)
+    this.current = Point(this.#w / 2, this.#h / 2)
     this.points.push(this.current)
+  }
 
-    /* VISUALIZATION SETUP */
-    this.svg = select(el)
+  initVisualization() {
+    const padding = 10
+    // capture a reference which can be used with another `this`
+    const resize = this.resize
+    // another `this`
+    function onSliderInput() {
+      resize(+this.value)
+    }
+
+    this.svg = select(this.#el)
       .insert("svg", ".name")
-      .attr("width", w)
-      .attr("height", h)
+      .attr("width", this.#w)
+      .attr("height", this.#h)
 
-    const sliderContainer = select(el)
+    const sliderContainer = select(this.#el)
       .insert("div")
       .attr("class", "resizer")
       .style("margin-top", "2em")
@@ -47,23 +67,24 @@ export default class Triangle {
       .attr("id", "triangle-point-selector")
       .style("justify-self", "center")
       .style("width", "216.5px")
-      .attr("value", `${startingSliderValue}`)
-      .on("input", function() {
-        points.resize(+this.value)
-      })
+      .attr("value", `${this.#startingSliderValue}`)
+      .on("input", onSliderInput)
       .append("span")
       .text(function() {
         return this.value
       })
 
     this.x = scaleLinear()
-      .domain([0, w])
-      .range([padding, w - padding])
+      .domain([0, this.#w])
+      .range([padding, this.#w - padding])
     this.y = scaleLinear()
-      .domain([0, w])
-      .range([padding, w - padding])
+      .domain([0, this.#w])
+      .range([padding, this.#w - padding])
+  }
 
-    points.resize(startingSliderValue)
+  resize = percent => {
+    const newMax = (percent / 100) * this.#maxSize
+    this.points.resize(newMax)
   }
 
   update() {
@@ -83,7 +104,7 @@ export default class Triangle {
     )
   }
 
-  next() {
+  addNextPoint() {
     const previousPoint = this.current
     const randomVertex = sample(this.vertices)
     this.current = halfwayPoint(previousPoint, randomVertex)
@@ -91,9 +112,12 @@ export default class Triangle {
   }
 
   drawSomeDots(stepSize) {
-    for (var i = 0; i < stepSize; ++i) this.next()
+    for (var i = 0; i < stepSize; ++i) this.addNextPoint()
+    this.correctSizeBy(stepSize)
     this.update()
   }
+
+  correctSizeBy(stepSize) {}
 
   run() {
     interval(() => this.drawSomeDots(11), 10)
