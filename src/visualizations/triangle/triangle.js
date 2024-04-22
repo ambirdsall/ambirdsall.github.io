@@ -9,6 +9,7 @@ export default class Triangle {
   #startingSliderValue = 18
   #maxSize = 2000
   #minSize = 60
+  #activeMaxSize = this.#maxSize
 
   constructor(el) {
     this.#el = el
@@ -84,7 +85,7 @@ export default class Triangle {
 
   resize = percent => {
     const newMax = (percent / 100) * this.#maxSize
-    this.points.resize(newMax)
+    this.#activeMaxSize = this.points.safeMax(newMax)
   }
 
   update() {
@@ -112,12 +113,27 @@ export default class Triangle {
   }
 
   drawSomeDots(stepSize) {
-    for (var i = 0; i < stepSize; ++i) this.addNextPoint()
     this.correctSizeBy(stepSize)
+    for (var i = 0; i < stepSize; ++i) this.addNextPoint()
     this.update()
   }
 
-  correctSizeBy(stepSize) {}
+  correctSizeBy(stepSize) {
+    const delta = this.#activeMaxSize - this.points.maxSize
+    if (delta > 0) {
+      // #activeMaxSize is bigger, grow this.points.maxSize
+      // ...but not too much
+      const safeChange = Math.min(stepSize, delta)
+
+      this.points.resizeBy(safeChange)
+    } else if (delta < 0) {
+      // #activeMaxSize is smaller, shrink this.points.maxSize
+      // ...but not too much
+      const safeChange = 0 - Math.min(stepSize, 0 - delta)
+
+      this.points.resizeBy(safeChange)
+    }
+  }
 
   run() {
     interval(() => this.drawSomeDots(11), 10)

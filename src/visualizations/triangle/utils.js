@@ -26,7 +26,7 @@ export class Ring {
     this.maxSize = this.actualMax
   }
 
-  removeOverflow() {
+  #removeOverflow() {
     // Drop the oldest item(s) as needed. Uses a while loop to handle the case
     // where the maxSize is dynamically updated
     while (this.data.length >= this.maxSize) this.data.shift()
@@ -35,24 +35,32 @@ export class Ring {
   push(item) {
     this.data.push(item)
 
-    this.removeOverflow()
+    this.#removeOverflow()
   }
 
-  resize(proposedMax) {
+  safeMax(proposedMax) {
     const aboveMin = Math.max(proposedMax, this.actualMin)
     const safeMax = Math.min(aboveMin, this.actualMax)
 
-    this.maxSize = safeMax
-    this.removeOverflow()
+    return safeMax
+  }
+
+  resize(newMax) {
+    const validatedMax = this.safeMax(newMax)
+
+    this.maxSize = validatedMax
+    this.#removeOverflow()
+
+    return validatedMax
   }
 
   resizeToPct(percent) {
     const newMax = (percent / 100) * this.actualMax
-    this.resize(newMax)
+    return this.resize(newMax)
   }
 
   resizeBy(count) {
-    this.resize(this.maxSize + count)
+    return this.resize(this.maxSize + count)
   }
 
   length() {
