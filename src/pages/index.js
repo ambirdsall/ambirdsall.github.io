@@ -60,7 +60,7 @@ const IndexPage = ({
   // Just by title? Title and category? Title, category, AND FULL TEXT???? That may be flying too
   // close to the sun.
   return (
-    <Layout defaultHeader={true}>
+    <Layout>
       <SEO title="Home" />
       <div
         style={{

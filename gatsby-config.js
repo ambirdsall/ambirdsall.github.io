@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `hi, my name is Alex Birdsall`,
+    title: `I'm Alex Birdsall, I make websites`,
     description: `This is a blog. It's mainly about web programming right now, I guess.`,
     author: `@ambirdsall`,
   },
@@ -37,11 +37,11 @@ module.exports = {
             resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 1200,
-            }
+            },
           },
           `gatsby-remark-prismjs`,
-        ]
-      }
+        ],
+      },
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
