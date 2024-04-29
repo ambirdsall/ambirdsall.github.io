@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 import PostLink from "../components/post-link"
 import Triangle from "../components/triangle"
 import newestFirst from "../utils/newest-first"
@@ -60,7 +60,7 @@ const IndexPage = ({
   // close to the sun.
   return (
     <Layout>
-      <SEO title="Home" />
+      <Seo title="Home" />
       <div
         style={{
           margin: "auto",
