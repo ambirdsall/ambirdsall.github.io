@@ -4,16 +4,19 @@ import numberToColor from "../utils/number-to-color"
 
 import "./post-link.css"
 
-const year = node => new Date(node.frontmatter.date).getFullYear()
+const year = date => new Date(date).getFullYear()
+const datestamp = date => new Date(date).toISOString().slice(0, 10)
 
-const PostLink = ({ post }) => (
+const PostLink = ({
+  post: {
+    frontmatter: { path, date, title },
+  },
+}) => (
   <div className="post-link">
-    <Link
-      to={post.frontmatter.path}
-      style={{ color: numberToColor(year(post)) }}
-    >
-      {post.frontmatter.title}
+    <Link to={path} style={{ color: numberToColor(year(date)) }}>
+      {title}
     </Link>
+    <span className="post-link-date">{datestamp(date)}</span>
   </div>
 )
 export default PostLink
