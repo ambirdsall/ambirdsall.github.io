@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
-import Legend from "../components/year-color-legend"
 import SEO from "../components/seo"
 import PostLink from "../components/post-link"
 import Triangle from "../components/triangle"
@@ -70,7 +69,6 @@ const IndexPage = ({
       >
         <Triangle />
         <h2 className="subtitle">html &lt; thoughts &gt; browser</h2>
-        <Legend />
         {Posts}
       </div>
     </Layout>
