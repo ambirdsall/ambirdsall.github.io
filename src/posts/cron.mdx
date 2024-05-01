@@ -21,17 +21,15 @@ your own back.
 Cron is an old unix program used to run commands repeatedly on a schedule.
 There are two main parts to the cron system: there is the cron daemon, a
 program that (once set up) is constantly running in the background; and there
-is the crontab file, which keeps the schedule of programs to run <%=
-[^1]. Once every minute on the minute,
-assuming your computer is awake and running, the cron daemon (the system
-automatically launches `cron` after you save your first valid crontab file, and
-on boot afterwards) evaluates each line of all of the relevant installed
-crontab files, running any commands whose schedules match on the current
-minute. Any output to `$STDERR` is assumed to be an error and is mailed to you:
-`cron`'s default mailing strategy is a local "mailbox" originally used for
-pre-internet user-to-user messages within a multi-user system, but if you're
-fancy with the google, it's pretty manageable to teach it to use something like
-gmail instead.
+is the crontab file, which keeps the schedule of programs to run [^1]. Once every minute
+on the minute, assuming your computer is awake and running, the cron daemon (the system
+automatically launches `cron` after you save your first valid crontab file, and on boot
+afterwards) evaluates each line of all of the relevant installed crontab files, running
+any commands whose schedules match on the current minute. Any output to `$STDERR` is
+assumed to be an error and is mailed to you: `cron`'s default mailing strategy is a local
+"mailbox" originally used for pre-internet user-to-user messages within a multi-user
+system, but if you're fancy with the google, it's pretty manageable to teach it to use
+something like gmail instead.
 
 ## The `crontab` file
 
@@ -81,7 +79,7 @@ add to `~/.vimrc`:
 autocmd filetype crontab setlocal nobackup nowritebackup
 ```
 
-<%= section %q{`cron` doesn't have a lot of things I took for granted about the shell environment} %>
+## `cron` doesn't have a lot of things I took for granted about the shell environment
 
 This isn't that bad to deal with once you get your head around it, but it took
 me a while to realize just how much implicit environment I rely on when working
@@ -186,8 +184,6 @@ back to `$STDERR`; if anything else goes wrong, `cron` will email as it should,
 but it won't spam my inbox with nonsense just because I'm already good.
 
 ### NICE.
-
-Nice. Now go forth and automate the fuck out of some stuff!
 
 [^1]:
 

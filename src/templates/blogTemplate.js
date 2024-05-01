@@ -6,9 +6,10 @@ import "./blog-post.css"
 
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
+  children,
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { mdx } = data // data.markdownRemark holds your post data
+  const { frontmatter } = mdx
   return (
     <>
       <Header plaid withIcons={false}>
@@ -19,10 +20,7 @@ export default function Template({
       </Header>
       <div className="blog-post-container">
         <div className="blog-post">
-          <div
-            className="blog-post-content"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className="blog-post-content">{children}</div>
         </div>
       </div>
     </>
@@ -30,8 +28,7 @@ export default function Template({
 }
 export const pageQuery = graphql`
   query($path: String!) {
-    markdownRemark(frontmatter: { path: { eq: $path } }) {
-      html
+    mdx(frontmatter: { path: { eq: $path } }) {
       frontmatter {
         date
         path

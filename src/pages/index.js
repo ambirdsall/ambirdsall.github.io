@@ -11,7 +11,7 @@ import "./index.css"
 
 const IndexPage = ({
   data: {
-    allMarkdownRemark: { edges },
+    allMdx: { edges },
     site: {
       siteMetadata: { title },
     },
@@ -79,7 +79,7 @@ export default IndexPage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           id

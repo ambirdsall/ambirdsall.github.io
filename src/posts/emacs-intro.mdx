@@ -81,7 +81,7 @@ up making weird claw hands all the time.
 Lots of people will tell you that stock emacs sucks. That is because stock emacs
 kind of sucks. We can do better than that.
 
-### Install a version of emacs that isn't awful<a id="sec-3-1"></a>
+### Install a version of emacs that isn't awful
 
 If you're on a mac, there is an `emacs` pre-installed, but it's like 10 years
 out of date and only works in the terminal. It's good for one thing:
@@ -126,26 +126,27 @@ automatically load that code.
 
 #### If you like piña coladas, and getting stuck in a vim session
 
-My favorite is Spacemacs (<http://spacemacs.org/>). It's also probably the most
-popular, and therefore the best supported, with the most stack overflow answers
-a quick google away. Spacemacs is written by and for people who like vim's
+My favorite is [doom emacs](https://github.com/doomemacs/doomemacs). It's quite possibly the most
+popular, with excellent documentation and community. Doom is written by and for people who like vim's
 command language (which is an insanely good fit for emacs' keybinding model,
 actually), but you don't need to use it in a vimmy way. Most people do, because
-it's insanely good like that, but you do you. Spacemacs has a wonderful system
-of mnemonic commands that you access via a universal prefix key, which is the
-space bar if you use vim keybindings and something else if you don't. I'd
-honestly recommend spacemacs even if you choose not to use vim bindings at all.
+it's insanely good like that, but you do you. Doom has a wonderful system
+of mnemonic commands that you access via a universal prefix key (inspired by [spacemacs](https://github.com/syl20bnr/spacemacs), which is also quite good), which is the
+space bar if you use vim keybindings and something else if you don't. Even if you choose
+not to use vim bindings at all, I'd recommend doom: the out-of-the-box experience is miles
+better than stock emacs, it's well-organized and documented, and Henrik's hand-rolled,
+nix-inspired package management system absolutely shines if you ever want to keep things
+in sync between a personal and work computer.
 
 #### If you want something more traditionally emacsy, because you don't give a fuck about vim
 
-A venerable starter kit that's a bit more mainline emacs is Prelude
-(<https://github.com/bbatsov/prelude>). I haven't used it, so I can't comment on
-it much, but I've heard very good things, and its primary maintainer is pretty
-legit.
+A venerable starter kit that's a bit more mainline emacs is
+[Prelude](https://github.com/bbatsov/prelude). I haven't used it, so I can't comment on it
+much, but I've heard very good things, and its primary maintainer is pretty legit.
 
 #### If you want to be FANCY
 
-A new one is Centaur (<https://github.com/seagle0128/.emacs.d>). Centaur is very
+A new one is [Centaur](https://github.com/seagle0128/.emacs.d). Centaur is very
 pretty and into normal modern UI stuff like file trees with icons and tabs and
 stuff.
 
@@ -167,7 +168,9 @@ By convention, emacs documents keystrokes (in all of its documentation and when
 reporting what keys a function is bound to) a certain way. I've already used it
 above. Here's a more complicated keybinding:
 
-> `C-x c`
+```
+C-x c
+```
 
 This means "hold control and type x; then type c". You never hit control except
 in combination with other keys, so the "c" character is unambiguous in both
@@ -275,4 +278,4 @@ Honest-to-god: take 30ish minutes of your life (you don't need to watch the Q
 and A for pete's sake) and watch this presentation that Carsten Dominik, the
 German astronomer who authored org-mode, gave at google:
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oJTwQvgfgMM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJTwQvgfgMM" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>

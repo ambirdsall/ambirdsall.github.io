@@ -21,9 +21,9 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-plugin-mdx`,
       options: {
-        plugins: [
+        gatsbyRemarkPlugins: [
           {
             resolve: `gatsby-remark-footnotes`,
             options: {
@@ -39,7 +39,7 @@ module.exports = {
               maxWidth: 1200,
             },
           },
-          `gatsby-remark-prismjs`,
+          // `gatsby-remark-prismjs`,
         ],
       },
     },
