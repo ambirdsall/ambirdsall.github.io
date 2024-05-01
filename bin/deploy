@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+
+async function main() {
+  const ghpages = await import("gh-pages")
+  const { default: c } = await import("chalk")
+  console.log(`
+       ${c.white("_") + c.red("~")}
+    ${c.white("_") + c.red("~") + c.white(" )_)_") + c.red("~")}
+    ${c.white(")_))_))_)")}
+    ${c.dim.yellow("_!__!__!_")}
+    ${c.dim.yellow("\\______t/")}
+  ${c.blue("~~~~~~~~~~~~~")}`)
+
+  await ghpages.publish("public", {
+    branch: "master",
+    cname: "ambirdsall.com",
+  })
+
+  console.log("All done!")
+}
+
+main()
