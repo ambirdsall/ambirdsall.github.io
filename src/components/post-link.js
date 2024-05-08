@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from "gatsby"
-import numberToColor from "../utils/number-to-color"
 
 import "./post-link.css"
 
@@ -13,9 +12,7 @@ const PostLink = ({
   },
 }) => (
   <div className="post-link">
-    <Link to={path} style={{ color: numberToColor(year(date)) }}>
-      {title}
-    </Link>
+    <Link to={path}>{title}</Link>
     <span className="post-link-date">{datestamp(date)}</span>
   </div>
 )

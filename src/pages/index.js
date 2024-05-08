@@ -62,16 +62,9 @@ const IndexPage = ({
   return (
     <Layout>
       <Seo title="Home" />
-      <div
-        style={{
-          margin: "auto",
-          width: "fit-content",
-        }}
-      >
-        <Triangle />
-        <h2 className="subtitle">html &lt; thoughts &gt; browser</h2>
-        {Posts}
-      </div>
+      <Triangle />
+      <h2 className="subtitle">html &lt; thoughts &gt; browser</h2>
+      {Posts}
     </Layout>
   )
 }
