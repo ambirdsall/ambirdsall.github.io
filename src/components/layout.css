@@ -1,7 +1,7 @@
 /* @import url('https://fonts.googleapis.com/css?family=Muli') */
 
 html {
-  font-family: Muli,sans-serif;
+  font-family: Muli, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
@@ -9,15 +9,13 @@ body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(../../static/bg.png)
+  background: url(../../static/bg.png);
 }
 article,
 aside,
 details,
 figcaption,
 figure,
-footer,
-header,
 main,
 menu,
 nav,
@@ -625,14 +623,14 @@ pre tt:after {
 }
 
 .container {
-    margin: 0 auto;
-    max-width: 70%;
-    padding: 0px 1.0875rem 1.45rem;
-    padding-top: 0;
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 0px 1.0875rem 1.45rem;
+  padding-top: 0;
 }
 
 @media only screen and (max-width: 480px) {
-    .container {
-        max-width: 95%;
-    }
+  .container {
+    max-width: 95%;
+  }
 }

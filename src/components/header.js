@@ -25,13 +25,7 @@ const IconBar = _props => (
 
 export const Header = ({ children, plaid, withIcons }) => (
   <header className={plaid ? "plaid" : ""}>
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `${plaid ? "1.45rem" : 0} 1.0875rem`,
-      }}
-    >
+    <div className="header-content">
       {children}
       {withIcons ? <IconBar /> : <Nothing />}
     </div>
@@ -40,14 +34,7 @@ export const Header = ({ children, plaid, withIcons }) => (
 
 export const Footer = ({ children, withIcons }) => (
   <footer className="plaid">
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `2.45rem 1.0875rem`,
-        textAlign: "center",
-      }}
-    >
+    <div className="footer-content">
       {withIcons ? <IconBar /> : <Nothing />}© {new Date().getFullYear()} Alex
       Birdsall
       {children}
