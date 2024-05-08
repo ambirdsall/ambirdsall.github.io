@@ -14,6 +14,7 @@ const IndexPage = ({
     allMdx: { edges },
     site: {
       siteMetadata: { title },
+      host,
     },
   },
 }) => {
@@ -21,7 +22,7 @@ const IndexPage = ({
   // Is it inefficient to sort the entire topic each time a single post is added? Yes.
   // Do I care, given that the slow stuff happens once, at build time? No.
   const postsByTopic = edges
-    .filter(e => !e.node.frontmatter.draft)
+    .filter(e => host === "localhost" || !e.node.frontmatter.draft)
     .map(e => e.node)
     .reduce((topics, n) => {
       const { topic } = n.frontmatter
@@ -98,6 +99,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
       }
+      host
     }
   }
 `
