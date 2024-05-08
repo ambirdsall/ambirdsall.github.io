@@ -16,6 +16,7 @@ export default class Triangle {
     this.initPoints()
     this.initVisualization()
 
+    this.points.resize(this.#startingSliderValue)
     this.resize(this.#startingSliderValue)
   }
 
