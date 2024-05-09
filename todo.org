@@ -1,0 +1,12 @@
+#+title: Todo
+
+* DONE get basic mdx working
+
+* TODO fix footnotes
+
+* TODO add back syntax highlighting in an mdx-compatible way
+
+* posting and toasting
+** own the libs [/]
+*** TODO ts-pattern
+*** TODO jsx
