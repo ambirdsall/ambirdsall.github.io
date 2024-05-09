@@ -5,6 +5,10 @@
   margin: 3em 0 0;
 }
 
+.triangle.big-bottom {
+  margin-bottom: 2em;
+}
+
 .triangle .resizer {
   /* it's not an accident, it's an indulgence */
   opacity: 0;
