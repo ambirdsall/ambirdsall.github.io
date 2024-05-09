@@ -18,6 +18,7 @@ module.exports = {
       options: {
         name: `blog-posts`,
         path: `${__dirname}/src/posts`,
+        ignore: process.env.NODE_ENV === `production` ? [`**/*.draft.mdx`] : [],
       },
     },
     {
