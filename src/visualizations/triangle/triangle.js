@@ -115,7 +115,7 @@ export default class Triangle {
 
   drawSomeDots(stepSize) {
     this.correctSizeBy(stepSize)
-    for (var i = 0; i < stepSize; ++i) this.addNextPoint()
+    for (let i = 0; i < stepSize; ++i) this.addNextPoint()
     this.update()
   }
 

@@ -1,0 +1,104 @@
+---
+path: "/blag/on-the-sierpinski-triangle-thing"
+title: "On that fractal triforce thing there"
+topic: M E T A B L A G
+date: 2024-05-01 14:38:05 UTC
+---
+
+import Triangle from "../components/triangle"
+import Vertices from "../components/vertices"
+import StaticTriangle from "../components/static-triangle"
+
+<Triangle />
+
+Play around with it a little—it's kind of cool, right? I can never decide if I prefer the
+sparsely- and densely-populated version.
+
+It's also sentimental for me. Let's go back in time a little: in 2013, I was earning an
+extremely meager living running an after-school art program at a local elementary school.
+My original dream of a tenure-track professorship in the humanities had foundered on the
+sharp realities of the great recession and the increasingly exploitative academic job
+market for teachers of every subject that lacked a corresponding industry to provide
+negotiating leverage. I had no clue what might be a sustainable long-term career, but I
+knew that status quo wasn't it; and though I love children, after spending so many of my
+waking hours dealing with 10-year-olds and their  10-year-old thoughts, I could feel the
+sharp edges of my brain beginning to dull [^1]. I needed to find something I could do with
+my brain that would be 
+1) difficult enough to be interesting, and
+2) remunerative;
+
+and by and by my search lead me to enroll in CS101 at a local community college. I didn't enroll with the thought of becoming a programmer per se—I just thought it would help if I ended up doing any kind of work crunching numbers. But I loved it, I was good at it, and it really did transform my life. But this isn't about all that: this is about an Extremely Cool demo the teacher ran one day in class.
+
+## The setup
+The teacher walked us through a very simple C++ program. It imported some graphics library
+headers, the details of which were glossed over (it was a 101 course, after all), and then
+defined a very simple initial state:
+1) a small cartesian grid
+1) an array of three points on that grid corresponding to the vertices of a triangle, each defined as a two-element array of `float`s
+1) another point near the middle of the other three, assigned to a variable like `currentPoint`
+
+If we were to stop here and only render the initial state, it would look something like this:
+
+<Vertices />
+
+Not very exciting yet, I admit.
+
+## Complex behaviors can emerge from simple rules, or: let's hang some mathy flesh on those bones
+To expand on this rather spartan, boring starting point, there was a single `for` loop, which did the following steps a few thousand times:
+1) select a random element from the array of vertices
+1) calculate the coordinates of the point halfway between `currentPoint` and that vertex
+1) reassign `currentPoint` to that new point
+1) draw the new `currentPoint`
+
+Very simple stuff, maybe 15 lines of code total. A well-read observer may recognize this
+as a simple variant of [the chaos game](https://en.wikipedia.org/wiki/Chaos_game)
+algorithm; at the time, I didn't recognize shit. But I am the child of a math teacher and
+an older millenial who has been playing Zelda games since the delirious days of Clinton vs
+Dole vs Perot, short pants, and gold NES cartridges: the teacher compiled the script, ran
+the binary, and it sparked joy:
+
+<StaticTriangle />
+
+## But is it Web Scale?
+So, we have the core algorithm for drawing a cool little fractal triforce. Now to stick in in a website!
+
+I made a few artistic choices:
+1) inverting the triangle makes it look like it's pointing down at the content below in a nice way
+1) naively adding points fills in the triangle with monotonically increasing density, the visual effect of which has sharply diminishing returns; pushing the points into a FIFO queue with a max size preserves the negative space it needs to look sparse, dynamic, and alive
+1) I wanted users to be able to  interactively adjust the number of dots in the visualization: it leans into the dynamic nature of the web as a medium; it allows folks to experience both the frenetic movement and staticky geometric ambiguity of a sparsely-populated queue of points and the fractal beauty of a denser one; and it shows potential employers that I am reasonably competent at connecting user inputs to dynamic logic, which, I mean, ain't nothing.
+1) The gold color (`#aa9668`, for those of you who are curious but don't actually want to pin down an ephemeral svg `<circle>` in your browser's devtools) goes nicely with the rest of the site
+
+The last order of business, then, was to actually render those dots. This site is built on
+top of a react-based static site generator; while there is a lot to like about react, it's
+not a great choice for making performant little mathy visualizations. I decided to use d3
+for that. However, d3 and react both want to control the rendering of your html. How to
+make them play nicely together? Like this:
+
+```js
+export default function D3Wrapper({ d3RenderFn, className }) {
+  // d3 needs an actual DOM node to do its thing on, so let's give it one
+  const el = useRef(null)
+
+  // Render the d3 visualization. If the d3 visualization is already in the DOM, though,
+  // do not recreate it; this avoids duplicated element shenanigans with hot module
+  // reloading during development.
+  useEffect(() => {
+    if (!window.d3Embeds) {
+      window.d3Embeds = new Map()
+    }
+
+    if (!window.d3Embeds.get(d3RenderFn)) {
+      d3RenderFn(el.current)
+      window.d3Embeds.set(d3RenderFn, true)
+    }
+  }, [d3RenderFn])
+
+  return <div className={className} ref={el} />
+}
+```
+
+And really, that's it. A cute little bit of web-based art that makes me happy.
+
+[^1]: I should note here that this is not a fundamental fact of dealing with kids: parents and school teachers have the chance (the obligation, even) to engage more deeply with their kids, and tracking those longer-term educational goals to the kids' intellectual and emotional development provides as deep an intellectual challenge as you care to make it. Hanging out for two hours doodling on butcher paper and helping with the stultifying abolination that is second-grade homework [^2], though? I needed more.
+
+[^2]: Up until _at least_ the start of adolescence, children's intellectual and social development requires free, exploratory play, not rote drilling of skills; and their emotional and executive regulation is not strong enough to get any long-term benefit from the discipline of finishing their daily assignments. But by all means, if you want to force parents to force their kids into boring, tedious chorework, keep it coming!
