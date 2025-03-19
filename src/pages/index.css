@@ -1,35 +1,35 @@
 body {
-    color: #246;
-    font-family: "Muli", sans-serif;
+  color: #246;
+  font-family: "Muli", sans-serif;
 }
 
 h2 {
-    font-weight: 400;
-    font-size: 2em;
-    margin: 0.5em 0;
-    color: #888;
+  font-weight: 400;
+  font-size: 2em;
+  margin: 0.5em 0;
+  color: #888;
 }
 
 .subtitle::before {
-    color: #ddd;
-    content: "〉";
+  color: #ddd;
+  content: "〉";
 }
 
 @media only screen and (max-width: 480px) {
-    h2 {
-        font-size: 1.6em;
-    }
-    .subtitle {
-        text-align: center;
-    }
+  h2 {
+    font-size: 1.6em;
+  }
+  .subtitle {
+    text-align: center;
+  }
 }
 
 h3 {
-    font-weight: 400;
-    font-size: 1.2em;
-    margin-bottom: 0.3em;
+  font-weight: 400;
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
 }
 
 a {
-    color: #024;
+  color: #024;
 }
