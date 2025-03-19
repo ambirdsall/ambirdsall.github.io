@@ -1,4 +1,7 @@
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+  },
   siteMetadata: {
     title: `I'm Alex Birdsall, I make websites`,
     description: `This is a blog. It's mainly about web programming right now, I guess.`,
