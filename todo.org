@@ -1,12 +1,26 @@
 #+title: Todo
 
-* DONE get basic mdx working
+* home page
+** DONE add link to resume
+** I say I make music; why not use this site to put something online?
 
-* TODO fix footnotes
-
-* TODO add back syntax highlighting in an mdx-compatible way
-
-* posting and toasting
-** own the libs [/]
-*** TODO ts-pattern
-*** TODO jsx
+* blog posts
+** TODO fix footnotes
+** TODO add back syntax highlighting in an mdx-compatible way
+** get org-mode posting in order
+*** automate exporting with =emacs -Q= shell script
+*** how to export tho?
+**** avoid boilerplate properties in post files
+***** set all export vars :: =.dir-locals.el= or explicitly bound in elisp script?
+**** option :: ox-html export
+***** minimal html, please, disable all OOTB nonsense
+***** how to define custom layout and styles?
+***** how to /share/ custom layout and styles?
+** posting and toasting
+*** TODO static jsx build of resume
+*** own the libs
+**** TODO ts-pattern
+**** TODO jsx
+*** TODO useful types of dialogue with an LLM
+* ngl, I'm really not feeling gatsby anymore
+** static jsx build like resume?
