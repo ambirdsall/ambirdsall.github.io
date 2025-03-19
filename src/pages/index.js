@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
@@ -10,19 +10,41 @@ import newestFirst from "../utils/newest-first"
 
 import "./index.css"
 
-const qp = new URLSearchParams(document.location.search)
-
 const IntroductoryHeader = () => {
-  let SubtleSelfPromotion = Nothing
+  // this whole song and dance is an obnoxious, though temporary, hack
+  const [selfPromotional, setSelfPromotional] = useState(false)
 
-  if (qp.get("resume")) {
-    SubtleSelfPromotion = () => (
+  useEffect(() => {
+    const qp = new URLSearchParams(document.location.search)
+    let ms = 0
+    const step = 333
+    const max = 15000
+
+    // cf. song and dance above
+    const eachSecond = setInterval(() => {
+      ms += step
+      console.log("blip")
+      if (qp.get("resume")) {
+        setSelfPromotional(true)
+      }
+
+      if (ms > max) {
+        clearInterval(eachSecond)
+      }
+    }, step)
+
+    return () => clearInterval(eachSecond)
+  }, [])
+
+  const SubtleSelfPromotion = () =>
+    selfPromotional ? (
       <aside>
         (<a href="/resume">Here is my resumé</a>, if you're a software engineer
         hiring sort)
       </aside>
+    ) : (
+      <Nothing />
     )
-  }
 
   return (
     <introduction>
