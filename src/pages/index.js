@@ -1,59 +1,24 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import Nothing from "../components/nothing"
 import PostLink from "../components/post-link"
 import Triangle from "../components/triangle"
 import newestFirst from "../utils/newest-first"
 
 import "./index.css"
 
-const IntroductoryHeader = () => {
-  // this whole song and dance is an obnoxious, though temporary, hack
-  const [selfPromotional, setSelfPromotional] = useState(false)
-
-  useEffect(() => {
-    const qp = new URLSearchParams(document.location.search)
-    let ms = 0
-    const step = 333
-    const max = 15000
-
-    // cf. song and dance above
-    const eachSecond = setInterval(() => {
-      ms += step
-      console.log("blip")
-      if (qp.get("resume")) {
-        setSelfPromotional(true)
-      }
-
-      if (ms > max) {
-        clearInterval(eachSecond)
-      }
-    }, step)
-
-    return () => clearInterval(eachSecond)
-  }, [])
-
-  const SubtleSelfPromotion = () =>
-    selfPromotional ? (
-      <aside>
-        (<a href="/resume">Here is my resumé</a>, if you're a software engineer
-        hiring sort)
-      </aside>
-    ) : (
-      <Nothing />
-    )
-
-  return (
-    <introduction>
-      <h1>hello, I'm Alex Birdsall</h1>
-      <p>I make music, cook food, and build websites and computer programs</p>
-      <SubtleSelfPromotion />
-    </introduction>
-  )
-}
+const IntroductoryHeader = () => (
+  <introduction>
+    <h1>hello, I'm Alex Birdsall</h1>
+    <p>I make music, cook food, and build websites and computer programs</p>
+    <aside>
+      (<a href="/resume">Here is my resumé</a>, if you're a software engineer
+      hiring sort)
+    </aside>
+  </introduction>
+)
 
 // Group the posts by topic, with each topic sorted by recency of post.
 const postsByTopic = postNodes => {
