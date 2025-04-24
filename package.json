@@ -44,7 +44,8 @@
     "babel-preset-gatsby": "^3.13.2",
     "chalk": "^5.3.0",
     "gh-pages": "^6.1.1",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "typescript": "^5.8.3"
   },
   "license": "MIT",
   "repository": {
