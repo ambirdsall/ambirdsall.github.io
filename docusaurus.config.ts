@@ -51,7 +51,7 @@ const config: Config = {
           },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: "https://github.com/ambirdsall/ambirdsall.github.io",
+          // editUrl: "https://github.com/ambirdsall/ambirdsall.github.io",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
