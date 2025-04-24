@@ -11,7 +11,7 @@ async function main() {
     ${c.dim.yellow("\\______t/")}
   ${c.blue("~~~~~~~~~~~~~")}`)
 
-  await ghpages.publish("public", {
+  await ghpages.publish("build", {
     branch: "master",
     cname: "ambirdsall.com",
   })

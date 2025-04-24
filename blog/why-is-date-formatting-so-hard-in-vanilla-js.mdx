@@ -1,0 +1,55 @@
+---
+slug: vanilla-js-date-formatting
+title: Why is date formatting so hard in vanilla JS?
+topic: javascript
+date: 2024-08-05
+---
+
+> Editor's note: this was written before the new, long-overdue [`Temporal`
+> API](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Temporal)
+> was announced. Better days are almost here!
+
+Suppose you want to deal with some dates while building a website. You don't want to roll
+your own input parsing, so you use `new Date(inputDateString)`; and you want to output
+datestrings in a format that's clear, readable[^1], and (while we're making a wish list)
+sorts the same both lexically and chronologically. That is: you want `YYYY-MM-DD`. Surely
+_that_ is built in, right?
+
+## wrong
+
+Oh. Wait, really? Ugh, fine.{/* truncate */} Just `npm install date-fns` or `dayjs` or `moment` or
+
+## you're seriously going to make every user download a whole library just to create one(1) common date format with no time zone logic.
+FINE. Fine. No.
+
+At first, I was tempted to cast the date to a predictable, standardized format and then reach for ~good~ old-fashioned string manipulation:
+```js
+const datestamp = date => new Date(date).toISOString().slice(0, 10)
+```
+
+But verifying the correctness of that function entails
+1) remembering/inferring/guessing that `Date.prototype.toISOString` returns an ISO-8601-formatted date;
+1) remembering that ISO 8601 dates start `YYYY-MM-DD`;
+1) remembering that the ISO 8601 format zero-pads single-digit month and day fields; and
+1) walking through a date string counting characters on your fingers like a neanderthal.
+
+Dear reader, you deserve better than that. You deserve a built-in `strftime`-style formatting utility! But since you can't have that, here's a reasonably robust, flexible pattern you can use to extract named, semantically-meaningful parts of the date you can slep into whatever template string you want:
+```js
+const datestamp = date => {
+  const { year, month, day } = new Intl.DateTimeFormat(undefined, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+    .formatToParts(new Date(date))
+    .filter(part => part.type !== "literal")
+    .reduce((acc, part) => {
+      acc[part.type] = part.value
+      return acc
+    }, {})
+
+  return `${year}-${month}-${day}`
+}
+```
+
+[^1]: What's more, you want people the world over to be able to unambiguously parse your output as _the same_ date, even if happens to be before the 13th day of its month.
