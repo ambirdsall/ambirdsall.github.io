@@ -2,6 +2,9 @@ body {
   color: #246;
   font-family: "Muli", sans-serif;
 }
+[data-theme="dark"] body {
+  color: rgb(227, 227, 227);
+}
 
 h2 {
   font-weight: 400;
@@ -32,6 +35,10 @@ h3 {
 
 a {
   color: #024;
+}
+
+[data-theme="dark"] a {
+  color: rgb(227, 227, 227);
 }
 
 introduction {

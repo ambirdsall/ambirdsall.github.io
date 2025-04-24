@@ -4,12 +4,16 @@ html {
   font-family: Muli, sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  background: url(/img/bg.png);
+}
+html[data-theme="dark"] {
+  --ifm-background-color: url(/img/bg-dark.png);
+  background: url(/img/bg-dark.png);
 }
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: url(/img/bg.png);
 }
 article,
 aside,
@@ -497,14 +501,17 @@ fieldset {
   margin-bottom: 1.45rem;
 }
 blockquote {
-  margin-left: 1.45rem;
-  margin-right: 1.45rem;
+  /* margin-left: 1.45rem; */
+  /* margin-right: 1.45rem; */
   margin-top: 0;
   padding: 11px;
   margin-bottom: 1.45rem;
   font-style: italic;
   background: #e9e9d0;
   border-radius: 3px;
+}
+[data-theme="dark"] blockquote {
+  background: #333;
 }
 form {
   margin-left: 0;
