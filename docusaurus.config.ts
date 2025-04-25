@@ -5,8 +5,8 @@ import type * as Preset from "@docusaurus/preset-classic"
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "Alex Birdsall",
+  tagline: "I make websites, music, and food.",
   // favicon: 'img/favicon.ico',
   favicon: "img/amb-icon.png",
 
@@ -70,23 +70,43 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/amb-icon.png",
     navbar: {
-      title: "My Site",
+      // title: "Alex Birdsall",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/amb-icon.png",
       },
+      hideOnScroll: true,
       items: [
+        // {
+        //   type: "docSidebar",
+        //   sidebarId: "tutorialSidebar",
+        //   position: "left",
+        //   label: "Tutorial",
+        // },
         {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          to: "/blog",
+          label: "Blog index",
           position: "left",
-          label: "Tutorial",
         },
-        { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
+          href: "https://github.com/ambirdsall",
+          label: "Github profile",
           position: "right",
+        },
+        {
+          href: "https://linkedin.com/in/ambirdsall",
+          label: "LinkedIn profile",
+          position: "right",
+        },
+        {
+          href: "https://ambirdsall.com/resume",
+          label: "My resumé",
+          position: "right",
+        },
+        {
+          href: "https://github.com/ambirdsall/ambirdsall.github.io",
+          label: "Website Source Code",
+          position: "left",
         },
       ],
     },
@@ -101,7 +121,7 @@ const config: Config = {
               to: "/",
             },
             {
-              label: "Blog",
+              label: "Blog index",
               to: "/blog",
             },
           ],
