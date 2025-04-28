@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Why emacs is worth the bother | Alex Birdsall</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ambirdsall.com/img/amb-icon.png"><meta data-rh="true" name="twitter:image" content="https://ambirdsall.com/img/amb-icon.png"><meta data-rh="true" property="og:url" content="https://ambirdsall.com/blog/why-emacs-is-worth-the-bother"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Why emacs is worth the bother | Alex Birdsall"><meta data-rh="true" name="description" content="Emacs has a few unusual properties which work together really well, making for a"><meta data-rh="true" property="og:description" content="Emacs has a few unusual properties which work together really well, making for a"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2019-12-02T00:00:00.000Z"><link data-rh="true" rel="icon" href="/img/amb-icon.png"><link data-rh="true" rel="canonical" href="https://ambirdsall.com/blog/why-emacs-is-worth-the-bother"><link data-rh="true" rel="alternate" href="https://ambirdsall.com/blog/why-emacs-is-worth-the-bother" hreflang="en"><link data-rh="true" rel="alternate" href="https://ambirdsall.com/blog/why-emacs-is-worth-the-bother" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://ambirdsall.com/blog/why-emacs-is-worth-the-bother","mainEntityOfPage":"https://ambirdsall.com/blog/why-emacs-is-worth-the-bother","url":"https://ambirdsall.com/blog/why-emacs-is-worth-the-bother","headline":"Why emacs is worth the bother","name":"Why emacs is worth the bother","description":"Emacs has a few unusual properties which work together really well, making for a","datePublished":"2019-12-02T00:00:00.000Z","dateModified":"2025-04-24T23:03:37.000Z","author":[],"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://ambirdsall.com/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="Alex Birdsall RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="Alex Birdsall Atom Feed"><link rel="stylesheet" href="/assets/css/styles.e35c3fa6.css">
+<script src="/assets/js/runtime~main.2605b01d.js" defer="defer"></script>
+<script src="/assets/js/main.786fb2cb.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/img/amb-icon.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top navbarHideable_jvwV"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/amb-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/amb-icon.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/">Home page</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">Blog posts</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/ambirdsall" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Github profile<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><a href="https://linkedin.com/in/ambirdsall" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">LinkedIn profile<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><a href="https://ambirdsall.com/resume" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">My resumé<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_x44X"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_dCNk"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><main class="col col--9 col--offset-1"><article class=""><header><h1 class="title_f1Hy">Why emacs is worth the bother</h1><div class="container_mt6G margin-vert--md"><time datetime="2019-12-02T00:00:00.000Z">December 2, 2019</time> · <!-- -->13 min read</div></header><div id="__blog-post-container" class="markdown"><p>Emacs has a few unusual properties which work together really well, making for a
+super powerful, flexible system that&#x27;s easier to bend to your will in
+sophisticated ways than almost anything else around. That might sound like a lot
+of work, but most day-to-day emacs usage isn&#x27;t reinventing the world; when you
+want to do something custom, though, the power is right at your fingertips.
+Literally.</p>
+<!-- -->
+<p>What are those properties? Well:</p>
+<ol>
+<li>
+<p>Emacs is configured with a full-fledged, high-level programming language,
+with functions, control flow, etc. Emacs lisp is a dynamic functional
+language; the syntax is out of the ordinary, but under the hood, it&#x27;s a
+little like old-school javascript with an emphasis on linked lists, strings,
+and text buffers. Except for macros, which are powerful like magic, only
+less… magical.</p>
+</li>
+<li>
+<p>Literally everything you can do in emacs, including really basic stuff like
+&quot;move the cursor forwards 15 characters&quot; and &quot;insert the text <code>function fo() { return &quot;haha this was not named foo&quot; }</code>&quot; can be scripted with emacs lisp.
+Here:</p>
+<div class="language-emacs-lisp codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-emacs-lisp codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token punctuation" style="color:#393A34">(</span><span class="token car">forward-char</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">15</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">(</span><span class="token car">insert</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;function fo() { return \&quot;haha this was not named foo\&quot; }&quot;</span><span class="token punctuation" style="color:#393A34">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+</li>
+<li>
+<p>Literally every user interaction follows the same model: you hit a key (or
+equivalent, like clicking the mouse), which triggers some lisp function.</p>
+</li>
+<li>
+<p>You can look up, at any time you want, the name of the function bound to any
+key; the full documentation for any function (with a hyperlink to its source
+code, so you can dig as deep as you want); and the value of any variable.
+Just type <code>C-h</code> and then one of <code>k</code>, <code>f</code>, or <code>v</code> (guess which is which).
+(There are lots more help options under that <code>C-h</code> prefix, too.)</p>
+</li>
+<li>
+<p>Literally any keystroke and combination can be bound to any function you
+want.</p>
+</li>
+</ol>
+<p>I know I used &quot;literally&quot; a lot in there, but lots of programs make sweeping
+&quot;[verb] any [noun]!&quot;-type claims that are only <em>mostly</em> true.</p>
+<p>Anyway, once you internalize the logic of this system, you have superpowers! Did
+something weird just happen? Type <code>C-h k</code>, then hit the same keystroke again to
+find out what function is responsible. Want to change what that keystroke does?
+You can, on the fly. You always open the same file, so you want a shortcut?
+That&#x27;s like a 30-second customization, once you&#x27;re used to emacs. Want to do
+something fancy, but you don&#x27;t know what the right function is named? Just
+search for all the available function names with <code>C-h f</code>, and if one sounds
+right, select it to check its documentation. Faster than google, and always, by
+definition, up-to-date with your specific emacs instance.</p>
+<p>Emacs has a lot of janky and/or bullshit characteristics, due to its long
+history, survivor bias, and occasionally just due to the intransigence of the
+maintainers (if any emacs maintainers read this, a sincere thank you for all you
+do and all you have done! Now please, for the love of humans, approve some PRs
+to make the default UI more beginner-friendly and update its looks). No emacs
+user is beholden to those neckbeards, though: if you don&#x27;t like it, you can
+change it. Or if you&#x27;re not feeling like all that work, you can usually find
+someone else who already changed it the way you want and put that shit on
+github.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="seriously-before-you-get-started-remap-caps-lock-to-control">seriously, before you get started: remap caps lock to control<a href="#seriously-before-you-get-started-remap-caps-lock-to-control" class="hash-link" aria-label="Direct link to seriously, before you get started: remap caps lock to control" title="Direct link to seriously, before you get started: remap caps lock to control">​</a></h2>
+<p>Caps lock is useless. Control is <em>constantly</em> used in emacs. As a bonus, lots of
+standard emacs shortcuts for text navigation (<code>C-a</code> to jump to start of line;
+<code>C-e</code> to jump to end of line; <code>C-k</code> to delete from the cursor to the end of text
+or the next newline, whichever comes first; <code>C-t</code> to &quot;transpose&quot; two characters
+when you make a tyop; <code>C-n</code> and <code>C-p</code> to go down/up one line) work in the shell
+and in almost all OSX text fields. If control is where caps lock was, all this
+is right on home row, super easy and ergonomic to use. If not, you sort of end
+up making weird claw hands all the time.</p>
+<h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="okay-with-that-out-of-the-way-quick-start">okay, with that out of the way: quick start<a href="#okay-with-that-out-of-the-way-quick-start" class="hash-link" aria-label="Direct link to okay, with that out of the way: quick start" title="Direct link to okay, with that out of the way: quick start">​</a></h2>
+<p>Lots of people will tell you that stock emacs sucks. That is because stock emacs
+kind of sucks. We can do better than that.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="install-a-version-of-emacs-that-isnt-awful">Install a version of emacs that isn&#x27;t awful<a href="#install-a-version-of-emacs-that-isnt-awful" class="hash-link" aria-label="Direct link to Install a version of emacs that isn&#x27;t awful" title="Direct link to Install a version of emacs that isn&#x27;t awful">​</a></h3>
+<p>If you&#x27;re on a mac, there is an <code>emacs</code> pre-installed, but it&#x27;s like 10 years
+out of date and only works in the terminal. It&#x27;s good for one thing:</p>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic"># haha, good luck figuring out how to close emacs</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">emacs </span><span class="token parameter variable" style="color:#36acaa">-q</span><span class="token plain"> --no-splash </span><span class="token parameter variable" style="color:#36acaa">-f</span><span class="token plain"> tetris</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Tetris? Remember, you can rebind any keystroke to run your own code, and emacs
+will do any song and dance you&#x27;re clever/patient enough to write. Web browsers
+were originally just for viewing documents, too.</p>
+<p>For your non-tetris needs, you&#x27;ll want to do one of these</p>
+<div class="language-shell codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-shell codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">## good, but ought to be better</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">brew </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> emacs</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">## much better, unless connecting to your running emacs from the terminal is important to you</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token comment" style="color:#999988;font-style:italic">## (and if it is, you probably don&#x27;t need introductory notes?)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">brew tap railwaycat/emacsmacport</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">brew </span><span class="token function" style="color:#d73a49">install</span><span class="token plain"> emacs-mac</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>Why is the normal emacs not the best choice for mac? Because the Free Software
+Foundation people are assholes about everything but linux. Sorry, &quot;GNU/linux&quot;.
+So some guy forked emacs so he could add e.g. native OSX smooth scrolling and
+shit.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="install-a-starter-kit">Install a starter kit<a href="#install-a-starter-kit" class="hash-link" aria-label="Direct link to Install a starter kit" title="Direct link to Install a starter kit">​</a></h3>
+<p>These have gotten popular these days. Basically, these are community-maintained
+configurations on top of emacs. They add in useful third-party libraries (in
+some cases, so useful they have become de facto standards), update the styling
+so emacs looks like it&#x27;s from the present, instead of the mid-90s, and usually
+offer a bunch of variables you can tweak to easily toggle features and stuff.
+They&#x27;re generally intended to be a more powerful and beautiful &quot;batteries
+included&quot; starting point for people. To install a starter kit, just clone the
+project repository to <code>~/.emacs.d</code>; when you next start emacs, it will
+automatically load that code.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="if-you-like-piña-coladas-and-getting-stuck-in-a-vim-session">If you like piña coladas, and getting stuck in a vim session<a href="#if-you-like-piña-coladas-and-getting-stuck-in-a-vim-session" class="hash-link" aria-label="Direct link to If you like piña coladas, and getting stuck in a vim session" title="Direct link to If you like piña coladas, and getting stuck in a vim session">​</a></h4>
+<p>My favorite is <a href="https://github.com/doomemacs/doomemacs" target="_blank" rel="noopener noreferrer">doom emacs</a>. It&#x27;s quite possibly the most
+popular, with excellent documentation and community. Doom is written by and for people who like vim&#x27;s
+command language (which is an insanely good fit for emacs&#x27; keybinding model,
+actually), but you don&#x27;t need to use it in a vimmy way. Most people do, because
+it&#x27;s insanely good like that, but you do you. Doom has a wonderful system
+of mnemonic commands that you access via a universal prefix key (inspired by <a href="https://github.com/syl20bnr/spacemacs" target="_blank" rel="noopener noreferrer">spacemacs</a>, which is also quite good), which is the
+space bar if you use vim keybindings and something else if you don&#x27;t. Even if you choose
+not to use vim bindings at all, I&#x27;d recommend doom: the out-of-the-box experience is miles
+better than stock emacs, it&#x27;s well-organized and documented, and Henrik&#x27;s hand-rolled,
+nix-inspired package management system absolutely shines if you ever want to keep things
+in sync between a personal and work computer.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="if-you-want-something-more-traditionally-emacsy-because-you-dont-give-a-fuck-about-vim">If you want something more traditionally emacsy, because you don&#x27;t give a fuck about vim<a href="#if-you-want-something-more-traditionally-emacsy-because-you-dont-give-a-fuck-about-vim" class="hash-link" aria-label="Direct link to If you want something more traditionally emacsy, because you don&#x27;t give a fuck about vim" title="Direct link to If you want something more traditionally emacsy, because you don&#x27;t give a fuck about vim">​</a></h4>
+<p>A venerable starter kit that&#x27;s a bit more mainline emacs is
+<a href="https://github.com/bbatsov/prelude" target="_blank" rel="noopener noreferrer">Prelude</a>. I haven&#x27;t used it, so I can&#x27;t comment on it
+much, but I&#x27;ve heard very good things, and its primary maintainer is pretty legit.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="if-you-want-to-be-fancy">If you want to be FANCY<a href="#if-you-want-to-be-fancy" class="hash-link" aria-label="Direct link to If you want to be FANCY" title="Direct link to If you want to be FANCY">​</a></h4>
+<p>A new one is <a href="https://github.com/seagle0128/.emacs.d" target="_blank" rel="noopener noreferrer">Centaur</a>. Centaur is very
+pretty and into normal modern UI stuff like file trees with icons and tabs and
+stuff.</p>
+<p>Oh yeah, emacs doesn&#x27;t really even have decent tab support? At the time of
+writing, in the year of our lord 2019, it&#x27;s only a first-class UI feature in the
+cutting edge versions and hasn&#x27;t even made it to a stable release. Centaur tabs
+are clever, but a hack. I dunno, y&#x27;all, nothing&#x27;s perfect.</p>
+<p>Cool, you have a modern version of emacs, and now it looks adequate. Let&#x27;s get
+oriented.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="a-quick-tour-of-essential-emacs-keybindings">A quick tour of essential emacs keybindings<a href="#a-quick-tour-of-essential-emacs-keybindings" class="hash-link" aria-label="Direct link to A quick tour of essential emacs keybindings" title="Direct link to A quick tour of essential emacs keybindings">​</a></h3>
+<p>You can remap any key in any mode, but the defaults are around until and unless
+you change them, so they&#x27;re worth knowing. I&#x27;m assuming you didn&#x27;t install
+spacemacs in vim mode; if you did, a few parts of this won&#x27;t generally apply.</p>
+<p>By convention, emacs documents keystrokes (in all of its documentation and when
+reporting what keys a function is bound to) a certain way. I&#x27;ve already used it
+above. Here&#x27;s a more complicated keybinding:</p>
+<div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">C-x c</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<p>This means &quot;hold control and type x; then type c&quot;. You never hit control except
+in combination with other keys, so the &quot;c&quot; character is unambiguous in both
+spots there. In keybinding notation, dashes mean &quot;hit these two keys together&quot;
+and spaces mean &quot;after typing key X, release the keys and then type key Y&quot;.</p>
+<p>Two modifier keys are king in emacs: control, which is the control key, and
+meta, which is the alt key. It&#x27;s weird, but emacs literally predates the alt key
+being standard. Meta is <code>M-[something]</code> in keybinding notation.</p>
+<p>If you&#x27;re a hipster like me, you might switch things up so that the mac command
+key is meta instead of alt. Emacs is what you make it.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="first-command-to-learn-m-x-lets-you-run-commands-by-name">First command to learn: <code>M-x</code> lets you run commands by name<a href="#first-command-to-learn-m-x-lets-you-run-commands-by-name" class="hash-link" aria-label="Direct link to first-command-to-learn-m-x-lets-you-run-commands-by-name" title="Direct link to first-command-to-learn-m-x-lets-you-run-commands-by-name">​</a></h4>
+<p>A decent starter configuration will give you a nice fuzzy search interface when
+you hit <code>M-x</code>. Start typing, and when the command you want comes up in the
+results, you can use the arrow keys and enter to execute that command. Don&#x27;t
+remember the keybinding for some functionality? Hit <code>M-x</code> and start typing its
+name. Since keyboard space is finite, some commands can only be run like this.
+For example, <code>M-x snake</code> starts a game of snake, and <code>M-x doctor</code> starts a
+psychotherapy session with everyone&#x27;s favorite 1960s chatbot ELIZA.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="first-commands-to-learn-what-to-do-when-you-panic">First commands to learn: what to do when you panic<a href="#first-commands-to-learn-what-to-do-when-you-panic" class="hash-link" aria-label="Direct link to First commands to learn: what to do when you panic" title="Direct link to First commands to learn: what to do when you panic">​</a></h4>
+<p><code>C-x C-c</code> closes the program. It&#x27;s good to know, especially if you run it in a
+terminal.</p>
+<p>Within a session, if emacs freezes, or starts acting weird, or you mistype and
+find yourself halfway into the wrong key sequence, start spamming <code>C-g</code> to
+cancel out of whatever the current thing is. The downside to letting people run
+their own code is that sometimes they write dumb code and have stuff like
+infinite loops. In cases like this, <code>C-g</code> is your friend. You can also spam the
+escape key: on the rare occasion <code>C-g</code> doesn&#x27;t work, three escapes usually will.</p>
+<h4 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="theres-a-method-to-the-madness">There&#x27;s a method to the madness<a href="#theres-a-method-to-the-madness" class="hash-link" aria-label="Direct link to There&#x27;s a method to the madness" title="Direct link to There&#x27;s a method to the madness">​</a></h4>
+<p>Really quick commands you will do while you type code/prose/emails/whatever are
+bound to control [something] or meta [something], so you can just bust them out
+quickly. Commands that are common but that you&#x27;re less likely to use in quick
+succession, like saving, managing your windows, quitting emacs, etc, are under
+the <code>C-x</code> prefix (the &quot;x&quot; is for &quot;execute command&quot;: Emacs tries to make stuff
+mnemonic). Commands that are less common than that (or when you remember the
+name but not the keybinding), you can type <code>M-x</code> and find them by name. The
+similarity of the two &quot;execute command&quot; keybindings, <code>C-x</code> and <code>M-x,</code> is not a
+coincidence. Mnemonic, remember?</p>
+<p>That&#x27;s a decent intro to the standardish sort-of-hierarchy for what different
+modifier keys mean with the same key. <code>C-f</code> goes forwards one character; <code>M-f</code>
+goes forwards one word; <code>C-M-f</code> goes forward one semantic unit (paired quotes or
+braces, a code block, or whatever: different language modes can define what a
+semantic unit is, and emacs has some more-or-less sensible global defaults).
+When &quot;same thing, but with a wider scope&quot; doesn&#x27;t make sense, sometimes control
+and meta do opposite versions of the same thing. I don&#x27;t want to bog you down
+with examples, though: you can get by for a while using arrow keys, the mouse,
+and a small handful of memorized commands.</p>
+<p>The file menu is a nice way to find commands at first, too, though you&#x27;ll
+probably leave it behind as you internalize a more keyboard-driven workflow.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="what-is-a-mode-even">what is a mode, even<a href="#what-is-a-mode-even" class="hash-link" aria-label="Direct link to what is a mode, even" title="Direct link to what is a mode, even">​</a></h3>
+<p>Modes are how emacs lets you apply or remove related configurations and
+keybindings en masse. Functions that manipulate ruby code only make sense if
+you&#x27;re editing a ruby file; so those keybindings only apply when <code>ruby-mode</code> is
+active. <code>ruby-mode</code> is a <em>major</em> mode.</p>
+<p>Every buffer has one (1) major mode. This says what kind of thing that buffer
+is. Is it a file of some programming language? Each programming language has its
+own major mode (sometimes you even have a couple options, because open source).
+Is the buffer an interactive feature, like a game of tetris or a git dashboard?
+Is it some elisp function&#x27;s documentation? That&#x27;s the major mode. You can use
+<code>M-x</code> to change the major mode (they&#x27;re just functions, under the hood), and
+interact with the buffer contents in a different way, but you almost never have
+to.</p>
+<p>You can only have one major mode per buffer, but you can have as many minor
+modes as you want. Minor modes tend to wrap a few related functions and settings
+into some feature, so you can easily toggle the feature by (de)activating the
+minor mode. Autocomplete is a minor mode. Spell-check is a minor mode.
+<a href="https://elpa.gnu.org/packages/rainbow-mode.html" target="_blank" rel="noopener noreferrer">rainbow-mode</a> is a minor mode,
+and makes writing CSS so much nicer. A <a href="https://github.com/TeMPOraL/nyan-mode" target="_blank" rel="noopener noreferrer">nyan cat status
+bar</a> to tell you how far into a buffer
+you are? Minor mode. Most features are implemented as minor modes.</p>
+<h3 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="one-of-the-killer-apps-org-mode">[one of] the killer app[s]: org-mode<a href="#one-of-the-killer-apps-org-mode" class="hash-link" aria-label="Direct link to [one of] the killer app[s]: org-mode" title="Direct link to [one of] the killer app[s]: org-mode">​</a></h3>
+<p><code>org-mode</code> is sort of like markdown on steroids. You can rearrange the order and
+level of headings interactively on the fly; edit code snippets as if they were
+actual files, with full language support; edit tables like a spreadsheet; export
+your notes to pdf, html, LaTeX, github-flavored markdown (although github parses
+<code>.org</code> files just like it does <code>.md</code> ones), or a reveal.js slideshow; and so, so
+much more. I wrote this page as some quick-and-dirty notes in <code>org-mode</code>
+(seriously: if you replace <code>index.html</code> with <code>index.org</code>, you can see the raw
+source). <code>org-mode</code> started out life as a third-party package for emacs, but it
+is so good and became so popular that it&#x27;s included with emacs now.</p>
+<p>The basics (slightly different markdown with magic table formatting and built-in
+todo list support!) are simple to learn and legitimately powerful on their own;
+but its feature set is so deep, you can spend years learning it and still not
+know everything. Even if you never use emacs for anything else, <code>org-mode</code> is
+worth it.</p>
+<p>Honest-to-god: take 30ish minutes of your life (you don&#x27;t need to watch the Q
+and A for pete&#x27;s sake) and watch this presentation that Carsten Dominik, the
+German astronomer who authored org-mode, gave at google:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJTwQvgfgMM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--prev" href="/blog/cut-out-the-middleman"><div class="pagination-nav__sublabel">Newer post</div><div class="pagination-nav__label">Rewriting a middleman site with gatsby</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/blog/zero-friction-testing-in-rails"><div class="pagination-nav__sublabel">Older post</div><div class="pagination-nav__label">Zero-friction testing in rails</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#seriously-before-you-get-started-remap-caps-lock-to-control" class="table-of-contents__link toc-highlight">seriously, before you get started: remap caps lock to control</a></li><li><a href="#okay-with-that-out-of-the-way-quick-start" class="table-of-contents__link toc-highlight">okay, with that out of the way: quick start</a><ul><li><a href="#install-a-version-of-emacs-that-isnt-awful" class="table-of-contents__link toc-highlight">Install a version of emacs that isn&#39;t awful</a></li><li><a href="#install-a-starter-kit" class="table-of-contents__link toc-highlight">Install a starter kit</a></li><li><a href="#a-quick-tour-of-essential-emacs-keybindings" class="table-of-contents__link toc-highlight">A quick tour of essential emacs keybindings</a></li><li><a href="#what-is-a-mode-even" class="table-of-contents__link toc-highlight">what is a mode, even</a></li><li><a href="#one-of-the-killer-apps-org-mode" class="table-of-contents__link toc-highlight">[one of] the killer app[s]: org-mode</a></li></ul></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">This site</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/">Home</a></li><li class="footer__item"><a class="footer__link-item" href="/blog">Blog index</a></li></ul></div><div class="col footer__col"><div class="footer__title">But more about me</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/ambirdsall" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://linkedin.com/in/ambirdsall" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://ambirdsall.com/resume" target="_blank" rel="noopener noreferrer" class="footer__link-item">My resumé</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Alexander Birdsall</div></div></div></footer></div>
+</body>
+</html>
