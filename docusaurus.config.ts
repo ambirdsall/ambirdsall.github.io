@@ -84,8 +84,13 @@ const config: Config = {
         //   label: "Tutorial",
         // },
         {
+          to: "/",
+          label: "Home page",
+          position: "left",
+        },
+        {
           to: "/blog",
-          label: "Blog index",
+          label: "Blog posts",
           position: "left",
         },
         {
@@ -103,11 +108,11 @@ const config: Config = {
           label: "My resumé",
           position: "right",
         },
-        {
-          href: "https://github.com/ambirdsall/ambirdsall.github.io",
-          label: "Website Source Code",
-          position: "left",
-        },
+        // {
+        //   href: "https://github.com/ambirdsall/ambirdsall.github.io",
+        //   label: "Website Source Code",
+        //   position: "right",
+        // },
       ],
     },
     footer: {
