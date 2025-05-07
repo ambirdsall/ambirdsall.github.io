@@ -8,43 +8,40 @@ My personal site! Hullo!
   Game](https://en.wikipedia.org/wiki/Chaos_game) algorithm. Right now I'm just
   blogging about programming, but I may change that.
   
-  I also like the thought of doing something fun to expand the triangle doodad.
-  For example, clicking on the triangle could start them flocking around using
-  the 2d version of the boids algorithm.
+  I also like the thought of doing something fun to make the triangle doodad more interactive, and maybe have a little easter egg:
+  - Simple idea: clicking randomizes the pip count
+  - Tricky idea: add a way to change the shape of the pips
+    + simple idea: click to cycle through predefined shapes (circe, star, whatever)
+    + bigger idea: make a connected form to interactively control the shape
+  - Exciting idea: clicking on the triangle could "release" the pips as a flock of boids.
+
 ### Installation
 
+```sh
+npm install
 ```
-$ yarn
-```
+Or `pnpm`, or `yarn`, or `bun`, or fuckin' go through `package.json` and manually vendor deps with `wget` or whatever.
 
 ### Local Development
 
-```
-$ yarn start
+```sh
+npm start
 ```
 
 This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
 ### Build
 
-```
-$ yarn build
+```sh
+npm run build
 ```
 
 This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
 ### Deployment
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```sh
+npm run deploy
 ```
 
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+This runs a little node script which deploys the site to github pages at my custom domain, using the `gh-pages` library.
