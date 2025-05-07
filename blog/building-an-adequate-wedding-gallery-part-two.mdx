@@ -1,0 +1,77 @@
+---
+draft: true
+slug: "building-an-adequate-wedding-gallery-part-two"
+title: Building An Adequate Wedding Gallery, Part Two
+topic: ruby
+date: 2016-12-15
+---
+
+A continuation of [part one](./building-an-adequate-wedding-gallery).
+
+{/* truncate */}
+
+## Pick it up
+
+Under the hood, the UI should be connected to a form: selecting an image means its
+filename will be part of the `input_filenames` list in the processing script;
+leaving it unselected means it won't. Seems straightforward enough.
+
+For ease of use, any way it seems reasonable or intuitive to select a bunch of
+different photos from a grid should work. People of all ages will be using
+this: I'm trying to serve, on one hand, the parents, who in my experience tend
+to take on the role of photo aggregator for their families, and on the other,
+younger folks who might only be trying to grab a couple party photos quickly,
+so I can't be snooty or rely on either power-user-type attempts at common
+shortcuts or old-fashioned point-and-click idioms. Trying something and having
+it work as you expect is great; trying something and having it not work sucks.
+That means, at the very least:
+
+1. Clicking
+1. click-and-drag; and
+1. keyboard navigation with arrow keys and return
+
+should all work. I don't care yet about what sort of bookkeeping
+has to happen to actually process a selected image; just about how to toggle
+and display the concept of "selection" in the page. Once we've got that, THEN
+we worry about what the event handlers should do besides update the UI.
+
+## Clicking
+
+[Next](https://developer.mozilla.org/en-US/docs/Web/Events/click).
+
+## Click-and-drag
+
+Not hard to find [serviceable
+libraries](https://jqueryui.com/selectable/#display-grid) here, either.
+
+## Keyboard Navigation
+
+Okay, this is the fun one. Using the keyboard to move around means there needs
+to be some concept of an "in-focus" photo: the one to be selected or from which
+the user can move around the grid in any direction. That is, a
+[cursor](<https://en.wikipedia.org/wiki/Cursor_(user_interface)>).
+
+#### What's it look like?
+
+Uh, I don't know. Maybe a blue outline? That's a pretty common idiom, that's
+something I'd understand pretty intuitively.
+
+The hard part is making it obvious enough to be intuitive to folks inclined
+towards keyboard navigation on one hand, but subtle enough to not be
+distracting to folks whose instinct is to select with the mouse. That's just an
+aesthetic judgement.
+
+#### Wouldn't a blue outline also make sense as the "selected" indicator?
+
+Yeah, yeah. Everyone's a critic.
+
+#### Is the cursor visible at page load?
+
+Hmm. That might be confusing: until you start actually navigating through the
+photo set, there's no context to suggest that it means "this photo is in
+focus". Better wait until someone either clicks (that way you can see the
+checkmark appear, too, which should make things clear when the cursor moves and
+the selected image keeps a checkmark) or starts using arrow keys to move
+around.
+
+## Okay, you selected some photos. That means...?

@@ -8,90 +8,40 @@ My personal site! Hullo!
   Game](https://en.wikipedia.org/wiki/Chaos_game) algorithm. Right now I'm just
   blogging about programming, but I may change that.
   
-  I also like the thought of doing something fun to expand the triangle doodad.
-  For example, clicking on the triangle could start them flocking around using
-  the 2d version of the boids algorithm.
+  I also like the thought of doing something fun to make the triangle doodad more interactive, and maybe have a little easter egg:
+  - Simple idea: clicking randomizes the pip count
+  - Tricky idea: add a way to change the shape of the pips
+    + simple idea: click to cycle through predefined shapes (circe, star, whatever)
+    + bigger idea: make a connected form to interactively control the shape
+  - Exciting idea: clicking on the triangle could "release" the pips as a flock of boids.
 
-## 🚀 Quick start
+### Installation
 
-1. **It's 2024 and only `yarn` will install the deps without error**
-¯\\_(ツ)\_/¯
+```sh
+npm install
+```
+Or `pnpm`, or `yarn`, or `bun`, or fuckin' go through `package.json` and manually vendor deps with `wget` or whatever.
 
-1.  **Start a development server.**
+### Local Development
 
-    ```shell
-    cd ambirdsall.github.io/
-    yarn develop
-    ```
+```sh
+npm start
+```
 
-1.  **Open the source code and start editing!**
+This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
 
-    Your site is now running at `http://localhost:8000`! 
-    
-    - Play around in `src/pages`
-    - Write some mdx markdown in `src/posts/` and there you go! A blog post.
+### Build
 
-## important bits
-| file                            | wat                                        |
-|:--------------------------------|:-------------------------------------------|
-| `src/templates/blogTemplate.js` | the template for/layout of blog post pages |
-| `src/components/layout.js`      | the layout of the front page               |
-| `src/pages/index.js`            | the front page                             |
+```sh
+npm run build
+```
 
-# the rest is just Gatsby-generated framework documentation
-## 🧐 What's inside?
+This command generates static content into the `build` directory and can be served using any static contents hosting service.
 
-A quick look at the top-level files and directories you'll see in a Gatsby project.
+### Deployment
 
-    .
-    ├── node_modules
-    ├── src
-    ├── .gitignore
-    ├── .prettierrc
-    ├── gatsby-browser.js
-    ├── gatsby-config.js
-    ├── gatsby-node.js
-    ├── gatsby-ssr.js
-    ├── LICENSE
-    ├── package-lock.json
-    ├── package.json
-    └── README.md
+```sh
+npm run deploy
+```
 
-1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.
-
-2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
-
-3.  **`.gitignore`**: This file tells git which files it should not track / not maintain a version history for.
-
-4.  **`.prettierrc`**: This is a configuration file for [Prettier](https://prettier.io/). Prettier is a tool to help keep the formatting of your code consistent.
-
-5.  **`gatsby-browser.js`**: This file is where Gatsby expects to find any usage of the [Gatsby browser APIs](https://www.gatsbyjs.org/docs/browser-apis/) (if any). These allow customization/extension of default Gatsby settings affecting the browser.
-
-6.  **`gatsby-config.js`**: This is the main configuration file for a Gatsby site. This is where you can specify information about your site (metadata) like the site title and description, which Gatsby plugins you’d like to include, etc. (Check out the [config docs](https://www.gatsbyjs.org/docs/gatsby-config/) for more detail).
-
-7.  **`gatsby-node.js`**: This file is where Gatsby expects to find any usage of the [Gatsby Node APIs](https://www.gatsbyjs.org/docs/node-apis/) (if any). These allow customization/extension of default Gatsby settings affecting pieces of the site build process.
-
-8.  **`gatsby-ssr.js`**: This file is where Gatsby expects to find any usage of the [Gatsby server-side rendering APIs](https://www.gatsbyjs.org/docs/ssr-apis/) (if any). These allow customization of default Gatsby settings affecting server-side rendering.
-
-9.  **`LICENSE`**: this is licensed under the MIT license.
-
-10. **`package-lock.json`** (See `package.json` below, first). This is an automatically generated file based on the exact versions of your npm dependencies that were installed for your project. **(You won’t change this file directly).**
-
-11. **`package.json`**: A manifest file for Node.js projects, which includes things like metadata (the project’s name, author, etc). This manifest is how npm knows which packages to install for your project.
-
-12. **`README.md`**: A text file containing useful reference information about your project.
-
-## 🎓 Learning Gatsby
-
-Looking for more guidance? Full documentation for Gatsby lives [on the website](https://www.gatsbyjs.org/). Here are some places to start:
-
-- **For most developers, we recommend starting with our [in-depth tutorial for creating a site with Gatsby](https://www.gatsbyjs.org/tutorial/).** It starts with zero assumptions about your level of ability and walks through every step of the process.
-
-- **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
-
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
-
-<!-- AUTO-GENERATED-CONTENT:END -->
-
+This runs a little node script which deploys the site to github pages at my custom domain, using the `gh-pages` library.

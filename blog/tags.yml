@@ -1,0 +1,29 @@
+quotes:
+  label: Quotes
+  permalink: /quotes
+  description: Quotes tag description
+
+design:
+  label: Design
+  permalink: /design
+  description: Design tag description
+
+architecture:
+  label: Architecture
+  permalink: /architecture
+  description: Architecture tag description
+
+operating_systems:
+  label: Operating systems
+  permalink: /operating_systems
+  description: Operating systems tag description
+
+concurrency:
+  label: Concurrency
+  permalink: /concurrency
+  description: Concurrency tag description
+
+locks:
+  label: Locks
+  permalink: /locks
+  description: Locks tag description

@@ -1,0 +1,9 @@
+ambirdsall:
+  name: Alex Birdsall
+  title: Software engineer, musician, cook
+  url: https://github.com/ambirdsall
+  image_url: https://github.com/ambirdsall.png
+  page: false
+  socials:
+    linkedin: ambirdsall
+    github: ambirdsall

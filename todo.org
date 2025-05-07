@@ -1,26 +1,52 @@
-#+title: Todo
+#+title: Paleontologist sights a sight: docusaurus rewrites site
 
-* home page
+* =/= :: physician, sell thyself [1/2]
 ** DONE add link to resume
-** I say I make music; why not use this site to put something online?
+** improve the site qua portfolio
+** TODO I say I make music; well, I have a website, put something online already
 
-* blog posts
-** TODO fix footnotes
-** TODO add back syntax highlighting in an mdx-compatible way
-** get org-mode posting in order
-*** automate exporting with =emacs -Q= shell script
-*** how to export tho?
-**** avoid boilerplate properties in post files
-***** set all export vars :: =.dir-locals.el= or explicitly bound in elisp script?
-**** option :: ox-html export
-***** minimal html, please, disable all OOTB nonsense
-***** how to define custom layout and styles?
-***** how to /share/ custom layout and styles?
-** posting and toasting
-*** TODO static jsx build of resume
-*** own the libs
-**** TODO ts-pattern
-**** TODO jsx
-*** TODO useful types of dialogue with an LLM
-* ngl, I'm really not feeling gatsby anymore
-** static jsx build like resume?
+* ship the PR and fully deprecate gatsby mode [6/10]
+** delete malcontents [4/4]
+*** DONE =src/components/HomepageFeatures/*=
+*** DONE =src/pages/markdown-page.md=
+*** DONE =src/pages/oh-cool-{mdx,react}.{md,ts}x=
+*** DONE obsolete docusaurus assets
+** DONE edit =blog/authors.yml=
+** DONE edit =blog/tags.yml=
+** TODO merge PR
+** TODO pull new changes to original directory
+** TODO reinstall deps obvs
+** TODO double check that everything works as expected
+* TODO add comment section with giscus
+#+begin_src jsx
+<script src="https://giscus.app/client.js"
+        data-repo="ambirdsall/ambirdsall.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnkxOTgzOTU0Mw=="
+        data-category="Announcements"
+        data-category-id="DIC_kwDOAS66N84CpwSt"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+#+end_src
+* rando cleanups [0/1]
+** TODO remove =README.md=, port useful content and symlink =todo.org= as =README.org=
+* s/docs/projects/g [0/2]
+** TODO update docusaurus.config.ts
+** TODO rename directory
+** start adding in write-ups!
+*** noisebot :: sonos controller
+*** mediabot :: home server
+* =/blog= :: posting and toasting
+** TODO static jsx build of resume
+** own the libs
+*** TODO ts-pattern
+*** TODO jsx
+** TODO useful types of dialogue with an LLM

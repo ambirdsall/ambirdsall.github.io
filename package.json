@@ -1,55 +1,55 @@
 {
-  "name": "blag",
+  "name": "ambirdsall.com",
   "private": true,
-  "description": "A blog.",
+  "description": "A website with a blog, idk.",
   "version": "0.1.0",
   "author": "Alex Birdsall <ambirdsall@gmail.com>",
   "scripts": {
-    "build": "gatsby build",
-    "watch": "ls gatsby-config.js | entr -r gatsby develop",
-    "format": "prettier --write \"src/**/*.{js,jsx,json,md}\"",
-    "check": "prettier --check \"src/**/*.{js,jsx,json,md}\"",
-    "start": "gatsby develop",
-    "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "deploy": "gatsby build && bin/deploy"
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "predeploy": "docusaurus build",
+    "deploy": "bin/deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "typecheck": "tsc"
   },
   "dependencies": {
-    "@mdx-js/react": "^2.0.0",
-    "d3": "^5.14.2",
-    "gatsby": "^4",
-    "gatsby-image": "^2.2.31",
-    "gatsby-plugin-manifest": "^4",
-    "gatsby-plugin-mdx": "4.4.0",
-    "gatsby-plugin-offline": "^5",
-    "gatsby-plugin-react-helmet": "^5",
-    "gatsby-plugin-sharp": "^4",
-    "gatsby-remark-autolink-headers": "^5",
-    "gatsby-remark-footnotes": "0.0.8",
-    "gatsby-remark-images": "^6",
-    "gatsby-remark-prismjs": "^6",
-    "gatsby-source-filesystem": "^4",
-    "gatsby-transformer-remark": "^5",
-    "gatsby-transformer-sharp": "^4",
-    "prismjs": "^1.17.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-helmet": "^5.2.1",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
+    "@mdx-js/react": "^3.0.0",
+    "clsx": "^2.0.0",
+    "d3": "^7.9.0",
+    "prism-react-renderer": "^2.3.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "react-icons": "^3.8.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.24.1",
-    "@babel/plugin-transform-private-methods": "^7.24.1",
-    "babel-preset-gatsby": "^3.13.2",
-    "chalk": "^5.3.0",
-    "gh-pages": "^6.1.1",
-    "prettier": "^1.19.1",
-    "typescript": "^5.8.3"
+    "@docusaurus/module-type-aliases": "3.7.0",
+    "@docusaurus/tsconfig": "3.7.0",
+    "@docusaurus/types": "3.7.0",
+    "chalk": "^5.4.1",
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.5.3",
+    "typescript": "~5.6.2"
   },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ambirdsall/ambirdsall.github.io"
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 3 chrome version",
+      "last 3 firefox version",
+      "last 5 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.0"
   }
 }
