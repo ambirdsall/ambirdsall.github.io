@@ -20,7 +20,7 @@ was announced. Better days are almost here!</p>
 </blockquote>
 <p>Suppose you want to deal with some dates while building a website. You don't want to roll
 your own input parsing, so you use <code>new Date(inputDateString)</code>; and you want to output
-datestrings in a format that's clear, readable<sup><a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#user-content-fn-1-2950b4" id="user-content-fnref-1-2950b4" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>, and (while we're making a wish list)
+datestrings in a format that's clear, readable<sup><a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#user-content-fn-1-f062af" id="user-content-fnref-1-f062af" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>, and (while we're making a wish list)
 sorts the same both lexically and chronologically. That is: you want <code>YYYY-MM-DD</code>. Surely
 <em>that</em> is built in, right?</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="wrong">wrong<a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#wrong" class="hash-link" aria-label="Direct link to wrong" title="Direct link to wrong">​</a></h2>
@@ -41,11 +41,11 @@ sorts the same both lexically and chronologically. That is: you want <code>YYYY-
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-2950b4">
-<p>What's more, you want people the world over to be able to unambiguously parse your output as <em>the same</em> date, even if happens to be before the 13th day of its month. <a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#user-content-fnref-1-2950b4" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-1-f062af">
+<p>What's more, you want people the world over to be able to unambiguously parse your output as <em>the same</em> date, even if happens to be before the 13th day of its month. <a href="https://ambirdsall.com/blog/vanilla-js-date-formatting#user-content-fnref-1-f062af" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[On that fractal triforce thing there]]></title>
@@ -66,7 +66,7 @@ market for teachers of every subject that lacked a corresponding industry to pro
 negotiating leverage. I had no clue what might be a sustainable long-term career, but I
 knew that status quo wasn't it; and though I love children, after spending so many of my
 waking hours dealing with 10-year-olds and their  10-year-old thoughts, I could feel the
-sharp edges of my brain beginning to dull <sup><a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fn-1-8ec768" id="user-content-fnref-1-8ec768" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. I needed to find something I could do with
+sharp edges of my brain beginning to dull <sup><a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fn-1-44c12a" id="user-content-fnref-1-44c12a" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. I needed to find something I could do with
 my brain that would be</p>
 <ol>
 <li>difficult enough to be interesting, and</li>
@@ -119,14 +119,14 @@ make them play nicely together? Like this:</p>
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-8ec768">
-<p>I should note here that this is not a fundamental fact of dealing with kids: parents and school teachers have the chance (the obligation, even) to engage more deeply with their kids, and tracking those longer-term educational goals to the kids' intellectual and emotional development provides as deep an intellectual challenge as you care to make it. Hanging out for two hours doodling on butcher paper and helping with the stultifying abolination that is second-grade homework <sup><a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fn-2-8ec768" id="user-content-fnref-2-8ec768" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, though? I needed more. <a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fnref-1-8ec768" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-1-44c12a">
+<p>I should note here that this is not a fundamental fact of dealing with kids: parents and school teachers have the chance (the obligation, even) to engage more deeply with their kids, and tracking those longer-term educational goals to the kids' intellectual and emotional development provides as deep an intellectual challenge as you care to make it. Hanging out for two hours doodling on butcher paper and helping with the stultifying abolination that is second-grade homework <sup><a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fn-2-44c12a" id="user-content-fnref-2-44c12a" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, though? I needed more. <a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fnref-1-44c12a" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
 </li>
-<li id="user-content-fn-2-8ec768">
-<p>Up until <em>at least</em> the start of adolescence, children's intellectual and social development requires free, exploratory play, not rote drilling of skills; and their emotional and executive regulation is not strong enough to get any long-term benefit from the discipline of finishing their daily assignments. But by all means, if you want to force parents to force their kids into boring, tedious chorework, keep it coming! <a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fnref-2-8ec768" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-2-44c12a">
+<p>Up until <em>at least</em> the start of adolescence, children's intellectual and social development requires free, exploratory play, not rote drilling of skills; and their emotional and executive regulation is not strong enough to get any long-term benefit from the discipline of finishing their daily assignments. But by all means, if you want to force parents to force their kids into boring, tedious chorework, keep it coming! <a href="https://ambirdsall.com/blog/on-the-sierpinski-triangle-thing#user-content-fnref-2-44c12a" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a></p>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Rewriting a middleman site with gatsby]]></title>
@@ -154,14 +154,14 @@ older one that was compatible with the rest of the project.</p>
 <p>With this, I could actually run the site locally! All was not well, though: it
 looked like crap. It turned out that only some of the stylesheets I was loading
 from a ruby gem were available in practice, and the icon font I had been using
-was nowhere to be found<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-1-3fbbcd" id="user-content-fnref-1-3fbbcd" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. At this point, I gave up: none of these problems were
+was nowhere to be found<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-1-6f5238" id="user-content-fnref-1-6f5238" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. At this point, I gave up: none of these problems were
 insurmountable, but why go to all that effort when I wanted to rewrite it
 anyway?</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="and-having-been-exposed-to-jsx">and, having been exposed to JSX,<a href="https://ambirdsall.com/blog/cut-out-the-middleman#and-having-been-exposed-to-jsx" class="hash-link" aria-label="Direct link to and, having been exposed to JSX," title="Direct link to and, having been exposed to JSX,">​</a></h2>
 <p>In the ruby version, I used <code>.erb</code> files to handle dynamic data and a few bits
 of html boilerplate. The way <code>.erb</code> files treat the non-logic contents as a dumb
 text stream, not something with a tree structure, makes it fundamentally a worse
-fit for modeling HTML than the tree structure of JSX templates<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-3-3fbbcd" id="user-content-fnref-3-3fbbcd" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>. Having
+fit for modeling HTML than the tree structure of JSX templates<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-3-6f5238" id="user-content-fnref-3-6f5238" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>. Having
 worked with react and angular, I don't want to go back to the bad old days of
 wrangling HTML as raw text, I want to compose and encapsulate HTML using
 components; and having used JSX, embedding the structural logic of the template
@@ -207,7 +207,7 @@ I was surprised by that, because I really love ruby's <code>Enumerable</code> me
 js objects are up with cons cells among my very favorite data structures to work
 with, first-class functions make custom sorting comparators easy to add as
 arguments, and <code>Array.prototype</code> methods are just as chainable as
-<code>Enumerable</code>s<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-4-3fbbcd" id="user-content-fnref-4-3fbbcd" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup>. The definition of that <code>newestFirst</code> comparator function is
+<code>Enumerable</code>s<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-4-6f5238" id="user-content-fnref-4-6f5238" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup>. The definition of that <code>newestFirst</code> comparator function is
 left as an exercise to the reader, that's already a fair chunk of code.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="then-how-to-update-the-d3-triangle-thing-to-modern-d3-using-es6-imports">then how to update the d3 triangle thing to modern d3 using es6 imports<a href="https://ambirdsall.com/blog/cut-out-the-middleman#then-how-to-update-the-d3-triangle-thing-to-modern-d3-using-es6-imports" class="hash-link" aria-label="Direct link to then how to update the d3 triangle thing to modern d3 using es6 imports" title="Direct link to then how to update the d3 triangle thing to modern d3 using es6 imports">​</a></h2>
 <p>This wasn't too bad: I changed all the <code>var</code> statements to <code>const</code>; fixed the
@@ -233,7 +233,7 @@ visualization ran at all the appropriate times.</p>
 <h2 class="anchor anchorWithHideOnScrollNavbar_WYt5" id="and-then-i-had-a-site">and then I had a site!<a href="https://ambirdsall.com/blog/cut-out-the-middleman#and-then-i-had-a-site" class="hash-link" aria-label="Direct link to and then I had a site!" title="Direct link to and then I had a site!">​</a></h2>
 <p>I hope you like it.</p>
 <p>It is very popular to try to dunk on the javascript ecosystem in various parts
-of programmer culture<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-2-3fbbcd" id="user-content-fnref-2-3fbbcd" data-footnote-ref="true" aria-describedby="footnote-label">4</a></sup>, and one of the very most popular ways is to clown on
+of programmer culture<sup><a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fn-2-6f5238" id="user-content-fnref-2-6f5238" data-footnote-ref="true" aria-describedby="footnote-label">4</a></sup>, and one of the very most popular ways is to clown on
 the size of the <code>node_modules</code> directory. Since <code>npm</code> installs every package on
 a per-project basis; since it errs on the side of having multiple (potentially
 incompatible) versions of transitive dependencies rather than forcing you to
@@ -263,20 +263,20 @@ new <code>Array.prototype.sorted</code> method which returns a new sorted array.
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/cut-out-the-middleman#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-3fbbcd">
-<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-1-3fbbcd" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-1-6f5238">
+<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-1-6f5238" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-3-3fbbcd">
-<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-3-3fbbcd" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-3-6f5238">
+<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-3-6f5238" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-4-3fbbcd">
-<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-4-3fbbcd" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-4-6f5238">
+<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-4-6f5238" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-2-3fbbcd">
-<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-2-3fbbcd" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-2-6f5238">
+<a href="https://ambirdsall.com/blog/cut-out-the-middleman#user-content-fnref-2-6f5238" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Why emacs is worth the bother]]></title>
@@ -498,7 +498,7 @@ worth it.</p>
 <p>Honest-to-god: take 30ish minutes of your life (you don't need to watch the Q
 and A for pete's sake) and watch this presentation that Carsten Dominik, the
 German astronomer who authored org-mode, gave at google:</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/oJTwQvgfgMM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>]]></content>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJTwQvgfgMM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Zero-friction testing in rails]]></title>
@@ -611,7 +611,7 @@ those savings persist so long as the spring server is running.</p>
 <p>Now just fire up <code>guard</code> with the command <code>guard</code>. Shazam! Your tests will run on save.</p>
 <p>The little prompt <code>guard</code> gives you is an interactive ruby console, too, which
 is really handy for double-checking the syntax of quick snippets when fixing
-test failures. Use Ctrl-d to kill it, or just close your terminal.</p>]]></content>
+test failures. Use Ctrl-d to kill it, or just close your terminal.</p><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Building An Adequate Wedding Gallery]]></title>
@@ -626,7 +626,7 @@ wanted it to be easy for anyone who came to get copies of photos they like,
 whether for online use or making prints. For prints, people should be able to
 download the high-resolution originals, and those are such big files, it makes
 sense to zip the files before downloading. For digital use, there should be
-smaller image files for download<sup><a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fn-1-dec833" id="user-content-fnref-1-dec833" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>,
+smaller image files for download<sup><a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fn-1-cd8cae" id="user-content-fnref-1-cd8cae" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>,
 but that could easily be handled entirely client-side.</p>
 <p>I decided that, in addition to normal "download this photo" usage, I wanted the
 ability to</p>
@@ -649,7 +649,7 @@ within the world of ruby development, Sinatra would be plenty for just an image
 gallery and a single zipping endpoint. But server-side overkill isn't
 necessarily bad: as lost as it's fast and I don't mind paying for it (let's be
 real, my family photos aren't going to get millions of distinct views any day
-soon), there's no real downside<sup><a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fn-2-dec833" id="user-content-fnref-2-dec833" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>. Besides:</p>
+soon), there's no real downside<sup><a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fn-2-cd8cae" id="user-content-fnref-2-cd8cae" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>. Besides:</p>
 <ol>
 <li>I have notions of extending the app with the ability to search and filter by
 name, and rails makes building out the additional models down the line quite
@@ -695,14 +695,14 @@ javascript before the first paint on mobile.</p>
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-dec833">
-<a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fnref-1-dec833" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-1-cd8cae">
+<a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fnref-1-cd8cae" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-2-dec833">
-<a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fnref-2-dec833" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-2-cd8cae">
+<a href="https://ambirdsall.com/blog/building-an-adequate-wedding-gallery#user-content-fnref-2-cd8cae" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Cron: Legacy]]></title>
@@ -724,7 +724,7 @@ your own back.</p>
 <p>Cron is an old unix program used to run commands repeatedly on a schedule.
 There are two main parts to the cron system: there is the cron daemon, a
 program that (once set up) is constantly running in the background; and there
-is the crontab file, which keeps the schedule of programs to run <sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-1-a9de95" id="user-content-fnref-1-a9de95" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. Once every minute
+is the crontab file, which keeps the schedule of programs to run <sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-1-516d7b" id="user-content-fnref-1-516d7b" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. Once every minute
 on the minute, assuming your computer is awake and running, the cron daemon (the system
 automatically launches <code>cron</code> after you save your first valid crontab file, and on boot
 afterwards) evaluates each line of all of the relevant installed crontab files, running
@@ -738,7 +738,7 @@ something like gmail instead.</p>
 you are in the filesystem. You need to do some config to use this; more on that
 later.</p>
 <p>Each line either contains a shell variable definition, in which case <code>cron</code>
-updates its environment accordingly<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-2-a9de95" id="user-content-fnref-2-a9de95" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, or a
+updates its environment accordingly<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-2-516d7b" id="user-content-fnref-2-516d7b" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, or a
 scheduled command. Scheduled commands are structured like this:</p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">* * * * *  /absolute/path/of/command/to/execute</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│ │ │ │ │</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│ │ │ │ └─── day of week (0 - 7) (0 to 6 are Sunday to Saturday, or use names; 7 is Sunday, the same as 0)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│ │ │ └──────── month (1 - 12)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│ │ └───────────── day of month (1 - 31)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">│ └────────────────── hour (0 - 23)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">└─────────────────────── min (0 - 59)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>For any element of a schedule (hours, minutes, etc), you can use:</p>
@@ -805,7 +805,7 @@ conscious effort on my part. Awesome! Awesome.</p>
 <p>First, a quick note: I use <code>zsh</code>, not <code>bash</code>, and there are a few differences
 in how the two shells handle redirection, so if you use <code>bash</code>, you might
 need to make a few changes to get it working properly
-<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-3-a9de95" id="user-content-fnref-3-a9de95" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup>. Let's break this down:</p>
+<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-3-516d7b" id="user-content-fnref-3-516d7b" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup>. Let's break this down:</p>
 <div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token operator file-descriptor important" style="color:#393A34">2</span><span class="token operator" style="color:#393A34">&gt;</span><span class="token file-descriptor important">&amp;1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> /dev/null</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>The <code>2&gt;&amp;1</code> redirects <code>$STDERR</code> to <code>$STDOUT</code>. The <code>&gt; /dev/null</code> redirects
 <code>$STDOUT</code> to the Pit of Despair. If you think this seems like it will redirect
@@ -813,7 +813,7 @@ EVERYTHING to <code>/dev/null</code>, leaving you nothing useful to work with, y
 like I do. But it doesn't! Whatever redirections you specify don't take effect
 until the next pipe (or the end of the pipeline if there is no next pipe). It
 makes sense: this system lets you redirect a bunch of things
-<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-4-a9de95" id="user-content-fnref-4-a9de95" data-footnote-ref="true" aria-describedby="footnote-label">4</a></sup> to each
+<sup><a href="https://ambirdsall.com/blog/cron-legacy#user-content-fn-4-516d7b" id="user-content-fnref-4-516d7b" data-footnote-ref="true" aria-describedby="footnote-label">4</a></sup> to each
 others' old handles at the same time without having to worry too much about
 overwriting important data streams because of accidental collisions along the
 way.</p>
@@ -840,20 +840,20 @@ process can have open, after all.</p>
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/cron-legacy#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-a9de95">
-<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-1-a9de95" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-1-516d7b">
+<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-1-516d7b" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-2-a9de95">
-<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-2-a9de95" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-2-516d7b">
+<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-2-516d7b" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-3-a9de95">
-<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-3-a9de95" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-3-516d7b">
+<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-3-516d7b" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-4-a9de95">
-<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-4-a9de95" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-4-516d7b">
+<a href="https://ambirdsall.com/blog/cron-legacy#user-content-fnref-4-516d7b" data-footnote-backref="" aria-label="Back to reference 4" class="data-footnote-backref">↩</a>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[What Does It Even Mean For The Media To Be Objective]]></title>
@@ -883,7 +883,7 @@ for finding patterns: jumping to a conclusion; conceptual leaps, both the creati
 parallel kind and the brilliant insight kind; optical illusions; artistic license;
 intuition; suspicions; logical fallacies; madness.</p>
 <p>Basically every social interaction we have, every use of language, is running on hardware
-that, when you get down to it, is just doing a bunch of sloppy pattern matching<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-1-fdd078" id="user-content-fnref-1-fdd078" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. And
+that, when you get down to it, is just doing a bunch of sloppy pattern matching<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-1-781941" id="user-content-fnref-1-781941" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. And
 we're ridiculously good at it! It has literally taken us to <a href="http://joshworth.com/dev/pixelspace/pixelspace_solarsystem.html" target="_blank" rel="noopener noreferrer">the
 moon</a>. But if jumping to
 conclusions is fundamental to being an alive human, it means we're never going to not be
@@ -918,7 +918,7 @@ repudiate notions of objectivity for the sake of humanity and morality?</p>
 </blockquote>
 <p>Humanity and morality are, in general, best served by dilligent, unassuming
 respect for empirical truth. Furthermore, whether a thing is true or false has
-little to do with whether it's good or bad<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-2-fdd078" id="user-content-fnref-2-fdd078" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, and vice versa.</p>
+little to do with whether it's good or bad<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-2-781941" id="user-content-fnref-2-781941" data-footnote-ref="true" aria-describedby="footnote-label">2</a></sup>, and vice versa.</p>
 <p>The most frustrating part of writing this is that I haven't found a way not to
 come down too harshly. The article is talking about the same problem I am, and
 in many ways it's doing quite a good job of it. While it doesn't properly name
@@ -971,7 +971,7 @@ damaging, false, or repugnant rhetoric, ESPECIALLY uncritically, reinforces it i
 audience's minds, corroding truth and/or the common good. But that logic seems awfully
 open to extension: repeating this implicit notion that objective balance in a conflict is
 primarily determined by the social force of one or another "side", rather than by its
-verifiable truth<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-3-fdd078" id="user-content-fnref-3-fdd078" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup> literally builds that link in
+verifiable truth<sup><a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fn-3-781941" id="user-content-fnref-3-781941" data-footnote-ref="true" aria-describedby="footnote-label">3</a></sup> literally builds that link in
 readers' minds. People use words the same way the folks around them do: for the sake of
 the people around us, America has to step up at using them in service of truth.</p>
 <p>European philosophy has spent lifetimes failing to get around this fact,
@@ -987,17 +987,17 @@ almost always wrong, historically speaking.</p>
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-fdd078">
-<a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-1-fdd078" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-1-781941">
+<a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-1-781941" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-2-fdd078">
-<a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-2-fdd078" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-2-781941">
+<a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-2-781941" data-footnote-backref="" aria-label="Back to reference 2" class="data-footnote-backref">↩</a>
 </li>
-<li id="user-content-fn-3-fdd078">
-<p>It is always both, of course, for we are awash in a sea of opinions. <a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-3-fdd078" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
+<li id="user-content-fn-3-781941">
+<p>It is always both, of course, for we are awash in a sea of opinions. <a href="https://ambirdsall.com/blog/what-does-it-even-mean-for-the-media-to-be-objective#user-content-fnref-3-781941" data-footnote-backref="" aria-label="Back to reference 3" class="data-footnote-backref">↩</a></p>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Backticks Are Fantastic Because Typing Is The Worst]]></title>
@@ -1021,7 +1021,7 @@ a hassle to type out. Everyone who's worked in a JVM language feels me.</p>
 </ol>
 <p>Some would argue that the <code>$()</code> subshell operator has strictly more powerful semantics than
 backticks because it can be nested; they are, of course, correct. Other people like subshells
-because when you nest them, it reads just like lisp code; they are, of course, nerds<sup><a href="https://ambirdsall.com/blog/backticks-are-fantastic-because-typing-is-the-worst#user-content-fn-1-9dbe01" id="user-content-fnref-1-9dbe01" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. When you don't
+because when you nest them, it reads just like lisp code; they are, of course, nerds<sup><a href="https://ambirdsall.com/blog/backticks-are-fantastic-because-typing-is-the-worst#user-content-fn-1-56131f" id="user-content-fnref-1-56131f" data-footnote-ref="true" aria-describedby="footnote-label">1</a></sup>. When you don't
 have to nest anything, though, backticks have a killer advantage over subshells:</p>
 <ol>
 <li>33% fewer keystrokes</li>
@@ -1032,11 +1032,11 @@ nerd</a> myself.</p>
 <!-- -->
 <section data-footnotes="true" class="footnotes"><h2 class="anchor anchorWithHideOnScrollNavbar_WYt5 sr-only" id="footnote-label">Footnotes<a href="https://ambirdsall.com/blog/backticks-are-fantastic-because-typing-is-the-worst#footnote-label" class="hash-link" aria-label="Direct link to Footnotes" title="Direct link to Footnotes">​</a></h2>
 <ol>
-<li id="user-content-fn-1-9dbe01">
-<a href="https://ambirdsall.com/blog/backticks-are-fantastic-because-typing-is-the-worst#user-content-fnref-1-9dbe01" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+<li id="user-content-fn-1-56131f">
+<a href="https://ambirdsall.com/blog/backticks-are-fantastic-because-typing-is-the-worst#user-content-fnref-1-56131f" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
 </li>
 </ol>
-</section>]]></content>
+</section><hr><br>]]></content>
     </entry>
     <entry>
         <title type="html"><![CDATA[Locks Are Some Shit]]></title>
@@ -1181,10 +1181,10 @@ mutual exclusion (thus, incidentally, the term "mutex")</li>
 for the OS</li>
 <li>A cool-ass locking implementation from the linux kernel that tracks both the
 status of the lock and the size of its queue with a single integer</li>
-</ul>]]></content>
-        <category label="operating_systems" term="operating_systems"/>
-        <category label="concurrency" term="concurrency"/>
-        <category label="locks" term="locks"/>
+</ul><hr><br>]]></content>
+        <category label="Operating systems" term="Operating systems"/>
+        <category label="Concurrency" term="Concurrency"/>
+        <category label="Locks" term="Locks"/>
     </entry>
     <entry>
         <title type="html"><![CDATA[Berkely DB Design Lessons]]></title>
@@ -1387,9 +1387,9 @@ the beginning of wisdom is to admit we are unequal to the task. Our goal as
 architects and programmers is to use the tools at our disposal: design, problem
 decomposition, review, testing, naming and style conventions, and other good
 habits, to constrain programming problems to problems we can solve.</p>
-</blockquote>]]></content>
-        <category label="quotes" term="quotes"/>
-        <category label="design" term="design"/>
-        <category label="architecture" term="architecture"/>
+</blockquote><hr><br>]]></content>
+        <category label="Quotes" term="Quotes"/>
+        <category label="Design" term="Design"/>
+        <category label="Architecture" term="Architecture"/>
     </entry>
 </feed>

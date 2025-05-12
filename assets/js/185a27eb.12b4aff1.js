@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkambirdsall_com=self.webpackChunkambirdsall_com||[]).push([[1462],{9856:(a,s,l)=>{l.r(s),l.d(s,{default:()=>o});l(6540);var c=l(2382),e=l(4848);const o=()=>(0,e.jsxs)(c.A,{children:[(0,e.jsx)("h1",{children:"oh look it's reaaaaaact"}),(0,e.jsx)("p",{children:"wow, cool, so 2017"})]})}}]);
