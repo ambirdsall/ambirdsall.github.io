@@ -1,49 +1,20 @@
-#+title: Paleontologist sights a sight: docusaurus rewrites site
+#+title: what if my personal website was, like, really good tho
 
 * =/= :: physician, sell thyself [1/2]
 ** DONE add link to resume
 ** improve the site qua portfolio
-** TODO I say I make music; well, I have a website, put something online already
-
-* ship the PR and fully deprecate gatsby mode [6/10]
-** delete malcontents [4/4]
-*** DONE =src/components/HomepageFeatures/*=
-*** DONE =src/pages/markdown-page.md=
-*** DONE =src/pages/oh-cool-{mdx,react}.{md,ts}x=
-*** DONE obsolete docusaurus assets
-** DONE edit =blog/authors.yml=
-** DONE edit =blog/tags.yml=
-** TODO merge PR
-** TODO pull new changes to original directory
-** TODO reinstall deps obvs
-** TODO double check that everything works as expected
-* TODO add comment section with giscus
-#+begin_src jsx
-<script src="https://giscus.app/client.js"
-        data-repo="ambirdsall/ambirdsall.github.io"
-        data-repo-id="MDEwOlJlcG9zaXRvcnkxOTgzOTU0Mw=="
-        data-category="Announcements"
-        data-category-id="DIC_kwDOAS66N84CpwSt"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="top"
-        data-theme="preferred_color_scheme"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-</script>
-#+end_src
-* rando cleanups [0/1]
-** TODO remove =README.md=, port useful content and symlink =todo.org= as =README.org=
-* s/docs/projects/g [0/2]
-** TODO update docusaurus.config.ts
-** TODO rename directory
-** start adding in write-ups!
-*** noisebot :: sonos controller
-*** mediabot :: home server
+*** s/docs/projects/g [0/2]
+**** TODO update docusaurus.config.ts
+**** TODO rename directory
+**** start adding in write-ups!
+***** noisebot :: sonos controller
+***** mediabot :: home server
+***** agendabot :: e-ink display of google calendar + org-agenda
+** TODO I say I make music; well, I have a website, put something online
+*** music player UI?
+hosting the files is straighforward and shit, but is there a good FOSS embeddable player? Maybe which supports album-style playlists?
+*** aleatoric jams?
+god it kills me that I lost all that music from that hard drive, =Canvas.reason= was fucking /born/ for this.
 * =/blog= :: posting and toasting
 ** TODO static jsx build of resume
 ** own the libs

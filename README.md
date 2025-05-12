@@ -1,7 +1,11 @@
-ambirdsall.github.io
-====================
+ambirdsall's personal website
+=============================
 
-My personal site! Hullo!
+Hello and welcome to the source repo of my website. If you want to see it live on Al Gore's internet, these should all work:
+- [https://ambirdsall.com](ambirdsall.com)
+- [https://ambirdsall.github.io](ambirdsall.github.io)
+- http://localhost:3000 (after running `npm install` and `npm start`)
+
 
 ## It's a blog with a cool little sierpinski triangle doodad
   On scroll or devicemove it populates a sierpinski triangle via the [Chaos
@@ -16,6 +20,11 @@ My personal site! Hullo!
   - Exciting idea: clicking on the triangle could "release" the pips as a flock of boids.
 
 ### Installation
+If you want to fork this to make your own website, that's...a little weird, but I suppose
+I'd take it as a compliment. Maybe try to be original with your personal site, though?
+
+Anyway, after you replace all the content with not-plagiarism, all you really need to do
+is change the `CNAME` file to point to a domain you own.
 
 ```sh
 npm install
