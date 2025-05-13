@@ -10,7 +10,7 @@
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "predeploy": "docusaurus build",
-    "deploy": "bin/deploy",
+    "deploy": "node bin/deploy.mjs",
     "clear": "docusaurus clear",
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
