@@ -10,10 +10,7 @@ const config: Config = {
   // favicon: 'img/favicon.ico',
   favicon: "img/amb-icon.png",
 
-  // Set the production url of your site here
   url: "https://ambirdsall.com",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
 
   // GitHub pages deployment config.
@@ -24,6 +21,19 @@ const config: Config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
+  plugins: [
+    [
+      "@docusaurus/plugin-ideal-image",
+      {
+        quality: 70,
+        max: 1030, // max resized image's size.
+        min: 640, // min resized image's size. if original is lower, use that size.
+        steps: 2, // the max number of images generated between min and max (inclusive)
+        disableInDev: false,
+      },
+    ],
+  ],
+
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
@@ -31,6 +41,11 @@ const config: Config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
 
   presets: [
     [
@@ -69,6 +84,12 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: "img/amb-icon.png",
+    mermaid: {
+      theme: {
+        light: "base",
+        dark: "forest",
+      },
+    },
     navbar: {
       // title: "Alex Birdsall",
       logo: {
