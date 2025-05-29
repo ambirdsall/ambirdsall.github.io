@@ -1,15 +1,19 @@
 #+title: what if my personal website was, like, really good tho
 
-* =/= :: physician, sell thyself [1/2]
+* =/= :: physician, sell thyself [3/6]
 ** DONE add link to resume
 ** improve the site qua portfolio
-*** s/docs/projects/g [0/2]
-**** TODO update docusaurus.config.ts
-**** TODO rename directory
+*** s/docs/projects/g [2/4]
+**** DONE update docusaurus.config.ts
+**** DONE rename directory
 **** start adding in write-ups!
 ***** noisebot :: sonos controller
+****** TODO add syntax support for =typescript=
+****** TODO finish writeup of js shit
 ***** mediabot :: home server
 ***** agendabot :: e-ink display of google calendar + org-agenda
+**** brag sheet :: write up work experiences/wins
+inspo: the stuff at https://www.alexoskie.com/#Work
 ** TODO I say I make music; well, I have a website, put something online
 *** music player UI?
 hosting the files is straighforward and shit, but is there a good FOSS embeddable player? Maybe which supports album-style playlists?
