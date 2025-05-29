@@ -1,0 +1,28 @@
+---
+slug: /
+---
+
+import Link from "@docusaurus/Link"
+import { ProjectCardList, ProjectCard } from "./_projectList"
+
+# Projects of mine
+
+When deciding whether to write a public description of a project, I prefer to err on the
+side of professional discretion; I don't write about software projects if I can't freely
+include its source code, which means you can expect this list to skew heavily towards
+personal side projects. Some are large and complex; some are small and direct. I hope you
+enjoy reading them; if anything is unclear or particularly interesting, please do drop a
+question in the comments.
+
+<ProjectCardList>
+  <ProjectCard
+    path="noisebot"
+    title="Noisebot"
+    description="A Raspberry-Pi-powered hardware controller for seamlessly controlling the once-janky connection between Sonos and my phonograph"
+    />
+  <ProjectCard 
+    path="on-the-sierpinski-triangle-thing"
+    title="Sierpinski Triangle Animation"
+    description={`The animated triangle from this site's homepage. Learn the fun and elegant "chaos game" algorithm powering it (and its personal meaning from my journey to becoming a programmer), and how to embed a d3 visualization within a react page.`}
+    />
+</ProjectCardList>

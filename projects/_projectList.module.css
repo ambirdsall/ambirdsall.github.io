@@ -1,0 +1,14 @@
+.cardList {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  flex: 1;
+  margin: 1em;
+  min-width: 15em;
+}
+
+.bordered {
+  border: 1px solid var(--ifm-color-primary-dark);
+}
