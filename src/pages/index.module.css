@@ -9,7 +9,7 @@
 
 .blurredBackdrop {
   border-radius: 1em;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(22px);
   width: fit-content;
   margin: 3em auto;
   padding: 1em;
