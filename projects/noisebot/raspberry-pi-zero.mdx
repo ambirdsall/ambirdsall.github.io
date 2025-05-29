@@ -1,0 +1,96 @@
+# Setting Up The Rasperry Pi Zero W
+I burned a fresh install of raspbian lite onto a mini SD card, setting up `ssh` access and giving it the hostname `noisebot` so I could work with it by running `ssh noisebot.local`. With that in place, I rolled up my sleeves and dug in.
+
+## First things first: install nodejs so it can run the code
+I used approximately the approach from [this gist](https://gist.github.com/stonehippo/f4ef8446226101e8bed3e07a58ea512a) by GH user stonehippo, adapted for the most recent LTS release of node then available:
+```shell
+wget https://unofficial-builds.nodejs.org/download/release/v20.18.3/node-v20.18.3-linux-armv6l.tar.xz
+tar -xf node-v20.18.3-linux-armv6l.tar.xz
+sudo mv node-v20.18.3-linux-armv6l.tar.xz /usr/local/node
+cd /usr/bin
+sudo ln -s /usr/local/node/bin/node node
+sudo ln -s /usr/local/node/bin/npm npm
+```
+
+Running both `node -v` and `npm -v` output the expected versions (`v20.18.3` and `10.8.2`, respectively); I was done there.
+
+## It Should Act Like A Device, Not A Computer
+The ability to run a script is nice, but the pi should be configured to do so automatically on boot, as soon as the wifi connection is up; and it should automatically restart if the script crashes.
+
+Given
+- a linux program
+- with a CLI entry point
+- to be triggered automatically when the computer starts
+- but only after networking is up
+- with automatic retry logic
+- and some amount of logging, too
+Everything about this spec screamed "systemd unit" to me, and I tried for quite a while to make a unit definition for this. The trouble was the program's dependency on getting user input via the default tty's `stdin`: I never managed to connect the process as started by `systemctl` to the tty with the keyboard input was going. I needed to hack it all up myself.
+
+### I'm Not Logging Into A Volume Knob
+By default, raspbian lite asks you to log in as a valid user, and then drops you into that user's login shell. This just isn't feasible with the limited keys available in this setup, and even if it were, it'd be a terribly annoying hassle. Automatic login isn't too hard to set up in linux though[^2], and it's not too hard to find [raspberry-pi-specific instructions](https://raspberrypi.stackexchange.com/a/76275): run `sudo raspi-config`, dig through the `System Options` submenu, and there you go: next time the computer powers up, it will automatically log in as the user you preconfigured.
+
+[^2]: Which makes good sense: there's a very good bet that a sizeable majority of all the touchscreen kiosks you've ever interacted with were running linux, too
+
+### And I'm Not Going To Manually Run A Script For One, Either
+Without `systemd` listening for `networking.target` and handling the (re)start logic for me, I had to write my own logic instead. As is so often the case, a bit of shell scripting was all I needed. For (re)starting, I added a small script to the project directory, `bin/loop`. Here's the logic, slightly condensed[^1]: 
+```shell
+#!/usr/bin/env bash
+
+while true; do
+  sleep 1
+  # more on the REPL later
+  rm -f /tmp/noisebot-repl.sock
+
+  # expects to be run from the project root
+  node index.js
+done
+```
+
+[^1]: The real version delegates the startup logic to another trivial script, `bin/start`, so I could have a single source of truth for both auto-restarting "prod"-style runs and one-off debugging runs; I inlined the code for didactic purposes.
+
+## You Said We Had To Wait For The Wi-Fi, Though?
+The simplest way to ensure that the wi-fi is up is to run a bash loop to check for a live wi-fi connection, and don't run the script until it exits successfully. This does the trick:
+```shell
+# before this, who knows if there's a wi-fi connection?
+
+while [[ "$(wpa_cli status | grep wpa_state | cut -d"=" -f2)" != "COMPLETED" ]]; do
+  # we loop de loop if the wi-fi is still connecting or otherwise offline
+  sleep 0.5
+done
+
+# if we get here, there definitely was a live wi-fi connection
+```
+
+## Running The Script Where The Keyboard Input Is
+We now have a way to (re)start the script, and we have a way to ensure the wi-fi is up before we do so. Also, the pi now automatically logs into my user account when it powers up. This is very nearly all we need!
+
+After the auto-login, the user session starts up a `bash` login shell. That shell session's tty is now receiving all the keyboard input, which implies a hilariously simple answer to this last sub-problem: just invoke `bin/loop` directly from that `.bashrc`. 
+
+### That's Too Easy, Where's The Catch
+There is, indeed, a catch: since I was using `ssh` to manage and debug things on the Raspberry Pi, it would be slightly disastrous for every `ssh` login to also start an infinite loop of the script. But with a little nitty-gritty linux knowledge, there's a cute hack for that:
+```shell
+# /dev/tty1 is always the local login shell
+if [[ $(tty) == /dev/tty1 ]]; then
+  echo nothing inside here will be run by an ssh session
+fi
+
+echo this will be run by local _and_ ssh sessions
+```
+
+## Put It All Together
+
+```shell
+if [[ $(tty) == /dev/tty1 ]]; then
+  # we can't connect to sonos until the wifi connection is up
+  while [[ "$(wpa_cli status | grep wpa_state | cut -d"=" -f2)" != "COMPLETED" ]]; do
+    sleep 0.5
+  done
+
+  # script expects to be run from this dir
+  cd /path/to/noisebot
+
+  # hold-onto-your-butts.gif
+  bin/loop
+fi
+```
+

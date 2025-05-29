@@ -1,0 +1,53 @@
+# Setting Up The Mini Keyboard
+
+This part of the project began with a little investigation: what key codes does it actually send?
+
+The product listing on aliexpress claimed the keyboard would come with software for remapping keys, but there was literally nothing in the box but the keyboard and a cable. No manual, no piece of paper with a url—hell, I didn't even a brand name to google.
+
+So. I plugged the keyboard into my laptop, ran `cat -v` in a terminal, and started fiddling. And lo: _literally everything_ sent the letter `c`. The 6 keys? Every one a `c`. Turn the knob clockwise, it sends one `c` per tick. Counterclockwise? More `c`s. Press the knob? You guessed it. While I kinda respected this heinous default's commitment to the bit, it was unusable: I had to replace the firmware to get a useful set of keycodes.
+
+I searched all over the web for the keyboard by description, with and without `aliexpress` appended to the search, but all I found were old forum posts with broken links and rumors of a malware-ridden, windows-only keyboard mapper provided by the company that I could maybe run in a VM. 
+
+I got fed up before I found a copy, so I opened up the case, wrote down what I saw on the circuit board, and searched for that instead. That was a much better idea; I soon found [`ch57x-keyboard-tool`](https://github.com/kriomant/ch57x-keyboard-tool), a rust project for doing exactly what I needed to do, supporting hardware suspiciously similar to mine.
+
+## defining a new layout for the keyboard
+Here's the keyboard layout I used. There were 2 rows of 3 keys each, and every key needed a job. On the bottom row were three keys to toggle whether specific other speakers were grouped with the line in; on top was one to connect the line in audio source, and... two more. Better to have and not need, I guess? Those got the "forward track" and "backward track" actions, in case I'm streaming digital tracks on a group of sonos speakers that includes the line in. Turning the knob should change volume, of course; pressing it should toggle mute. Nothing fancy like RGB lighting[^5].
+
+[^5]: RGB lighting _is_ technically a feature of this keyboard, and I started out with hopes of lighting up specific keys to show which speakers were connected. I thought it would useful and rad, and I still do. But the only controls available were some predefined full-keyboard light patterns which could only be triggered en masse, not on a per-key basis, and only by an external signal from the computer it's plugged into. So it goes.
+
+Each "job" is mapped to a mnemonic letter key, even media functions that have dedicated keycodes:
+- back row of keyboard buttons
+  - [**b**]ackwards track
+  - toggle [**p**]honograph as input source
+  - [**f**]orwards track
+- front row of keyboard buttons
+  - toggle [**t**]v speaker
+  - toggle [**l**]iving room speaker
+  - toggle [**k**]itchen speaker
+- the rotary knob has 3 triggers
+  - turning clockwise (`cw`) -> [**u**]p
+  - turning counterclockwise (`ccw`) -> [**d**]own
+  - `press` -> toggle [**m**]ute
+
+```yaml
+#  buttons on the left, knobs on the right
+orientation: normal
+
+rows: 2
+columns: 3
+knobs: 1
+
+layers:
+  - buttons:
+      - ["b", "p", "f"]
+      - ["t", "l", "k"]
+    knobs:
+      - ccw: "d"
+        press: "m"
+        cw: "u"
+```
+
+Installing was straightforward and well-documented; check out 
+
+The keyboard chip supports multiple layers, but there's no way to switch them without a preinstalled physical toggle, and my keyboard had none; I didn't bother with multiple `layers` entries. I did mourn the lack of QMK-style "send a keycode when tapping a given key, but act as a modifier when held" functionality: I would love to be able to make it so that holding some speaker's toggle key would let me temporarily manage the group members and volume of _its_ group, but node per se doesn't distinguish between keyup and keydown events, so without firmware support, I can't do anything that fancy without a grip of additional setup; this one had to stay on the cutting room floor.
+

@@ -53,6 +53,8 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
+          path: "projects",
+          routeBasePath: "projects",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -86,6 +88,10 @@ const config: Config = {
     image: "img/amb-icon.png",
     mermaid: {
       theme: {
+        // light: "default",
+        // light: "neutral",
+        // light: "dark",
+        // light: "forest",
         light: "base",
         dark: "forest",
       },
@@ -98,12 +104,12 @@ const config: Config = {
       },
       hideOnScroll: true,
       items: [
-        // {
-        //   type: "docSidebar",
-        //   sidebarId: "tutorialSidebar",
-        //   position: "left",
-        //   label: "Tutorial",
-        // },
+        {
+          type: "docSidebar",
+          sidebarId: "projectSidebar",
+          position: "left",
+          label: "Projects",
+        },
         {
           to: "/",
           label: "Home page",
