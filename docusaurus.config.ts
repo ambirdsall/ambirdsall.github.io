@@ -111,11 +111,6 @@ const config: Config = {
           label: "Projects",
         },
         {
-          to: "/",
-          label: "Home page",
-          position: "left",
-        },
-        {
           to: "/blog",
           label: "Blog posts",
           position: "left",
