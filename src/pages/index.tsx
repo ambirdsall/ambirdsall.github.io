@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin } from "react-icons/fa"
 
 import Link from "@docusaurus/Link"
 import Image from "@theme/IdealImage"
+import Layout from "@theme/Layout"
 import Sierpinski from "@site/src/components/triangle"
 
 // @ts-ignore
@@ -32,8 +33,15 @@ const NavBadge = ({ to, href, children }: NavBadgeProps) => {
 
 export default function Home(): ReactNode {
   return (
-    <>
-      <header className={clsx(styles.header, styles.center, "plaid")}>
+    <Layout>
+      <header
+        className={clsx(
+          styles.header,
+          styles.center,
+          "plaid",
+          "underlap-navbar"
+        )}
+      >
         <div
           className={clsx(styles.blurredBackdrop, "avatar", "avatar--vertical")}
         >
@@ -54,6 +62,7 @@ export default function Home(): ReactNode {
           </div>
         </div>
       </header>
+
       <section className={styles.subNav}>
         <NavBadge href="https://github.com/ambirdsall">
           <FaGithub className={styles.socialIcon} />
@@ -66,8 +75,9 @@ export default function Home(): ReactNode {
           LinkedIn
         </NavBadge>
       </section>
+
       <Sierpinski />
-      <aside className={clsx(styles.center, styles.aside)}></aside>
+
       <section className={styles.checkMeOut}>
         <p>
           As with many web developers, my website exists in part to demonstrate
@@ -86,6 +96,6 @@ export default function Home(): ReactNode {
           </NavBadge>
         </div>
       </section>
-    </>
+    </Layout>
   )
 }

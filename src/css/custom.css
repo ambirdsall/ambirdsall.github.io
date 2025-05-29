@@ -95,3 +95,29 @@ html[data-theme="dark"] {
       rgba(11, 36, 45, 0.5) 160px
     );
 }
+
+:root {
+  --navbar-background-opacity: 0.88;
+}
+
+[data-theme="light"]:has(.plaid) {
+  --ifm-navbar-background-color: rgba(
+    255,
+    255,
+    255,
+    var(--navbar-background-opacity)
+  );
+}
+[data-theme="dark"]:has(.plaid) {
+  --ifm-navbar-background-color: rgba(
+    36,
+    37,
+    38,
+    var(--navbar-background-opacity)
+  );
+}
+
+.underlap-navbar {
+  padding-top: var(--ifm-navbar-height);
+  margin-top: calc(-1 * var(--ifm-navbar-height));
+}
