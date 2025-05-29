@@ -41,3 +41,7 @@
   max-width: 40em;
   margin: 1em auto;
 }
+
+.selfPortrait {
+  --ifm-avatar-photo-size: 12rem;
+}

@@ -3,10 +3,11 @@ import type { ReactNode } from "react"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 
 import Link from "@docusaurus/Link"
+import Image from "@theme/IdealImage"
 import Sierpinski from "@site/src/components/triangle"
 
 // @ts-ignore
-import SelfPortraitUrl from "@site/static/img/alex-birdsall-headshot.jpg"
+import SelfPortraitUrl from "@site/static/img/alex-birdsall-headshot-uncropped.jpg"
 import styles from "./index.module.css"
 
 export default function Home(): ReactNode {
@@ -16,10 +17,10 @@ export default function Home(): ReactNode {
         <div
           className={clsx(styles.blurredBackdrop, "avatar", "avatar--vertical")}
         >
-          <img
+          <Image
             alt="Photo of Alex Birdsall"
-            className="avatar__photo avatar__photo--xl"
-            src={SelfPortraitUrl}
+            className={clsx("avatar__photo", styles.selfPortrait)}
+            img={SelfPortraitUrl}
           />
           <div className="avatar__intro">
             <h1 className={styles.hello}>hello, I'm Alex Birdsall</h1>
