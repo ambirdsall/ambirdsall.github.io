@@ -1,3 +1,4 @@
+import Link from '@docusaurus/Link'
 import Image from '@theme/IdealImage'
 import thumbnail from '/img/mini-keeb.avif'
 
@@ -75,13 +76,64 @@ Here's the process I wanted:
 And for changing the volume:
 - twiddle a volume knob
 
-The breakthrough was finding a library to control the speakers. I knew Sonos speakers coordinate over wifi with network calls[^2], so if I had a programatic way to send those calls and buttons to trigger them, I could automate away all the bother with telephones.
+I had a UI in mind, even: as a programmer, I do enough typing to have researched keyboard enthusiast spaces online, and there I had seen several examples of macro pads[^4] equipped with a handful of remappable keys and a rotary knob. Here's the layout I ended up going with, but I could have gone smaller: the whole top row was optional.
+
+<svg
+  viewBox="0 0 260 120"
+  width="100%"
+  height="auto"
+  xmlns="http://www.w3.org/2000/svg"
+  style={{ maxWidth: '300px', margin: '2rem auto', display: 'block' }}
+>
+  {/* Keys - Top Row */}
+  <rect x="10" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="35" y="35" fontSize="16" textAnchor="middle" fill="#333">b</text>
+
+  <rect x="70" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="95" y="35" fontSize="16" textAnchor="middle" fill="#333">p</text>
+
+  <rect x="130" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="155" y="35" fontSize="16" textAnchor="middle" fill="#333">f</text>
+
+  {/* Keys - Bottom Row */}
+  <rect x="10" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="35" y="95" fontSize="16" textAnchor="middle" fill="#333">l</text>
+
+  <rect x="70" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="95" y="95" fontSize="16" textAnchor="middle" fill="#333">t</text>
+
+  <rect x="130" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
+  <text x="155" y="95" fontSize="16" textAnchor="middle" fill="#333">k</text>
+
+  {/* Rotary Knob */}
+  <circle cx="220" cy="60" r="35" fill="#ccc" stroke="#333" strokeWidth="2" />
+  <text x="220" y="48" fontSize="14" textAnchor="middle" fill="#000">↻ u</text>
+  <text x="220" y="65" fontSize="14" textAnchor="middle" fill="#000">↺ d</text>
+  <text x="220" y="81" fontSize="12" textAnchor="middle" fill="#222">(m)</text>
+</svg>
+
+- top row: playback controls
+  - left: `b`ackwards track
+  - middle: ensure `p`honograph is audio source
+  - right: `f`orwards track
+- bottom: device toggles
+  - `l`iving room speaker
+  - `t`v soundbar
+  - `k`itchen speaker
+- knob: 
+  - clockwise: `u`p volume
+  - counterclockwise: `d`own volume
+  - press: toggle `m`ute
+
+
+## The breakthrough: finding a library to control the speakers
+I knew Sonos speakers coordinate with network requests over wifi[^2]; if I had a programatic way to send the same kind of network requests, I could use trigger it with that macro pad and automate away all the bother with telephones. If you press the "living room" button, the speaker there either starts or stops playing the record; turn the volume knob, the volume changes. Creating a wrapper library was likely a matter of observing and reverse-engineering some private HTTP api, and people do that every day. To a search engine!
 
 [^2]: Presumably with audio streamed over UDP and ordinary http requests for commands and events
 
-The open-source libraries I found for interacting with sonos were all on npm; I've written a lot of javascript in my career, so a node script was old hat. I did some quick experiments and went with the first package that worked, which you can find as `sonos` on npm and `node-sonos` [on github](https://github.com/bencevans/node-sonos).
+There were indeed some open-source libraries for interacting with sonos, and they were all on npm; I've written a lot of javascript in my career, so a node script was old hat. _Marvelous._ I did some quick experiments; the one that made it easiest to find my speakers and order them around goes by `sonos` on npm and `node-sonos` [on github](https://github.com/bencevans/node-sonos).
 
-For hardware, I had an unused raspberry pi zero[^3] around: that gave me a computer which was tiny enough to stash in a small device, while still having a wifi antenna to communicate with the speakers and enough CPU to run a node script in an ordinary linux terminal. As a programmer, I do enough typing to have researched keyboard enthusiast spaces online; I had seen quite a few examples of macro pads[^4] equipped with just a handful of keys and a rotary knob, just the UI I wanted. The programming model is straightforward, too: connect a keyboard to a terminal running a node script, and the script just has to listen on `stdin` to trigger arbitrary functions for each of its keys. My plan was coming together nicely, with a high-level setup like this:
+For hardware, I had an unused Raspberry Pi Zero[^3] around: that gave me a computer which was tiny enough to stash in a small device, while still having a wifi antenna to communicate with the speakers and enough CPU to run a node script in an ordinary linux terminal. The programming model looked straightforward, too: the macropad was just a funny USB keyboard, so I could directly connect it to the pi while running the script, which just has to listen for characters coming in on `stdin` and get ready to trigger callbacks when it reads the right ones. My plan was coming together nicely:
 
 [^3]: specifically, a [Raspberry Pi Zero W](https://www.raspberrypi.com/products/raspberry-pi-zero-w/) v1.1
 [^4]: "Macro pads" are small mechanical keyboards with just a handful of keys, each of which is then programmed to send some useful, but hard to type, keyboard shortcut
@@ -116,9 +168,9 @@ This looked close to ideal, and the only thing I didn't already own was a little
 
 <div style={{margin: 'auto', width: '20em'}}><Image img={thumbnail} /></div>
 
-To realize my plan I had to solve three problems, which could be treated as independent, non-blocking tasks until it was time to bring everything together:
-- write a headless but interactive sonos TUI in node.js: I could write and run the code on a normal laptop if the Raspberry Pi weren't ready, using the laptop keyboard to trigger actions if the mini one weren't ready
-- set up a raspberry pi zero to run the above script, using `ssh` to test the software if the mini keyboard weren't ready
-- find out what codes my mini keyboard sends for each key and the knob, remapping them as needed; this has no dependency on the Raspberry Pi
+With my hardware assembled, I still had to complete three tasks, which could all be—at least partially—developed in isolation:
+- <Link to="./scripting"><strong>write a headless but interactive sonos TUI as a node.js script:</strong></Link> I could write and run the code on a normal laptop if the Raspberry Pi weren't ready, using the laptop keyboard to trigger actions if the mini one weren't ready
+- <Link to="./mini-keyboard"><strong>set up a raspberry pi zero to run that script</strong></Link>, using a laptop keyboard over `ssh` to test the script if the mini keyboard weren't ready
+- find out <Link to="./raspberry-pi-zero"><strong>what codes my mini keyboard sends</strong></Link> for each key and the knob, remapping them as needed; this has no dependency on the Raspberry Pi at all.
 
 Each problem has a dedicated page with a more detailed explanation. Let's dig in!
