@@ -30,6 +30,7 @@ export default function prismIncludeLanguages(
       shell: "bash",
       elisp: "lisp",
       "emacs-lisp": "lisp",
+      ts: "typescript",
     }
     let langName = langAliases[lang] || lang
 

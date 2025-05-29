@@ -1,14 +1,14 @@
 #+title: what if my personal website was, like, really good tho
 
-* =/= :: physician, sell thyself [3/6]
+* =/= :: physician, sell thyself [4/6]
 ** DONE add link to resume
 ** improve the site qua portfolio
-*** s/docs/projects/g [2/4]
+*** s/docs/projects/g [3/4]
 **** DONE update docusaurus.config.ts
 **** DONE rename directory
 **** start adding in write-ups!
 ***** noisebot :: sonos controller
-****** TODO add syntax support for =typescript=
+****** DONE add syntax support for =typescript=
 ****** TODO finish writeup of js shit
 ***** mediabot :: home server
 ***** agendabot :: e-ink display of google calendar + org-agenda
