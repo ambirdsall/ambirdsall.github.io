@@ -116,6 +116,11 @@ const config: Config = {
           position: "left",
         },
         {
+          href: "https://ambirdsall.com/resume",
+          label: "My resumé",
+          position: "right",
+        },
+        {
           href: "https://github.com/ambirdsall",
           label: "Github profile",
           position: "right",
@@ -123,11 +128,6 @@ const config: Config = {
         {
           href: "https://linkedin.com/in/ambirdsall",
           label: "LinkedIn profile",
-          position: "right",
-        },
-        {
-          href: "https://ambirdsall.com/resume",
-          label: "My resumé",
           position: "right",
         },
         // {
