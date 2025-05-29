@@ -10,6 +10,26 @@ import Sierpinski from "@site/src/components/triangle"
 import SelfPortraitUrl from "@site/static/img/alex-birdsall-headshot-uncropped.jpg"
 import styles from "./index.module.css"
 
+type NavBadgeProps = { to?: string; href?: string; children: ReactNode }
+const NavBadge = ({ to, href, children }: NavBadgeProps) => {
+  const className = "button button--secondary"
+  if (to) {
+    return (
+      <Link to={to} className={className}>
+        {children}
+      </Link>
+    )
+  } else if (href) {
+    return (
+      <Link href={href} className={className}>
+        {children}
+      </Link>
+    )
+  } else {
+    throw Error(`<NavBadge> must be given either a 'to' or an 'href' prop.`)
+  }
+}
+
 export default function Home(): ReactNode {
   return (
     <>
@@ -35,23 +55,16 @@ export default function Home(): ReactNode {
         </div>
       </header>
       <section className={styles.subNav}>
-        <Link
-          href="https://github.com/ambirdsall"
-          className="button button--secondary"
-        >
+        <NavBadge href="https://github.com/ambirdsall">
           <FaGithub className={styles.socialIcon} />
           Github
-        </Link>
-        <Link to="/blog" className="button button--secondary">
-          Blog
-        </Link>
-        <Link
-          href="https://linkedin.com/in/ambirdsall"
-          className="button button--secondary"
-        >
+        </NavBadge>
+        <NavBadge to="/projects">Projects</NavBadge>
+        <NavBadge to="/blog">Blog</NavBadge>
+        <NavBadge href="https://linkedin.com/in/ambirdsall">
           <FaLinkedin className={styles.socialIcon} />
           LinkedIn
-        </Link>
+        </NavBadge>
       </section>
       <Sierpinski />
       <aside className={clsx(styles.center, styles.aside)}></aside>
@@ -67,18 +80,10 @@ export default function Home(): ReactNode {
           interested in my resumé:
         </p>
         <div className={styles.subNav}>
-          <Link
-            href="https://ambirdsall.com/resume"
-            className="button button--secondary"
-          >
-            html resumé
-          </Link>
-          <Link
-            href="https://ambirdsall.com/resume"
-            className="button button--secondary"
-          >
+          <NavBadge href="https://ambirdsall.com/resume">html resumé</NavBadge>
+          <NavBadge href="https://ambirdsall.com/resume/Alex-Birdsall.pdf">
             pdf resumé
-          </Link>
+          </NavBadge>
         </div>
       </section>
     </>
