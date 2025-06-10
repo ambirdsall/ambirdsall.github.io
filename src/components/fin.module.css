@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  text-align: center;
+  margin: 0 auto 2em auto;
+  width: fit-content;
+}
+.textBlock {
+  width: fit-content;
+}
+.title {
+  font-family: "Monsieur La Doulaise", cursive;
+  font-size: 6rem;
+  font-style: italic;
+  margin: 0;
+  padding: 1em;
+  width: 5em;
+}
