@@ -1,3 +1,5 @@
+import Fin from "@site/src/components/fin"
+
 # Automating Sonos actions with node.js 
 
 :::warning
@@ -64,7 +66,7 @@ This being a personal hobby project, I decided on a few specific tradeoffs upfro
 - javascript, not typescript
   - static types are wonderful tools for globally enforcing low-grade correctness across multiple developers and long time frames[^3], but, well, cf. above on testing
   - introducing a compilation step adds complexity, extra dependencies, and additional tooling requirements, and, well, cf. K.I.S.S. above
-- code that is in any way Sonos-specific should prefer "good enough" and terse, ad hoc problem solving over theoretical portability; only bother spending time on clean, reusable abstractions for things that could be useful in wildly different projects, like "trigger arbitrary functions by typing keys" and "setup a REPL for connecting with the running program from another process, with access to its actual functions and values".
+- code that is in any way Sonos-specific should prefer "good enough" and terse, ad hoc problem solving over theoretical portability; only bother spending time on clean, reusable abstractions for things that could be useful in wildly different projects, like "trigger arbitrary functions by typing individual keys" and "setup a REPL for connecting with the running program from another process, with access to its actual functions and values".
 
 [^2]: This is even true of integration tests, which by definition test the software's behavior across some API boundary: in order to be useful and reliable, an integration test needs a controlled, repeatable setup and teardown of its test scenario, just like a unit test does. For this reason, integration tests are primarily helpful when they validate software's behavior across an _internal_ API boundary, still safely insulated from the slings and arrows of outrageous reality by the API boundary of the system as a whole.
 [^3]: If this makes static typing just sound like a lower-effort way to run halfassed unit tests on every line of your codebase, good! That's essentially what their value add is.
@@ -138,32 +140,8 @@ async function findLineInEtAl({ maxTries } = { maxTries: Infinity }) {
 With device object references in hand, or rather in scope, it was time to define some closures using them to execute user-triggered actions. First, though, a detour through the user input listener I wrote.
 
 
-## Defining key listeners cleanly
-Here were my goals for this slice of the system:
-- process each individual character from the login shell's `STDIN` immediately after it is typed
-- expose an ergonomic API/DSL for defining the keymap, a set of character->function mappings
-- allow the keymap definition to be deferred until after device discovery is complete
-- avoid unnecessary dependencies, sticking to the JS stdlib and node's built-in modules wherever possible
-- build a "keymap" object[^4]
-
-[^4]: While static types aren't much practical benefit to this project (see above), they _are_ fun, and can be a useful tool for thinking through and communicating the domain (and assumptions!) of the program's possible data. If I wanted to define types for these keymaps, I would use something like this:
-    ```typescript
-    // The generic Keymap type. Extending an exhaustive union of single-character string types
-    // instead of `string` would be more precise; but it would also be a huge pain to write
-    // and a hot, verbose mess in the type checker's error messages.
-    type Keymap<Keycode> = Record<Key extends string & keyof Keycode, Function>
-
-    // Refined for this program's use case:
-    type PlaybackControlKeycode = "b" | "p" | "f"
-    type RoomToggleKeycode = "t" | "l" | "k"
-    type VolumeCommandKeycode = "u" | "d" | "m"
-    type SonosKeycode = PlaybackControlKeycode | RoomToggleKeycode | VolumeCommandKeycode
-
-    const myCoolKeymap: Keymap<SonosKeycode> = ...
-    ```
-
-## Adding a REPL right from the start: a decision that payed off over and over and over again
-I cannot stress this enough: give yourself ways to poke at your system interactively! It's a fast way to find bugs and stress test your assumptions, right as you work, and it's vastly more reliable than keeping it all in your head and trying The Think System ™.
+## On debugging and feedback loops: adding a REPL right from the start was a decision that payed off over and over again
+Give yourself ways to poke at your system interactively! It's a fast way to find bugs and stress test your assumptions, right as you work, and it's vastly more reliable than keeping it all in your head and trying The Think System ™.
 
 That seemed awfully tricky to do here at first, since the Raspberry Pi this script was running on was headless, with only 6 keys on its keyboard and no screen; I couldn't just drop right into a breakpoint in the main thread. What I wanted instead was to be able to ssh in and _then_ connect with a running REPL server which exposed the same exact functions and variables I was using to identify and interact with speakers. This was remarkably, impressively easy to do in node! The trick was connecting over a unix socket using `socat`. A wrapper script at `bin/repl` saved me from having to remember the exact incantation; here it is, for reference:
 ```sh
@@ -216,66 +194,203 @@ const replServer = openRepl({
 ```
 
 
-## defining user-triggered actions
-### A reminder which keys I was listening for and what each does
-After writing and installing custom firmware, here's the keyboard layout I had:
-<svg
-  viewBox="0 0 260 120"
-  width="100%"
-  height="auto"
-  xmlns="http://www.w3.org/2000/svg"
-  style={{ maxWidth: '300px', margin: '2rem auto', display: 'block' }}
->
-  {/* Keys - Top Row */}
-  <rect x="10" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="35" y="35" fontSize="16" textAnchor="middle" fill="#333">b</text>
+## Defining key listeners cleanly
+Allow me to quote myself:
+> code that is in any way Sonos-specific should prefer "good enough" and terse, ad hoc problem solving over theoretical portability; only bother spending time on clean, reusable abstractions for things that could be useful in wildly different projects, like "trigger arbitrary functions by typing individual keys"
 
-  <rect x="70" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="95" y="35" fontSize="16" textAnchor="middle" fill="#333">p</text>
+_Well well well_.
 
-  <rect x="130" y="10" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="155" y="35" fontSize="16" textAnchor="middle" fill="#333">f</text>
+This intersects with some idiosyncratic interests I hold as a programmer in ways that are probably worth pointing out up front: I'm a big fan of interactive TUIs; the sort of workflow efficiencies gained by using painfully clear names for less-common operations but single-letter shortcuts for the ubiquitous ones; and keyboard-driven interfaces in general. I was specifically inspired by emacs' keyboard-driven [transient](https://jd.codes/posts/transient-emacs/) menus, which let you build commands—and often, complex variations of those commands—with just a few easily-discoverable keystrokes.
 
-  {/* Keys - Bottom Row */}
-  <rect x="10" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="35" y="95" fontSize="16" textAnchor="middle" fill="#333">l</text>
+Here were my goals for this slice of the system:
+- process each individual character from the login shell's `STDIN` immediately after it is typed
+- reinventing small wheels is preferable to unnecessary dependencies; in this case, all I needed was node's built-in `readline/promises` and the `process.stdin`/`process.stdout` streams.
+- expose an ergonomic API for defining the keybindings by providing a "keymap" object[^4]: a simple "bag of methods" object with character->function fields
+- write that API with enough flexibility to play well with contexts outside of this project's main use case, whether that be a dynamically-opened REPL, a random future node CLI, or whatever
+- provide a `listenForKeys(keybindings)` function so that defining the keymap can be deferred until after async device discovery is complete
 
-  <rect x="70" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="95" y="95" fontSize="16" textAnchor="middle" fill="#333">t</text>
+[^4]: While static types aren't much practical benefit to this project (see above), they _are_ fun, and can be a useful tool for thinking through and communicating the domain (and assumptions!) of the program's possible data. If I wanted to define types for these keymaps, I would use something like this:
+    ```typescript
+    // The generic Keymap type. Extending an exhaustive union of single-character string types
+    // instead of `string` would be more precise; but it would also be a huge pain to write
+    // and a hot, verbose mess in the type checker's error messages.
+    type Keymap<Keycode> = Record<Key extends string & keyof Keycode, Function>
 
-  <rect x="130" y="70" width="50" height="40" rx="8" fill="#eee" stroke="#333" />
-  <text x="155" y="95" fontSize="16" textAnchor="middle" fill="#333">k</text>
+    // Refined for this program's use case:
+    type PlaybackControlKeycode = "b" | "p" | "f"
+    type RoomToggleKeycode = "t" | "l" | "k"
+    type VolumeCommandKeycode = "u" | "d" | "m"
 
-  {/* Rotary Knob */}
-  <circle cx="220" cy="60" r="35" fill="#ccc" stroke="#333" strokeWidth="2" />
-  <text x="220" y="48" fontSize="14" textAnchor="middle" fill="#000">↻ u</text>
-  <text x="220" y="65" fontSize="14" textAnchor="middle" fill="#000">↺ d</text>
-  <text x="220" y="81" fontSize="12" textAnchor="middle" fill="#222">(m)</text>
-</svg>
+    const myCoolKeymap: Keymap<PlaybackControlKeycode & RoomToggleKeycode & VolumeCommandKeycode> = ...
+    ```
+    
+Let's start with a few small `listenForKeys` examples before showing its code. First, to demonstrate the simple case, a little program for printing emoticons on the command line:
+```js
+listenForKeys({
+  // "shrug"
+  s() {
+    console.log('¯\_(ツ)_/¯')
+  },
+  // "flip"
+  f() {
+    console.log('(╯°□°）╯︵ ┻━┻')
+  },
+  // "hey-o"
+  h() {
+    console.log('(╭☞ω)╭☞')
+  },
+  // "muscles"
+  m() {
+    console.log('ᕙ(⇀‸↼‶)ᕗ')
+  },
+})
+```
 
-Each keycode has a mnemonic meaning:
-- top row: playback controls
-  - left: `b`ackwards track
-  - middle: ensure `p`honograph is audio source
-  - right: `f`orwards track
-- bottom: device toggles
-  - `l`iving room speaker
-  - `t`v soundbar
-  - `k`itchen speaker
-- knob: 
-  - clockwise: `u`p volume
-  - counterclockwise: `d`own volume
-  - press: toggle `m`ute
+While debugging the controller's work-in-progress code with a socket-based, out-of-process connections to a REPL server, I realized that there were cases where I needed additional, unrelated cleanup logic to run at the same time I closed the key listener's input stream; to support that, you can use a `closeInput => keymap` function as your argument instead. Here's a simplified example of that custom cleanup:
+```js
+listenforKeys(closeInput => {
+  let replServer
+  const openNewRepl = () => {
+    replServer = openRepl({...customReplContext})
+  }
 
-The actual keycodes going between keyboard and script could have been anything, and as long as both sides "agreed" on their meaning it would have no impact on real users—but the mnemonics made it so much easier to do productive script development on a laptop keyboard before I had flashed custom keymappings to the keyboard firmware. Sticking to ordinary letters that were syntactically valid javascript property names without any need for escaping also made it very easy to write my key listeners in a friendly, readable DSL.
+  return {
+    o: openNewRepl,
+    q() {
+      closeInput()
+      replServer?.close()
+      process.exit()
+    },
+  }
+})
+```
 
-### `p`: ensure the audio source for the `Connect:Amp` device (and any other speakers in its group) is the line in.
+So. Now that you have a sense of what it's doing, here's the implementation, which is simple enough to paste in full:
+```js
+const readline = require('readline/promises')
 
+// returns a readline interface, an open stream which will keep the process alive until it
+// is closed. There are a few ways to do that:
+// - by explicitly closing the returned stream `rl` (`rl.close()`)
+// - by providing an object arg whose keys do not conflict with the default binding, "q" open
+// - by providing a function arg, which will be called with an
+//   `rl`-closing closure arg so you can make your own keymap binding to close it
+const listenForKeys = (keybindings) => {
+  const { stdin: input, stdout: output } = process
+  const rl = readline.createInterface({input, output})
+  const closer = rl.close.bind(rl)
+
+  const defaults = {
+    q() {
+      console.log('byeeeeeeee')
+      closer()
+    },
+  }
+  let keymap
+  if (typeof keybindings === 'function') {
+    keymap = keybindings(closer)
+  } else {
+    keymap = {...defaults, ...keybindings}
+  }
+
+  const onKeypress = (key, data) => {
+    const keybind = keymap[key] || keymap[key.toLowerCase()]
+
+    // add a newline so any logging output from the keymap function is displayed on a
+    // different line than the user-entered character
+    console.log("")
+
+    if (typeof keybind === 'function') keybind.bind(keymap)()
+  }
+
+  // allow toggling the key listener inside the keymap however it's defined (for doing
+  // fancypants stuff like opening a custom repl)
+  const _stopListening = () => rl.input.off('keypress', onKeypress)
+  const _startListening = () => rl.input.on('keypress', onKeypress)
+
+  Object.assign(keymap, { _stopListening, _startListening })
+
+  // kick things off
+  _startListening()
+
+  return { rl, onKeypress, keymap }
+}
+```
+
+## Defining user-triggered actions
 ### `l`, `t`, `k`: toggle a specific other device's membership in the `Connect:Amp`'s group
-- `if` device is currently in the group
-- `then`: it leaves the group
-- `else`: it joins the group
-for this I can use `sonos.joinGroup('Line In')` on other device objects to group with `Line In`
-#### `b`, `f`: change tracks when streaming from software
-#### `u`, `d`: volume up or down
-#### `m`: toggle mute
+[start with the top level and work down]
+```js
+```
+### `u`, `d`, and `m`: volume control
+```js
+  const volumeControls = {
+    _volumeIncrement: 4,
+    async m() {
+      const lineInGroup = await ensureRoomHasOwnGroup(lineIn)
+      // This currently toggles mute status independently for each speaker in the group
+      // instead of managing the group as a whole.
+      // TODO if any speaker in group is unmuted, mute all; else unmute all
+      forRoomsInGroup(lineInGroup, async (room) => {
+        const { device } = room
+        await device.setMuted(!await device.getMuted())
+      })
+    },
+    async d() {
+      const lineInGroup = await ensureRoomHasOwnGroup(lineIn)
+      forRoomsInGroup(lineInGroup, async (room) => {
+        const { device, deets } = room
+        const newVolume = await device.getVolume() - this._volumeIncrement
+        console.log(`lowering ${deets.roomName} volume to ${newVolume}`)
+        await device.setVolume(newVolume)
+      })
+    },
+    async u() {
+      const lineInGroup = await ensureRoomHasOwnGroup(lineIn)
+      forRoomsInGroup(lineInGroup, async (room) => {
+        const { device, deets } = room
+        const newVolume = await device.getVolume() + this._volumeIncrement
+        console.log(`raising ${deets.roomName} volume to ${newVolume}`)
+        await device.setVolume(newVolume)
+      })
+    },
+  }
+```
+### `p`, `b`, `f`[^6]: digital playback controls
+Navigating `b`ackwards and `f`orwards in track-based digital streams is a first-class feature in the `sonos` package's device object API and a second-class feature for a device centered on streaming phonograph audio; I'll let those one-liners speak for themselves.
+```js
+  const playbackControls = {
+    async p() {
+      await ensureLineInIsSource().catch(wtf)
+    },
+    async b() {
+      await lineIn.device.previous().catch(wtf)
+    },
+    async f() {
+      await lineIn.device.next().catch(wtf)
+    },
+  }
+```
+`p` didn't need to be its own key, really: it's already called whenever a speaker toggle is pressed, which covers the obvious use case (the needle went down and no sound played anywhere) and enables a hacky workaround for other scenarios (toggle a connected speaker off and back on). But its existence as a dedicated button makes sense too, and provides a little more flexibility; and anyway, having erred on the side of extra buttons when ordering my macropad, I had the real estate to spare. 
+
+There's no higher-level wrapper function for selecting the line in as input source in the library code[^5], so I had to manually build a URI that is, shall we say, not optimized for human-readability:
+```js
+  const ensureLineInIsSource = async () => {
+    const macCleaned = (await lineIn.device.getZoneInfo()).MACAddress.replace(/:/g, '')
+
+    await lineIn.device.setAVTransportURI(
+      `x-rincon-stream:RINCON_${macCleaned}01400`
+    )
+  }
+```
+
+"Make this function work properly" spent an embarassingly long time in the "TODO" list due to a typo in the static portion of the URI. Some days the bear eats you.
+
+[^5]: There was, and thank goodness, [a file called `examples/switchToLineIn.js`](https://github.com/bencevans/node-sonos/blob/abb0c01d49c089bf47c06da9dce8fa9bbd846719/examples/switchToLineIn.js) for reference, though
+
+[^6]: Despite being such a giant softie that cringe comedy causes me actual pain, my sense of humor harbors a deep dark streak; enough so that I cannot see "`p`, `b`, `f`" and _not_ drop a link to [Perry Bible Fellowship webcomic](https://pbfcomics.com/). If you're not already familiar and Franz Kafka's writing makes you laugh harder than you cry, do yourself a favor and click through.
+
+## Wrapping up
+That's about it! If you want to dig into _even more_ of the gory details, or adapt the code to your own Sonos-controlling widget needs, check out the repository on github at [`ambirdsall/noisebot`](https://github.com/ambirdsall/noisebot). Otherwise, thanks for reading; I hope you found something in here interesting, useful, or both.
+
+<Fin />
